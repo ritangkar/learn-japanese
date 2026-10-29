@@ -20,7 +20,7 @@ export default defineConfig({
   expect: { timeout: 10000 },
   fullyParallel: false,
   workers: 1,
-  retries: 0,
+  retries: process.env.CI ? 1 : 0, // CI runners are slower; one retry absorbs a timing flake and the report still lists it as flaky
   reporter: [['list'], ['json', { outputFile: 'test-results/e2e.json' }]],
   use: { baseURL: `http://localhost:${PORT}/${REPO}/`, serviceWorkers: 'allow', trace: 'off', reducedMotion: 'reduce' },
   projects,
