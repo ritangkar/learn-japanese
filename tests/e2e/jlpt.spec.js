@@ -2,11 +2,13 @@ import { test, expect } from '@playwright/test';
 import { waitReady, skipTour, examRunSection } from './helpers.js';
 
 const bootN5Done = async (page) => {
-  await page.evaluate(() => {
+  await page.evaluate(async () => {
     const st = window.__tabi.store;
-    const lessons = {}; for (const u of ['n5_u01', 'n5_u02']) for (let i = 1; i <= 7; i++) lessons[`${u}_l${i}`] = { doneAt: 1, score: 1, count: 1 };
+    const released = (await window.__tabi.ctx.getContent()).units.filter((u) => u.level === 'N5' && u.released);
+    const lessons = {}; const units = {};
+    for (const u of released) { units[u.id] = { completedAt: 1 }; for (const l of u.lessons) lessons[l] = { doneAt: 1, score: 1, count: 1 }; }
     const introduced = { kana: [], vocab: [], kanji: [], grammar: [] };
-    st.update('progress', (p) => ({ ...p, lessons, units: { n5_u01: { completedAt: 1 }, n5_u02: { completedAt: 1 } }, introduced }));
+    st.update('progress', (p) => ({ ...p, lessons, units, introduced }));
   });
 };
 
@@ -21,7 +23,8 @@ test.describe('JLPT area (AC10, AC11, AC23, AC25, AC32-AC34)', () => {
       await expect(card).toContainText('Instructional level (unofficial)');
     }
     await expect(page.locator('[data-level="N5"] .criteria li')).toHaveCount(4);
-    await expect(page.locator('[data-level="N5"]')).toContainText('Units released: 2 of 12');
+    const nReleased = await page.evaluate(async () => (await window.__tabi.ctx.getContent()).units.filter((u) => u.level === 'N5' && u.released).length);
+    await expect(page.locator('[data-level="N5"]')).toContainText(`Units released: ${nReleased} of 12`);
     await expect(page.locator('[data-level="N5"]')).toContainText('released units only');
     await expect(page.locator('[data-level="N4"]')).toContainText('Locked');
   });

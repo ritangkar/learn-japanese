@@ -90,9 +90,14 @@ test.describe('storage health and honesty screens', () => {
     await page.goto('./#/credits'); await expect(page.locator('main')).toContainText('No third-party assets are included');
     await expect(page.locator('main')).toContainText('not derived from KanjiVG');
   });
-  test('library: unreleased kanji and grammar are stated honestly; kanji stroke order is not claimed', async ({ page }) => {
+  test('library: kanji are listed from released units only; stroke order is not claimed; unknown ids are stated honestly', async ({ page }) => {
     await page.goto('./'); await waitReady(page); await skipTour(page);
-    await page.goto('./#/library?tab=kanji'); await expect(page.locator('main')).toContainText('No kanji are released yet');
+    await page.goto('./#/library?tab=kanji');
+    const n = await page.evaluate(async () => (await window.__tabi.ctx.getContent()).kanji.length);
+    expect(n).toBeGreaterThan(0);
+    await expect(page.locator('main a.card')).toHaveCount(n);
+    await page.goto('./#/kanji/k_san'); await expect(page.locator('#stroke-na')).toContainText('Stroke order is not available yet');
+    await expect(page.locator('main')).not.toContainText(/KanjiVG/i);
     await page.goto('./#/kanji/none'); await expect(page.locator('main')).toContainText('not available yet');
   });
 });

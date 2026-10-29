@@ -1,0 +1,8 @@
+[
+{"id":"k_ichi","unit_id":"n5_u04","instructional_level":"N5","char":"一","meanings_en":["one"],"on_readings":["いち"],"kun_readings":["ひと"],"reading_notes":"いち counts numbers; ひとつ counts objects.","stroke_count":1,"example_word_ids":["v_num1"],"confusable_with":["k_ni"],"tags":["numbers"],"provenance":"orig"},
+{"id":"k_ni","unit_id":"n5_u04","instructional_level":"N5","char":"二","meanings_en":["two"],"on_readings":["に"],"kun_readings":["ふた"],"stroke_count":2,"example_word_ids":["v_num2"],"confusable_with":["k_ichi","k_san"],"tags":["numbers"],"provenance":"orig"},
+{"id":"k_san","unit_id":"n5_u04","instructional_level":"N5","char":"三","meanings_en":["three"],"on_readings":["さん"],"kun_readings":["みっ"],"stroke_count":3,"example_word_ids":["v_num3"],"confusable_with":["k_ni"],"tags":["numbers"],"provenance":"orig"},
+{"id":"k_shi","unit_id":"n5_u04","instructional_level":"N5","char":"四","meanings_en":["four"],"on_readings":["し"],"kun_readings":["よん","よっ"],"reading_notes":"よん is the usual spoken reading of the number; し appears inside a few words.","stroke_count":5,"example_word_ids":["v_num4"],"confusable_with":["k_go"],"tags":["numbers"],"provenance":"orig"},
+{"id":"k_go","unit_id":"n5_u04","instructional_level":"N5","char":"五","meanings_en":["five"],"on_readings":["ご"],"kun_readings":["いつ"],"stroke_count":4,"example_word_ids":["v_num5"],"confusable_with":["k_shi"],"tags":["numbers"],"provenance":"orig"},
+{"id":"k_roku","unit_id":"n5_u04","instructional_level":"N5","char":"六","meanings_en":["six"],"on_readings":["ろく"],"kun_readings":["むっ"],"stroke_count":4,"example_word_ids":["v_num6"],"tags":["numbers"],"provenance":"orig"}
+]

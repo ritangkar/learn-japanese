@@ -1,0 +1,6 @@
+[
+{"id":"n5u03_d1","unit_id":"n5_u03","instructional_level":"N5","title":"Meeting for the first time","setting":"tokyo","turns":[{"speaker":"A","sentence_id":"s_n5u03_k18"},{"speaker":"B","sentence_id":"s_n5u03_k19"},{"speaker":"A","sentence_id":"s_n5u02_g13"},{"speaker":"B","sentence_id":"s_n5u03_k20"}],"comprehension_question_ids":["q_n5u03_dg01","q_n5u03_dg02"],"register":"polite","provenance":"orig"},
+{"id":"n5u03_d2","unit_id":"n5_u03","instructional_level":"N5","title":"Are you a student?","setting":"tokyo","turns":[{"speaker":"A","sentence_id":"s_n5u03_k05"},{"speaker":"B","sentence_id":"s_n5u03_k06"}],"comprehension_question_ids":["q_n5u03_dg03","q_n5u03_dg04"],"register":"polite","provenance":"orig"},
+{"id":"n5u03_d3","unit_id":"n5_u03","instructional_level":"N5","title":"Who is that?","setting":"tokyo_station","turns":[{"speaker":"A","sentence_id":"s_n5u03_k11"},{"speaker":"B","sentence_id":"s_n5u03_k21"}],"comprehension_question_ids":["q_n5u03_dg05"],"register":"polite","provenance":"orig"},
+{"id":"n5u03_d4","unit_id":"n5_u03","instructional_level":"N5","title":"May I ask your name?","setting":"tokyo","turns":[{"speaker":"A","sentence_id":"s_n5u03_k08"},{"speaker":"B","sentence_id":"s_n5u03_k22"}],"comprehension_question_ids":["q_n5u03_dg06"],"register":"polite","provenance":"orig"}
+]

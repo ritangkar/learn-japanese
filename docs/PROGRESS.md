@@ -1,6 +1,6 @@
 # Progress log
 
-(Updated at every phase. Commit hashes refer to branch `feat/tabi-nihongo`.)
+(Updated at every phase. Local working branch `feat/tabi-nihongo`; pushed as `claude/tabi-nihongo-pwa-q9l93j`.)
 
 ## P0 – Repo inspection and scaffold
 
@@ -50,7 +50,21 @@ Lesson player, 23 exercise types via seven renderers (with fallbacks), session r
 What it demonstrates, through the UI only: both authored N5 units (14 lessons), the Tokyo destination state machine (available → quest → completed, stamp + postcard awarded once, replay does not duplicate), a review loop over due facets, JSON export → fresh browser context → import with preview + confirmation → identical lessons/stamps/facets, then an offline reload with the map, review and a lesson still working. Zero cross-origin requests.
 Note: Tokyo's completion rule needs `n5_u02` (spec), so the slice authored n5_u01 AND n5_u02.
 
-## P5 – Explore Japan (in progress: code done, e2e pending)
+## P5 – Explore Japan (done)
 SVG map (original simplified outlines), pins by shape, Okinawa inset, Tokyo sub-map, 27 generated scenes, stamps, journal, achievements.
 
-## P6/P7 (code written; e2e pending): audio engine (22 procedural sounds, 25 unit tests), JLPT hub, section practice, exam runner, readiness, planner.
+## P6/P7 (done): audio engine (22 procedural sounds, 25 unit tests), JLPT hub, section practice, exam runner, readiness, planner.
+
+## QA run 1 (before content batch 2)
+* `npx playwright test` (Chromium: desktop 1280x800, 360x640, 390x844): **159 passed** (12.3 min), 0 failed.
+* Defect found and fixed during this run: wide tables overflowed horizontally at 360/390 px (`#/content`); fixed with scrollable tables (commit `653774b`).
+* `npx vitest run`: 278 passed; `npx eslint src scripts tests`: clean.
+
+## P8 content batch 2
+* `n5_u03` (combined sounds, small tsu, long vowels, X wa Y desu, question particle ka) and `n5_u04` (katakana I, numbers, kanji 一〜六, telling the time, station theme, Tokyo Station quest) authored by hand; validators 27 passed, 0 failed, A07 not run.
+* New helper `spokenRomaji` so a standalone particle は / へ / を is shown as wa / e / o in romaji hints (unit-tested).
+
+## P9 (in progress)
+* `scripts/license-audit.mjs`, `scripts/check-fixtures-not-shipped.mjs`, `scripts/check-sizes.mjs` run in every build; negative fixtures for the licence audit.
+* Docs: README (mock counters), LIMITATIONS, LICENSES, CONTENT_STATUS, FEATURES, generated `docs/qa/TRACEABILITY.md`.
+* GitHub Pages workflow `.github/workflows/pages.yml` (lint, validate, unit, build, e2e; deploy only from the designated branch).

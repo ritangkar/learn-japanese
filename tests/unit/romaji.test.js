@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { kanaToRomaji, romajiToKana, typedToKana, normalizeJa, toHiragana, toKatakana, hasKanji } from '../../src/content/romaji.js';
+import { spokenRomaji, kanaToRomaji, romajiToKana, typedToKana, normalizeJa, toHiragana, toKatakana, hasKanji } from '../../src/content/romaji.js';
 
 describe('kana -> romaji', () => {
   const cases = [['ねこ', 'neko'], ['さかな', 'sakana'], ['しお', 'shio'], ['つき', 'tsuki'], ['ちかい', 'chikai'], ['せんせい', 'sensei'], ['ほんや', "hon'ya"], ['きょう', 'kyou'], ['しゃしん', 'shashin'], ['ちゃ', 'cha'], ['じしょ', 'jisho'], ['がっこう', 'gakkou'], ['まっちゃ', 'matcha'], ['ざっし', 'zasshi'], ['おおきい', 'ookii'], ['コーヒー', 'koohii'], ['ティー', 'tii'], ['りょこう', 'ryokou'], ['にほん', 'nihon'], ['でんわ', 'denwa'], ['を', 'o']];
@@ -21,4 +21,9 @@ describe('normalisation', () => {
   it('NFKC half-width katakana and punctuation', () => { expect(normalizeJa('ﾈｺ。')).toBe('ねこ'); });
   it('typed answer can be romaji or kana', () => { expect(typedToKana('Neko')).toBe('ねこ'); expect(typedToKana('ネコ')).toBe('ねこ'); expect(typedToKana('ねこ')).toBe('ねこ'); });
   it('kanji detection', () => { expect(hasKanji('猫')).toBe(true); expect(hasKanji('ねこ')).toBe(false); });
+});
+describe('particles in displayed romaji', () => {
+  it('speaks a standalone は as wa, へ as e and を as o', () => expect(spokenRomaji('わたし は がくせい です')).toBe('watashi wa gakusei desu'));
+  it('leaves は inside a word alone', () => expect(spokenRomaji('はな を みます')).toBe('hana o mimasu'));
+  it('maps へ', () => expect(spokenRomaji('がっこう へ いきます')).toBe('gakkou e ikimasu'));
 });

@@ -1,3 +1,4 @@
 [
-{"id":"q_tokyo_1","destination_id":"tokyo","type":"QT_GREET","unit_id":"n5_u02","min_accuracy":0.8,"provenance":"orig","question_ids":["q_n5u02_dg01","q_n5u02_dg02","q_n5u02_dg04","q_n5u02_dg07","q_n5u02_gl01","q_n5u02_gl05","q_n5u02_kr01","q_n5u01_kr01","q_n5u01_lq01","q_n5u01_kr03"],"spiral_question_ids":["q_n5u01_kr01","q_n5u01_lq01","q_n5u01_kr03"]}
+{"id":"q_tokyo_1","destination_id":"tokyo","type":"QT_GREET","unit_id":"n5_u02","min_accuracy":0.8,"provenance":"orig","question_ids":["q_n5u02_dg01","q_n5u02_dg02","q_n5u02_dg04","q_n5u02_dg07","q_n5u02_gl01","q_n5u02_gl05","q_n5u02_kr01","q_n5u01_kr01","q_n5u01_lq01","q_n5u01_kr03"],"spiral_question_ids":["q_n5u01_kr01","q_n5u01_lq01","q_n5u01_kr03"]},
+{"id":"q_tokyo_station_1","destination_id":"tokyo_station","type":"QT_NAVIGATE","unit_id":"n5_u04","min_accuracy":0.8,"provenance":"orig","question_ids":["q_n5u04_dg01","q_n5u04_dg03","q_n5u04_dg05","q_n5u04_gl05","q_n5u04_gl01","q_n5u04_rq01","q_n5u04_rq02","q_n5u03_dg03","q_n5u02_dg04","q_n5u03_gl05"],"spiral_question_ids":["q_n5u03_dg03","q_n5u02_dg04","q_n5u03_gl05"]}
 ]

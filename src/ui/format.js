@@ -1,7 +1,7 @@
 // Rendering helpers for Japanese text: lang="ja", ruby (furigana) for kanji the learner has not been introduced to, romaji hints.
 import { h } from './dom.js';
 import { rubySegments } from '../content/model.js';
-import { kanaToRomaji } from '../content/romaji.js';
+import { kanaToRomaji, spokenRomaji } from '../content/romaji.js';
 import { showRomajiForWord } from '../engine/mastery.js';
 
 /** Set of kanji chars the learner has been introduced to (via completed lessons). */
@@ -22,7 +22,7 @@ export function romajiHint(text, env, cls = 'romaji muted small') {
   if (!/^[ぁ-ゖァ-ヺー]+$/.test(kana)) return null;
   const show = showRomajiForWord(mode, env.store.state.srs, kana, env.content.kanaIdByChar, env.today());
   if (!show) return null;
-  return h('div', { class: cls, 'aria-label': `romaji ${kanaToRomaji(kana)}` }, kanaToRomaji(text.replace(/\s+/g, ' ')));
+  return h('div', { class: cls, 'aria-label': `romaji ${kanaToRomaji(kana)}` }, spokenRomaji(text.replace(/\s+/g, ' ')));
 }
 
 export const pctText = (x) => `${Math.round(x * 100)} %`;

@@ -1,0 +1,4 @@
+[
+{"id":"n5u04_r1","unit_id":"n5_u04","instructional_level":"N5","title":"Train timetable","paragraphs":["ごぜん しちじ  いちばんせん","ごぜん くじ はん  さんばんせん","ごご さんじ  ごばんせん","ごご ろくじ  にばんせん"],"translation_en":"7 a.m. platform 1 / 9:30 a.m. platform 3 / 3 p.m. platform 5 / 6 p.m. platform 2","word_count_chars":45,"question_ids":["q_n5u04_rq01","q_n5u04_rq02","q_n5u04_rq03"],"genre":"signs","provenance":"orig"},
+{"id":"n5u04_r2","unit_id":"n5_u04","instructional_level":"N5","title":"Station map notes","paragraphs":["ホテル は あそこ です","レストラン は ここ です","えき は あそこ です"],"translation_en":"The hotel is over there. / The restaurant is here. / The station is over there.","word_count_chars":27,"question_ids":["q_n5u04_rq04","q_n5u04_rq05"],"genre":"signs","provenance":"orig"}
+]

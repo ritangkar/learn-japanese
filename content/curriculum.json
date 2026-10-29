@@ -57,8 +57,16 @@
    ],
    "kanji_introduced_target": 0,
    "scenario_theme": "introductions",
-   "content_status": "to_be_authored",
-   "lessons": []
+   "content_status": "auto_checked",
+   "lessons": [
+    "n5_u03_l1",
+    "n5_u03_l2",
+    "n5_u03_l3",
+    "n5_u03_l4",
+    "n5_u03_l5",
+    "n5_u03_l6",
+    "n5_u03_l7"
+   ]
   },
   {
    "id": "n5_u04",
@@ -72,8 +80,17 @@
    ],
    "kanji_introduced_target": 6,
    "scenario_theme": "station_tickets",
-   "content_status": "to_be_authored",
-   "lessons": []
+   "content_status": "auto_checked",
+   "lessons": [
+    "n5_u04_l1",
+    "n5_u04_l2",
+    "n5_u04_l3",
+    "n5_u04_l4",
+    "n5_u04_l5",
+    "n5_u04_l6",
+    "n5_u04_l7",
+    "n5_u04_l8"
+   ]
   },
   {
    "id": "n5_u05",

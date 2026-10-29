@@ -4,24 +4,24 @@ Hand-written questions are individually authored; templated questions are built 
 
 | Level | Units released | Vocab (target) | Kanji (target) | Grammar (target) | Dialogues (target) | Passages (target) | Sentences/phrases | Listening items | Hand-written questions | Templated questions | Mocks released / 20 |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| N5 | 2 of 12 | 121 / 600 | 0 / 80 | 1 / 45 | 5 / 30 | 4 / 25 | 99 | 4 | 156 | 153 | 0 of 20 |
+| N5 | 4 of 12 | 213 / 600 | 6 / 80 | 4 / 45 | 13 / 30 | 8 / 25 | 188 | 9 | 401 | 303 | 0 of 20 |
 | N4 | 0 of 8 | 0 / 350 | 0 / 60 | 0 / 40 | 0 / 15 | 0 / 12 | 0 | 0 | 0 | 0 | 0 of 20 |
 | N3 | 0 of 8 | 0 / 150 | 0 / 40 | 0 / 25 | 0 / 8 | 0 / 8 | 0 | 0 | 0 | 0 | 0 of 20 |
 | N2 | 0 of 8 | 0 / 80 | 0 / 30 | 0 / 20 | 0 / 4 | 0 / 6 | 0 | 0 | 0 | 0 | 0 of 20 |
 | N1 | 0 of 7 | 0 / 60 | 0 / 25 | 0 / 15 | 0 / 3 | 0 / 5 | 0 | 0 | 0 | 0 | 0 of 20 |
 
-Kana entries released (N5): 71.
+Kana entries released (N5): 151.
 
 ## Status distribution (all items by instructional level)
 
 | Level | draft | auto_checked | human_reviewed |
 |---|---|---|---|
-| N5 | 154 | 629 | 0 |
+| N5 | 74 | 1327 | 0 |
 | N4 | 0 | 0 | 0 |
 | N3 | 0 | 0 | 0 |
 | N2 | 0 | 0 | 0 |
 | N1 | 0 | 0 | 0 |
 
-human_reviewed share: 0 of 783 items (0.0 %).
+human_reviewed share: 0 of 1401 items (0.0 %).
 
-Units: 41 of 43 are still `to_be_authored` and are not releasable.
+Units: 39 of 43 are still `to_be_authored` and are not releasable.

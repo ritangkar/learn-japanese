@@ -64,6 +64,12 @@ export function kanaToRomaji(input) {
   return out;
 }
 
+/** Romaji for display: a space-separated は / へ / を standing alone is a particle and is spoken wa / e / o. */
+export function spokenRomaji(text) {
+  const PARTICLE = { は: 'わ', へ: 'え', を: 'お' };
+  return kanaToRomaji(text.split(' ').map((t) => PARTICLE[t] || t).join(' '));
+}
+
 // ---- romaji -> hiragana (accepts common typing variants) ----
 const R2K = [];
 for (const [k, r] of Object.entries(BASE)) if (!R2K.some(([x]) => x === r)) R2K.push([r, k]);

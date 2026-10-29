@@ -54,4 +54,29 @@ test.describe('Explore Japan map (AC13, AC12, J04)', () => {
     await expect(page.getByText(/Unverified/).first()).toBeVisible();
     await page.goto('./#/achievements'); await expect(page.locator('[data-ach="ach_first_stamp"]')).toHaveAttribute('data-earned', '1');
   });
+
+  test('journey C2: Tokyo Station is locked until n5_u03 is complete; with n5_u04 done the QT_NAVIGATE quest completes it once', async ({ page }) => {
+    const complete = (ids) => page.evaluate(async (units) => {
+      const st = window.__tabi.store; const content = await window.__tabi.ctx.getContent();
+      const lessons = {}; const us = {};
+      for (const id of units) { us[id] = { completedAt: 1 }; for (const l of content.unitById.get(id).lessons) lessons[l] = { doneAt: 1, score: 1, count: 1 }; }
+      st.update('progress', (p) => ({ ...p, lessons: { ...p.lessons, ...lessons }, units: { ...p.units, ...us } }));
+    }, ids);
+    await page.evaluate(async () => { await window.__tabi.ctx.getContent(); });
+    await complete(['n5_u01', 'n5_u02']);
+    await page.goto('./#/tokyo');
+    await expect(page.locator('[data-dest="tokyo_station"]')).toHaveAttribute('data-state', /visible_locked|discoverable|hidden/);
+    await complete(['n5_u03']);
+    await page.goto('./#/dest/tokyo_station');
+    await expect(page.locator('#quest-q_tokyo_station_1')).toBeVisible();
+    await complete(['n5_u04']);
+    await page.goto('./#/dest/tokyo_station'); await page.locator('#quest-q_tokyo_station_1').click();
+    const { solveSession } = await import('./helpers.js'); await solveSession(page);
+    await page.goto('./#/tokyo'); await expect(page.locator('[data-dest="tokyo_station"]')).toHaveAttribute('data-state', /completed|revisit_available/);
+    const stamps = async () => page.evaluate(() => Object.keys(window.__tabi.store.state.journal.stamps || {}).filter((k) => k.includes('tokyo_station')).length);
+    expect(await stamps()).toBe(1);
+    await page.goto('./#/dest/tokyo_station');
+    if (await page.locator('#quest-q_tokyo_station_1').count()) { await page.locator('#quest-q_tokyo_station_1').click(); await solveSession(page); }
+    expect(await stamps()).toBe(1);
+  });
 });

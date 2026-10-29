@@ -1,0 +1,4 @@
+[
+{"id":"n5u03_ls1","audio_mode":"tts","synthetic_audio_flag":true,"speaker_voice_hint":[],"unit_id":"n5_u03","instructional_level":"N5","item_type":"Word recognition (lesson practice)","title":"Combined sounds","script_turns":[{"speaker":"A","text_ja":"おちゃ"},{"speaker":"A","text_ja":"しゃしん"},{"speaker":"A","text_ja":"ひゃく"},{"speaker":"A","text_ja":"りょかん"}],"question_ids":["q_n5u03_gl01","q_n5u03_gl02","q_n5u03_gl03","q_n5u03_gl04"],"provenance":"orig"},
+{"id":"n5u03_ls2","audio_mode":"tts","synthetic_audio_flag":true,"speaker_voice_hint":[],"unit_id":"n5_u03","instructional_level":"N5","item_type":"Word recognition (lesson practice)","title":"Long vowels and small っ","script_turns":[{"speaker":"A","text_ja":"おじいさん"},{"speaker":"A","text_ja":"おばあさん"},{"speaker":"A","text_ja":"がっこう"},{"speaker":"A","text_ja":"きって"}],"question_ids":["q_n5u03_gl05","q_n5u03_gl06","q_n5u03_gl07","q_n5u03_gl08"],"provenance":"orig"}
+]
