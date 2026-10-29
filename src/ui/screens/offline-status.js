@@ -1,4 +1,5 @@
 import { h } from '../dom.js';
+import { heroTitle } from '../common.js';
 import { checkOffline, STATUS } from '../../pwa/offline.js';
 
 const LABEL = {
@@ -10,7 +11,7 @@ export async function statusScreen({ ctx }) {
   const r = await checkOffline();
   ctx.sw.offline = r;
   const [text, kind] = LABEL[r.status];
-  return h('div', { class: 'stack' }, h('h2', null, 'Offline status'),
+  return h('div', { class: 'stack' }, heroTitle('Offline status', 'Profile'),
     h('div', { class: 'card' }, h('p', null, h('span', { id: 'offline-indicator', class: `chip ${kind}` }, text)),
       h('p', { class: 'small muted' }, 'This indicator says "Ready offline" only when every file in the build\'s precache list is actually present in the browser\'s Cache Storage.'),
       r.total ? h('p', { class: 'small' }, `${r.present} of ${r.total} core files cached.`) : null,

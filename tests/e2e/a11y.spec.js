@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { waitReady, skipTour, solveSession, examAnswer } from './helpers.js';
 
-const SCREENS = ['#/', '#/?view=list', '#/tokyo', '#/dest/tokyo', '#/dest/sapporo', '#/learn', '#/lesson/n5_u01_l1', '#/review', '#/kana', '#/kana?script=katakana', '#/library', '#/library?tab=grammar', '#/library?tab=kanji', '#/jlpt', '#/jlpt/N5', '#/jlpt/N4', '#/readiness', '#/planner', '#/journal', '#/achievements', '#/me', '#/settings', '#/audio', '#/backup', '#/storage', '#/status', '#/content', '#/privacy', '#/about', '#/credits', '#/speak', '#/summary', '#/tour'];
+const SCREENS = ['#/', '#/explore', '#/explore?view=list', '#/explore?stop=kyoto', '#/tokyo', '#/dest/tokyo', '#/dest/sapporo', '#/learn', '#/lesson/n5_u01_l1', '#/review', '#/kana', '#/kana?script=katakana', '#/library', '#/library?tab=grammar', '#/library?tab=kanji', '#/jlpt', '#/jlpt/N5', '#/jlpt/N4', '#/readiness', '#/planner', '#/journal', '#/achievements', '#/me', '#/settings', '#/audio', '#/backup', '#/storage', '#/status', '#/content', '#/privacy', '#/about', '#/credits', '#/speak', '#/summary', '#/tour'];
 
 for (const theme of ['light', 'dark']) {
   test(`AC29: axe finds no serious or critical violations on any screen (${theme})`, async ({ page }) => {

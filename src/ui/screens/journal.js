@@ -45,9 +45,9 @@ export async function journalScreen({ ctx }) {
     host.append(h('section', { 'aria-label': `${L} stamps` }, h('div', { class: 'row between' }, h('h2', { style: 'margin:8px 0' }, `${L} stops`), h('span', { class: 'chip sakura' }, `${n} of ${list.length}`)),
       h('div', { class: 'stamp-book' }, list.map((d) => {
         const x = j.stamps[d.rewards.stamp_id];
-        if (x) return h('button', { class: 'stamp stamp-cell', type: 'button', 'data-stamp': d.id, onclick: () => stampDetail(ctx, content, d, x), 'aria-label': `${d.name_en} stamp, collected ${dayToDate(x.day)}. Open details.` }, stampSvg(d, { day: x.day, tier: x.tier, motifs: SCENES[d.id]?.motifs }), h('span', { class: 'small' }, d.name_en));
+        if (x) return h('button', { class: 'stamp stamp-cell', type: 'button', 'data-stamp': d.id, title: 'Open stamp details', onclick: () => stampDetail(ctx, content, d, x) }, stampSvg(d, { day: x.day, tier: x.tier, motifs: SCENES[d.id]?.motifs }), h('span', { class: 'small' }, d.name_en));
         const locked = ['visible_locked', 'discoverable', 'hidden'].includes(states[d.id].state);
-        return h('a', { class: 'stamp-cell empty-slot', href: `#/dest/${d.id}`, 'data-slot': d.id, 'aria-label': `${d.name_en}: stamp not collected yet${locked ? ', stop locked' : ''}` }, stampSvg(d, { ghost: true }), h('span', { class: 'small muted' }, locked ? h('span', null, icon('lock', { size: 12 }), ' ', d.name_en) : d.name_en));
+        return h('a', { class: 'stamp-cell empty-slot', href: `#/dest/${d.id}`, 'data-slot': d.id }, stampSvg(d, { ghost: true }), h('span', { class: 'small muted' }, locked ? icon('lock', { size: 12 }) : null, locked ? ' ' : null, d.name_en, locked ? h('span', { class: 'sr-only' }, ' (stop locked)') : null));
       }))));
   }
   // postcards

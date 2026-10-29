@@ -1,4 +1,5 @@
 import { h } from '../dom.js';
+import { heroTitle } from '../common.js';
 import { applyDisplaySettings } from '../../app.js';
 import { RATE_PRESETS, RATE_MIN, RATE_MAX } from '../../audio/tts.js';
 
@@ -11,7 +12,7 @@ function select(id, label, value, options, onchange) {
 
 export function settingsScreen({ ctx }) {
   const s = ctx.store.state.settings;
-  return h('div', { class: 'stack' }, h('h2', null, 'Settings'),
+  return h('div', { class: 'stack' }, heroTitle('Settings', 'Profile'),
     h('div', { class: 'card' }, h('h3', null, 'Daily goal'),
       select('s-min', 'Core session length', s.dailyCoreMinutes, [15, 20, 25, 30, 35, 40, 45, 50, 55, 60].map((m) => [m, `${m} minutes`]), (v) => set(ctx, { dailyCoreMinutes: Number(v) })),
       select('s-wk', 'Weekly goal', s.weeklyGoalDays, [2, 3, 4, 5, 6, 7].map((d) => [d, `${d} days a week`]), (v) => set(ctx, { weeklyGoalDays: Number(v) })),
@@ -38,7 +39,7 @@ export function audioSettingsScreen({ ctx }) {
   const slider = (id, label, value, min, max, step, onchange) => h('div', null, h('label', { for: id }, label), h('input', { type: 'range', id, min, max, step, value, oninput: (e) => onchange(Number(e.target.value)) }));
   const rate = s.learning.rate;
   const out = h('output', { id: 'rate-out', 'aria-live': 'polite' }, `${rate.toFixed(2)}x`);
-  return h('div', { class: 'stack' }, h('h2', null, 'Sound and voice'),
+  return h('div', { class: 'stack' }, heroTitle('Sound and voice', 'Profile'),
     h('div', { class: 'card' }, h('h3', null, 'Japanese voice on this device'),
       st.supported ? (st.hasJapaneseVoice ? h('p', { class: 'banner ok', id: 'voice-status' }, `A Japanese voice was found: ${st.voiceName}${st.local ? ' (works offline)' : ' (may need the internet)'}. It is a synthetic voice and quality varies; it is not native-speaker audio.`) : h('p', { class: 'banner warn', id: 'voice-status' }, 'No Japanese voice found on this device. Audio exercises switch to the transcript, with a notice, and nothing else is lost. You can usually add a voice in your device settings (text-to-speech).')) : h('p', { class: 'banner warn', id: 'voice-status' }, 'This browser has no speech synthesis. Audio exercises use transcripts.'),
       st.voices.length > 1 ? h('div', null, h('label', { for: 'voice-pick' }, 'Voice'), h('select', { id: 'voice-pick', onchange: (e) => setNested(ctx, 'learning', { voiceURI: e.target.value || null }) }, st.voices.map((v) => h('option', { value: v.voiceURI, selected: v.voiceURI === (s.learning.voiceURI || st.voiceURI) ? true : null }, `${v.name}${v.local ? '' : ' (online)'}`)))) : null,

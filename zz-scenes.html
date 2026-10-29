@@ -1,6 +1,0 @@
-<!doctype html><meta charset=utf-8><body style="margin:0;background:#eee;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:6px;font:12px sans-serif">
-<script type=module>
-import { sceneSvg, SCENES } from '/src/map/scenes.js';
-for (const id of Object.keys(SCENES)) { const d=document.createElement('div'); d.append(sceneSvg(id,{name:id,done:new Set(['n5_u01','n5_u02','n5_u03','n5_u05'])})); const t=document.createElement('div'); t.textContent=id; d.append(t); document.body.append(d); }
-document.body.dataset.ready=1;
-</script>

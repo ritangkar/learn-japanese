@@ -1,5 +1,6 @@
 // Exercise renderers. 23 exercise types are served by seven renderers (choice, typed, tiles, matching, self-graded, conversation, drill shells).
 import { h } from './dom.js';
+import { icon as svgIcon } from './icons.js';
 import { checkAnswer, SELF_GRADED } from '../engine/check.js';
 import { shuffle } from '../engine/prng.js';
 import { jaNode, romajiHint } from './format.js';
@@ -20,7 +21,7 @@ function audioControls(q, env, text) {
   let rateKey = 'normal';
   const rates = [['normal', 'Normal'], ['slow', 'Slow'], ['very_slow', 'Very slow']];
   const play = () => env.audio.speak(text, { rate: RATE_PRESETS[rateKey] });
-  const btn = h('button', { class: 'btn', type: 'button', 'aria-label': 'Play audio', onclick: play }, '▶ Play');
+  const btn = h('button', { class: 'btn', type: 'button', 'aria-label': 'Play audio', onclick: play }, svgIcon('volume', { size: 20 }), 'Play');
   const sel = h('div', { class: 'row', role: 'group', 'aria-label': 'Speed' }, rates.map(([k, label]) => h('button', { class: 'btn small', type: 'button', 'aria-pressed': k === rateKey ? 'true' : 'false', onclick: (e) => { rateKey = k; for (const b of sel.children) b.setAttribute('aria-pressed', 'false'); e.currentTarget.setAttribute('aria-pressed', 'true'); play(); } }, label)));
   box.append(h('div', { class: 'row' }, btn, sel), h('p', { class: 'small muted' }, 'Synthetic voice from your device; quality varies. Not native-speaker audio.'));
   box.dataset.mode = 'audio';
@@ -46,9 +47,9 @@ function feedbackPanel(q, result, env, opts) {
   const ok = result.correct;
   const kind = result.skipped ? 'info' : ok ? 'ok' : result.unverified ? 'warn' : 'bad';
   const head = result.skipped ? 'Skipped' : ok ? 'Correct' : result.unverified ? 'Not in our list' : 'Not quite';
-  const icon = result.skipped ? '⏭' : ok ? '✔' : result.unverified ? '?' : '✘';
+  const mark = result.skipped ? svgIcon('forward', { size: 20 }) : ok ? svgIcon('check', { size: 20 }) : result.unverified ? svgIcon('info', { size: 20 }) : svgIcon('close', { size: 20 });
   const panel = h('div', { class: `banner ${kind} feedback`, role: 'status', 'aria-live': 'polite', dataset: { result: result.skipped ? 'skipped' : ok ? 'correct' : 'wrong' } },
-    h('div', null, h('strong', null, `${icon} ${head}`),
+    mark, h('div', { class: 'fb-text' }, h('strong', null, head),
       !ok && !result.skipped && !result.unverified ? h('div', null, 'Correct answer: ', answerNode(q, env)) : null,
       result.distractorNote ? h('p', { class: 'small' }, result.distractorNote) : null,
       result.message ? h('p', { class: 'small' }, result.message) : null,

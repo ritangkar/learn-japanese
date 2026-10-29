@@ -1,4 +1,7 @@
 import { h } from '../dom.js';
+import { icon } from '../icons.js';
+import { progress as progressBar } from '../components.js';
+import { attemptCard } from '../attempt-card.js';
 import { errorCard, back, levelChip } from '../common.js';
 import { LEVEL_LABEL, NOT_JLPT, MOCK_DISCLAIMER } from '../labels.js';
 import { levelCriteria, levelState } from '../../engine/progress.js';
@@ -48,18 +51,30 @@ export async function jlptHubScreen({ ctx }) {
     const prev = LEVELS[LEVELS.indexOf(L) - 1];
     const crit = levelCriteria(L, st, content, t);
     const badge = rel.length === 0 ? 'No units released yet' : rel.length < units.length ? 'Foundation slice (partial)' : 'All planned units released';
+    const doneUnits = rel.filter((u) => st.progress.units[u.id]).length;
     return h('div', { class: 'card level-card', 'data-level': L, 'data-state': state },
-      h('div', { class: 'row between' }, h('h3', null, L), h('span', { class: `chip ${locked ? '' : 'info'}` }, STATE_TEXT[state])), levelChip(L),
-      h('p', null, `Units released: ${rel.length} of ${units.length} · `, h('span', { class: 'chip warn', 'data-testid': 'coverage-badge' }, badge)),
+      h('div', { class: 'row', style: 'flex-wrap:nowrap' }, h('div', { class: 'level-badge', 'aria-hidden': 'true' }, locked ? icon('lock', { size: 22 }) : L),
+        h('div', { style: 'flex:1;min-width:0' }, h('div', { class: 'row between' }, h('h3', { style: 'margin:0' }, L), h('span', { class: `chip ${locked ? '' : 'info'}` }, STATE_TEXT[state])), levelChip(L))),
+      h('p', { style: 'margin:8px 0 0' }, `Units released: ${rel.length} of ${units.length} · `, h('span', { class: 'chip warn', 'data-testid': 'coverage-badge' }, badge)),
+      rel.length ? h('div', { style: 'margin:6px 0' }, h('div', { class: 'row between small' }, h('span', null, 'Your progress'), h('span', null, `${doneUnits} of ${rel.length} released units complete`)), progressBar(rel.length ? (100 * doneUnits) / rel.length : 0, { thin: true, label: `${L} units complete` })) : null,
       h('p', { id: `mock-count-${L}`, 'data-mocks': String(mocks) }, `Mock exams released: ${mocks} of 20`, h('span', { class: 'small muted' }, ' (the long-term goal is 20 per level; not reached in this release)')),
-      locked ? h('p', { class: 'small' }, `Locked. It opens after the ${prev} criteria are all met (see ${prev} below).`) : null,
-      !locked && L !== 'N1' ? h('div', null, h('p', { class: 'small' }, `To open ${crit.next}:`), criteriaList(crit)) : null,
-      h('a', { class: `btn ${locked ? '' : 'primary'}`, href: `#/jlpt/${L}`, 'aria-disabled': locked ? 'true' : null }, locked ? `Preview ${L}` : `Open ${L}`));
+      locked ? h('div', { class: 'lock-note' }, icon('lock', { size: 18 }), h('span', null, `Locked. It opens after the ${prev} criteria are all met (see ${prev} below). You can still preview what it contains.`)) : null,
+      !locked && L !== 'N1' ? h('details', null, h('summary', null, `What you need to open ${crit.next}`), criteriaList(crit)) : null,
+      h('div', { class: 'row', style: 'margin-top:8px' }, h('a', { class: `btn ${locked ? '' : 'primary'}`, href: `#/jlpt/${L}`, 'aria-disabled': locked ? 'true' : null }, locked ? `Preview ${L}` : `Open ${L}`, icon('forward', { size: 18 }))));
   });
-  return h('div', { class: 'stack' }, h('h2', null, 'JLPT area'),
-    h('div', { class: 'banner info' }, 'Original practice material. Results are practice estimates, not JLPT scores, and nothing here predicts passing. This app is not affiliated with the JLPT.'), howSheet(), ...cards,
+  const host = h('div', { class: 'stack' },
+    h('div', { class: 'page-hero', style: 'min-height:130px' }, h('p', { class: 'eyebrow' }, 'JLPT practice'), h('h1', null, 'JLPT area'), h('p', { class: 'lead', style: 'margin:0' }, 'Choose a level, practise a section or take an original mock exam.')),
+    st.examlive ? attemptCard(ctx, st.examlive) : null,
+    h('div', { class: 'banner info' }, 'Original practice material. Results are practice estimates, not JLPT scores, and nothing here predicts passing. This app is not affiliated with the JLPT.'),
+    h('nav', { class: 'quick-grid', 'aria-label': 'What do you want to do?' },
+      h('a', { href: '#/learn' }, icon('book'), h('strong', null, 'Learn a topic'), h('span', { class: 'small muted' }, 'Lessons and review')),
+      h('a', { href: `#/jlpt/${st.settings.targetLevel || 'N5'}` }, icon('target'), h('strong', null, 'Practise a section'), h('span', { class: 'small muted' }, 'Vocabulary, grammar, reading, listening')),
+      h('a', { href: `#/jlpt/${st.settings.targetLevel || 'N5'}` }, icon('exam'), h('strong', null, 'Take a mock exam'), h('span', { class: 'small muted' }, 'Original paper, official timings')),
+      h('a', { href: '#/readiness' }, icon('trophy'), h('strong', null, 'Review progress'), h('span', { class: 'small muted' }, 'Readiness estimates'))),
+    howSheet(), ...cards,
     h('div', { class: 'row' }, h('a', { class: 'btn', href: '#/readiness' }, 'Readiness dashboard'), h('a', { class: 'btn', href: '#/planner' }, 'Exam-date planner')),
     h('p', { class: 'small muted' }, LEVEL_LABEL));
+  return host;
 }
 
 export async function jlptLevelScreen({ ctx, params }) {
@@ -85,19 +100,19 @@ export async function jlptLevelScreen({ ctx, params }) {
     const pool = stratified(readyPool, skillGroup, n, `${t}|${L}|${kind}|${st.exams.attempts.length}`);
     beginExam(ctx, { kind, level: L, questionIds: pool.map((q) => q.id), minutes: Math.max(5, Math.ceil(pool.length * perQ)), title });
   };
-  const host = h('div', { class: 'stack' }, back('#/jlpt', 'JLPT area'), h('h2', null, `${L}`), levelChip(L), h('p', { class: 'banner info' }, `${NOT_JLPT}. Practice only.`));
+  back('#/jlpt', 'JLPT');
+  const host = h('div', { class: 'stack' }, h('div', { class: 'page-hero', style: 'min-height:110px' }, h('p', { class: 'eyebrow' }, 'JLPT practice'), h('h1', null, L), levelChip(L)), st.examlive ? attemptCard(ctx, st.examlive) : null, h('p', { class: 'banner info' }, `${NOT_JLPT}. Practice only.`));
   if (locked) host.append(h('div', { class: 'banner warn' }, `${L} is locked until the previous level's criteria are all met. You can read its official structure below.`));
-  host.append(officialFacts(def));
-  host.append(h('div', { class: 'card' }, h('h3', null, 'Units'), h('ul', null, units.map((u) => h('li', null, `${u.title} `, h('span', { class: `chip ${u.released ? 'info' : 'warn'}` }, u.released ? 'released' : 'not released yet'))))));
   if (!locked) {
     host.append(h('div', { class: 'card' }, h('h3', null, 'Section practice'), h('p', { class: 'small muted' }, 'Timed sets from the practice bank. They are practice, not mock exams.'),
-      h('div', { class: 'grid2' }, groups.map((g) => { const n = poolBy[g].length; return h('button', { class: 'btn', type: 'button', id: `practice-${g}`, disabled: n < 3, onclick: () => startPractice(g, Math.min(10, n)) }, `${GROUP_LABEL[g]} (${n < 3 ? 'not enough questions yet' : `${Math.min(10, n)} questions`})`); }))));
+      h('div', { class: 'action-grid' }, groups.map((g) => { const n = poolBy[g].length; return h('button', { class: 'btn block', type: 'button', id: `practice-${g}`, disabled: n < 3, onclick: () => startPractice(g, Math.min(10, n)) }, icon({ vocabulary: 'book', grammar: 'pen', reading: 'exam', listening: 'headphones' }[g], { size: 18 }), `${GROUP_LABEL[g]} (${n < 3 ? 'not enough questions yet' : `${Math.min(10, n)} questions`})`); }))));
     host.append(h('div', { class: 'card' }, h('h3', null, 'Mock exams'), h('p', { id: 'mock-counter' }, `Released: ${mocks.length} of 20 (long-term goal; not reached in this release).`), mocks.length ? h('ul', null, mocks.map((m) => h('li', null, `${m.title} · ${m.questions} questions `, h('a', { class: 'btn small', href: `#/mock/${m.id}` }, 'Start')))) : h('p', { class: 'muted' }, 'No mock exam is released at this level yet. Mocks are original papers written for this app; none is copied, shuffled or relabelled to fill the count.'), h('p', { class: 'small' }, MOCK_DISCLAIMER)));
     if (L !== 'N1') host.append(h('div', { class: 'card' }, h('h3', null, `Open ${crit.next}`), criteriaList(crit), howSheet(),
       h('div', { class: 'row' }, h('button', { class: 'btn', type: 'button', id: 'start-readiness', disabled: readyPool.length < 8, onclick: () => startSpecial('readiness', PARAMS.level_unlock.readiness_questions, `${L} readiness check`, 1.2) }, `Readiness check (${Math.min(PARAMS.level_unlock.readiness_questions, readyPool.length)} questions)`), h('button', { class: 'btn', type: 'button', id: 'start-milestone', disabled: readyPool.length < 8, onclick: () => startSpecial('milestone', 20, `${L} milestone practice`, 1.2) }, 'Milestone practice (20 questions)')),
       readyPool.length < PARAMS.level_unlock.readiness_questions ? h('p', { class: 'small muted' }, `The ${L} practice bank currently has ${readyPool.length} choice questions, fewer than the ${PARAMS.level_unlock.readiness_questions} planned for a full readiness check, so the check uses what exists.`) : null));
     host.append(selfReport(ctx, L));
   }
+  host.append(h('details', { class: 'card' }, h('summary', null, `${L}: official test structure (jlpt.jp)`), officialFacts(def)), h('div', { class: 'card' }, h('h3', null, 'Units'), h('ul', null, units.map((u) => h('li', null, `${u.title} `, h('span', { class: `chip ${u.released ? 'info' : 'warn'}` }, u.released ? 'released' : 'not released yet'))))));
   return host;
 }
 
@@ -119,7 +134,8 @@ export async function mockStartScreen({ ctx, params }) {
   try { file = await content.loadMock(entry.id); } catch (e) { return errorCard(e); }
   const def = content.jlpt.levels.find((l) => l.level === entry.level);
   const mock = file.mock;
-  return h('div', { class: 'stack' }, back(`#/jlpt/${entry.level}`, entry.level), h('h2', null, mock.title), h('p', { class: 'banner info' }, MOCK_DISCLAIMER),
+  back(`#/jlpt/${entry.level}`, entry.level);
+  return h('div', { class: 'stack' }, h('div', { class: 'page-hero', style: 'min-height:110px' }, h('p', { class: 'eyebrow' }, 'Mock exam'), h('h1', null, mock.title)), h('p', { class: 'banner info' }, MOCK_DISCLAIMER),
     h('div', { class: 'card' }, h('p', null, `${entry.questions} questions across ${mock.sections.length} sections, with the official section times: ${def.test_sections.map((s) => `${s.minutes} min`).join(' + ')}. This original paper has fewer questions than a real exam, so it is not a full-length rehearsal. (Content status: ${entry.status}.)`),
       h('ul', null, ['Check your sound and a quiet place before the listening section.', 'A section cannot be paused or re-opened once submitted.', 'The attempt is saved every 30 seconds so you can resume, but the clock keeps running.'].map((x) => h('li', null, x))),
       h('button', { class: 'btn primary', id: 'begin-mock', type: 'button', onclick: () => beginExam(ctx, { kind: 'mock', level: entry.level, mock, mockId: mock.id, title: mock.title }) }, 'Begin the exam')));
@@ -131,7 +147,8 @@ export async function readinessScreen({ ctx }) {
   const L = ctx.store.state.settings.targetLevel || 'N5';
   const ind = readiness(ctx.store.state, content, L, Date.now(), { tzOffsetMinutes: tz() });
   const order = ['internal_readiness', 'vocab_progress', 'grammar_progress', 'kanji_progress', 'listening_performance', 'reading_performance', 'timed_performance', 'retention', 'weak_areas', 'review_backlog', 'mock_history'];
-  return h('div', { class: 'stack' }, back('#/jlpt', 'JLPT area'), h('h2', null, `Readiness dashboard (${L})`),
+  back('#/jlpt', 'JLPT');
+  return h('div', { class: 'stack' }, h('div', { class: 'page-hero', style: 'min-height:110px' }, h('p', { class: 'eyebrow' }, 'Progress'), h('h1', null, `Readiness (${L})`)),
     h('div', { class: 'banner info' }, `All figures are internal practice estimates. ${NOT_JLPT}.`),
     ...order.map((id) => { const x = ind[id]; return h('div', { class: 'card', 'data-indicator': id }, h('div', { class: 'row between' }, h('strong', null, x.label), h('span', { class: `chip ${x.display === NO_DATA ? 'warn' : 'info'}`, 'data-display': x.display }, x.display)),
       id === 'internal_readiness' ? h('p', { class: 'small' }, NOT_JLPT) : null,
@@ -156,6 +173,7 @@ export async function plannerScreen({ ctx }) {
       h('ul', { class: 'small muted' }, r.caveats.map((c) => h('li', null, c)))));
     if (date.value !== s.targetExamDate || level.value !== s.targetLevel) ctx.store.update('settings', (x) => ({ ...x, targetExamDate: date.value || null, targetLevel: level.value }));
   };
-  return h('div', { class: 'stack' }, back('#/jlpt', 'JLPT area'), h('h2', null, 'Exam-date planner'), h('p', { class: 'banner info' }, 'A pace estimate only. It never promises that you will pass.'),
+  back('#/jlpt', 'JLPT');
+  return h('div', { class: 'stack' }, h('div', { class: 'page-hero', style: 'min-height:110px' }, h('p', { class: 'eyebrow' }, 'Planning'), h('h1', null, 'Exam-date planner')), h('p', { class: 'banner info' }, 'A pace estimate only. It never promises that you will pass.'),
     h('div', { class: 'card' }, h('label', { for: 'pl-level' }, 'Target level'), level, h('label', { for: 'pl-date' }, 'Exam date (you enter it; official dates change each year)'), date, h('button', { class: 'btn primary', type: 'button', id: 'pl-run', onclick: run }, 'Estimate')), out);
 }

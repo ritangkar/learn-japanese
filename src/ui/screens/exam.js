@@ -1,4 +1,5 @@
 import { h } from '../dom.js';
+import { attemptCard } from '../attempt-card.js';
 import { renderQuestion } from '../exercise.js';
 import { makeEnv, today } from '../env.js';
 import { errorCard } from '../common.js';
@@ -25,7 +26,7 @@ export function beginExam(ctx, { kind, level, mock, questionIds, mockId = null, 
   location.hash = '#/exam';
 }
 
-export async function examScreen({ ctx }) {
+export async function examScreen({ ctx, query = {} }) {
   let content;
   try { content = await ctx.getContent(); } catch (e) { return errorCard(e); }
   let a = ctx.store.state.examlive;
@@ -72,9 +73,7 @@ export async function examScreen({ ctx }) {
   }
 
   function showResume() {
-    const info = ex.resumeInfo(a, Date.now());
-    body.replaceChildren(h('div', { class: 'card' }, h('h2', null, 'Unfinished attempt'), h('p', null, `${a.src.title || a.level} · ${info.section}. ${info.expired ? 'The time for this section ran out while you were away, so it will be submitted as it stands.' : `${mmss(info.remainingMs)} remaining. The timer kept running while you were away.`}`),
-      h('div', { class: 'row' }, h('button', { class: 'btn primary', id: 'exam-resume', type: 'button', onclick: () => { start(); } }, 'Resume'), h('button', { class: 'btn danger', type: 'button', onclick: () => { ctx.store.setDomain('examlive', null); ctx.store.flush(); location.hash = '#/jlpt'; } }, 'Discard this attempt'))));
+    body.replaceChildren(attemptCard(ctx, a, { onResume: () => start(), onDiscarded: () => { location.hash = '#/jlpt'; } }));
     top.replaceChildren(h('strong', null, 'Exam'));
   }
 
@@ -182,6 +181,6 @@ export async function examScreen({ ctx }) {
     ctx.audio.setListeningMode(false);
   }
   ctx.cleanup = () => { clearInterval(interval); };
-  showResume();
+  if (query.resume === '1') start(); else showResume();
   return host;
 }

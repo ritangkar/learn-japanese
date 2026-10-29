@@ -163,7 +163,7 @@ th, td { border-bottom: 1px solid var(--hairline); padding: 6px 4px; text-align:
 .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
 .immersive .main { padding-top: 8px; }
 .immersive { padding-bottom: 24px; }
-.kana-cell.locked { opacity: .6; border-style: dashed; }
+.kana-cell.locked { border-style: dashed; color: var(--ink-2); background: var(--surface-2); }
 .stroke-svg { background: var(--surface); border: 1px solid var(--hairline); border-radius: 12px; display: block; margin: 8px 0; }
 .sg-frame { stroke: var(--border); stroke-width: 1; }
 .sg-grid { stroke: var(--hairline); stroke-width: .6; stroke-dasharray: 3 3; }

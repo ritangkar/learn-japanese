@@ -6,6 +6,7 @@ import { StorageFullError } from './core/storage.js';
 import { createAudio } from './audio/index.js';
 import { loadContent } from './content/loader.js';
 import { icon } from './ui/icons.js';
+import { setBackHook } from './ui/common.js';
 import { createInstall } from './pwa/install.js';
 import { sceneSvg } from './map/scenes.js';
 import { stampSvg } from './map/stamps.js';
@@ -62,7 +63,8 @@ export function startApp({ store, root }) {
   const bannerHost = h('div', { id: 'banners', role: 'region', 'aria-label': 'Notices' });
   const outlet = h('main', { id: 'main', class: 'main', tabindex: '-1' });
   const live = h('div', { id: 'live', class: 'sr-only', 'aria-live': 'polite', role: 'status' });
-  const title = h('h1', { class: 'app-title' }, h('span', null, 'Tabi Nihongo'));
+  const titleText = h('span', null, 'Tabi Nihongo');
+  const title = h('h1', { class: 'app-title' }, icon('torii', { size: 24, cls: 'brand-mark' }), titleText);
   const tabbar = h('nav', { class: 'tabbar', 'aria-label': 'Main' });
   const backSlot = h('span', { id: 'header-back' });
   const headerBrand = h('span', { class: 'brand-slot' });
@@ -126,9 +128,10 @@ export function startApp({ store, root }) {
       tabbar.append(h('a', { href: t.href, 'aria-current': cur ? 'page' : null, 'data-tab': t.id }, h('span', { class: 'tab-ico' }, icon(t.icon, { size: 22 })), t.label));
     }
   }
+  setBackHook((href, label) => { ctx.backOverride = { href, label }; });
   function renderBack(path, immersive) {
     clear(backSlot);
-    const par = parentOf(path);
+    const par = ctx.backOverride || parentOf(path);
     if (!par) return;
     const closeIcon = immersive ? 'close' : 'back';
     backSlot.append(h('a', { class: 'icon-btn', id: 'header-back-btn', href: par.href, 'aria-label': immersive ? `Close and go back to ${par.label}` : `Back to ${par.label}`, onclick: (e) => { if (ctx.leaveGuard && ctx.leaveGuard()) { e.preventDefault(); ctx.confirmLeave(par.href); } } }, icon(closeIcon)));
@@ -159,7 +162,7 @@ export function startApp({ store, root }) {
     current = loc;
     ctx.audio.setListeningMode(false);
     if (typeof ctx.cleanup === 'function') { try { ctx.cleanup(); } catch { /* ignore */ } ctx.cleanup = null; }
-    ctx.leaveGuard = null;
+    ctx.leaveGuard = null; ctx.backOverride = null;
     renderTabs(loc.path);
     renderBanners();
     const render = loc.route ? loc.route.render : null;
@@ -168,7 +171,7 @@ export function startApp({ store, root }) {
     if (!render) { outlet.append(h('p', null, 'Page not found. ', h('a', { href: '#/' }, 'Back to start'))); return; }
     const hideChrome = !!loc.route.immersive;
     renderBack(loc.path, hideChrome);
-    title.firstChild.textContent = loc.path === '/' ? 'Tabi Nihongo' : (loc.route.title || 'Tabi Nihongo');
+    titleText.textContent = loc.path === '/' ? 'Tabi Nihongo' : (loc.route.title || 'Tabi Nihongo');
     if (loc.route.scene === 'current') ctx.setScene(ctx.currentDestId()); else if (!loc.route.scene) ctx.setScene(null);
     tabbar.hidden = hideChrome;
     document.body.classList.toggle('immersive', hideChrome);
@@ -176,6 +179,7 @@ export function startApp({ store, root }) {
       if (current !== loc) return;
       clear(outlet);
       if (el) outlet.append(el);
+      renderBack(loc.path, hideChrome);
       document.title = `${loc.route.title || 'Tabi Nihongo'} · Tabi Nihongo`;
       outlet.focus({ preventScroll: true });
       window.scrollTo(0, 0);

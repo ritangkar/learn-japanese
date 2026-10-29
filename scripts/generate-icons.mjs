@@ -6,18 +6,32 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
-const INDIGO = [0x2e, 0x4a, 0x7d];
+const INDIGO = [0x23, 0x3e, 0x78];
 const VERMILION = [0xc8, 0x41, 0x2b];
-const PAPER = [0xfa, 0xf6, 0xee];
+const PAPER = [0xfa, 0xf4, 0xe8];
 
-// shapes in a 100x100 box: [x, y, w, h, color]
-const GLYPH = [
-  [14, 24, 72, 8, VERMILION], // kasagi (top beam)
-  [20, 38, 60, 6, VERMILION], // nuki (lower beam)
-  [27, 32, 8, 50, VERMILION], // left pillar
-  [65, 32, 8, 50, VERMILION], // right pillar
-  [44, 12, 12, 12, PAPER], // sun
-];
+const DEEP = [0x16, 0x2b, 0x57];
+const SAKURA = [0xf4, 0xbf, 0xcc];
+const GOLD = [0xd9, 0xa6, 0x3b];
+const DARKRED = [0x9e, 0x2e, 0x1c];
+const mix = (a, b, t) => a.map((x, i) => Math.round(x + (b[i] - x) * Math.max(0, Math.min(1, t))));
+
+/** Colour at (u, v) in a 0..100 box: indigo night gradient, a sakura sun, a torii with an upturned top beam, and a few petals. */
+function colorAt(u, v) {
+  let col = mix(DEEP, INDIGO, (v + 10) / 110);
+  if ((u - 50) ** 2 + (v - 44) ** 2 < 25 ** 2) col = SAKURA; // sun
+  if ((u - 50) ** 2 + (v - 44) ** 2 < 25 ** 2 && v > 44) col = mix(SAKURA, [0xe9, 0x9a, 0xb0], (v - 44) / 25);
+  if (v > 82) col = mix(DEEP, INDIGO, 0.2); // ground
+  const t = Math.abs(u - 50) / 42; const top = 24 - 8 * t * t; // kasagi curves up at both ends
+  if (u > 8 && u < 92 && v >= top && v < top + 9) col = VERMILION;
+  if (u > 14 && u < 86 && v >= top + 9 && v < top + 13) col = DARKRED; // shimaki
+  if (u > 22 && u < 78 && v >= 41 && v < 47) col = VERMILION; // nuki
+  if (((u > 27 && u < 35) || (u > 65 && u < 73)) && v >= top + 9 && v < 84) col = VERMILION; // pillars
+  if (((u > 26 && u < 36) || (u > 64 && u < 74)) && v >= 80 && v < 84) col = DARKRED; // bases
+  if ([[18, 70, 2], [82, 62, 2.4], [90, 76, 1.8], [12, 50, 1.6]].some(([x, y, r]) => (u - x) ** 2 + (v - y) ** 2 < r * r)) col = PAPER; // petals
+  if ((u - 50) ** 2 + (v - 15) ** 2 < 2.2 ** 2) col = GOLD; // finial
+  return col;
+}
 
 function crc32(buf) {
   let c; let crc = 0xffffffff;
@@ -44,8 +58,7 @@ function png(size, scale) {
       for (let sy = 0; sy < S; sy++) for (let sx = 0; sx < S; sx++) {
         const u = ((x + (sx + 0.5) / S) / size - 0.5) / scale + 0.5; // 0..1 inside glyph box
         const v = ((y + (sy + 0.5) / S) / size - 0.5) / scale + 0.5;
-        let col = INDIGO;
-        for (const [gx, gy, gw, gh, c] of GLYPH) if (u * 100 >= gx && u * 100 < gx + gw && v * 100 >= gy && v * 100 < gy + gh) col = c;
+        const col = colorAt(u * 100, v * 100);
         r += col[0]; g += col[1]; b += col[2];
       }
       const o = y * (size * 4 + 1) + 1 + x * 4;

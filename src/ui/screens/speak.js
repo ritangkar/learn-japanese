@@ -1,5 +1,5 @@
 import { h } from '../dom.js';
-import { errorCard, back } from '../common.js';
+import { errorCard, back, heroTitle } from '../common.js';
 import { jaNode, romajiHint } from '../format.js';
 import { makeEnv } from '../env.js';
 import { startRecording, recorderSupport } from '../../audio/index.js';
@@ -28,8 +28,8 @@ export async function speakScreen({ ctx }) {
       status,
       h('fieldset', null, h('legend', null, 'Self-check'), ['I said it at an even speed', 'I gave every beat the same length', 'The ends of words did not fade away'].map((t, i) => h('label', { class: 'check', for: `chk${i}` }, h('input', { type: 'checkbox', id: `chk${i}` }), t)))));
   }
-  if (!phrases.length) return h('div', { class: 'stack' }, back('#/learn', 'Learn'), h('h2', null, 'Speaking practice'), h('div', { class: 'card' }, h('p', null, 'Finish the greetings lesson first, then phrases you have learned appear here for listen-and-repeat practice.'), h('p', { class: 'small muted' }, 'Speaking practice is optional, never scored, and works without a microphone.')));
+  if (!phrases.length) return h('div', { class: 'stack' }, back('#/learn', 'Learn'), heroTitle('Speaking practice', 'Learn'), h('div', { class: 'card' }, h('p', null, 'Finish the greetings lesson first, then phrases you have learned appear here for listen-and-repeat practice.'), h('p', { class: 'small muted' }, 'Speaking practice is optional, never scored, and works without a microphone.')));
   select(phrases[0]);
-  return h('div', { class: 'stack' }, back('#/learn', 'Learn'), h('h2', null, 'Speaking practice'),
+  return h('div', { class: 'stack' }, back('#/learn', 'Learn'), heroTitle('Speaking practice', 'Learn'),
     h('div', { class: 'row', role: 'group', 'aria-label': 'Phrases' }, phrases.map((p) => h('button', { class: 'btn small', type: 'button', lang: 'ja', onclick: () => select(p) }, p.text_ja))), box);
 }

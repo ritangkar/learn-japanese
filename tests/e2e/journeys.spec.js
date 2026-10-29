@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { watch, waitReady, solveSession, skipTour } from './helpers.js';
 
 const startLesson = async (page) => {
-  await page.getByRole('link', { name: 'Start today' }).first().click();
+  await page.locator('#start-today').click();
   await expect(page.getByRole('heading', { name: /five vowels/ })).toBeVisible();
 };
 
@@ -14,7 +14,7 @@ test.describe('Journey A (J01): first launch -> tour -> lesson -> results -> per
     await expect(page.getByRole('heading', { name: 'A journey across Japan' })).toBeVisible();
     for (let i = 0; i < 3; i++) await page.getByRole('button', { name: 'Next' }).click();
     await page.getByRole('button', { name: 'Start exploring' }).click();
-    await expect(page.getByRole('link', { name: 'Start today' }).first()).toBeVisible();
+    await expect(page.locator('#start-today')).toBeVisible();
     await startLesson(page);
     // explanation steps
     await page.getByRole('button', { name: 'Next' }).click();

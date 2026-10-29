@@ -52,7 +52,7 @@ test.describe('Journey G: mobile and desktop layouts', () => {
       await page.setViewportSize({ width: w, height: h });
       await page.goto('./'); await waitReady(page); await skipTour(page);
       const cta = page.locator('#start-today'); await expect(cta).toBeInViewport();
-      for (const [tab, heading] of [['Learn', "Today's itinerary"], ['JLPT', 'JLPT area'], ['Me', 'Me'], ['Explore', null]]) {
+      for (const [tab, heading] of [['Learn', "Today's itinerary"], ['JLPT', 'JLPT area'], ['Journal', 'Stamp book'], ['Explore', 'Explore Japan'], ['Home', null]]) {
         await page.getByRole('navigation', { name: 'Main' }).getByRole('link', { name: tab }).click();
         if (heading) await expect(page.getByRole('heading', { name: heading, exact: true }).first()).toBeVisible();
         const over = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth); expect(over, tab).toBeLessThanOrEqual(1);
@@ -88,7 +88,7 @@ test.describe('storage health and honesty screens', () => {
   test('about screen lists L-01..L-10 and the credits page lists no third-party assets', async ({ page }) => {
     await page.goto('./'); await waitReady(page); await skipTour(page);
     await page.goto('./#/about'); for (let i = 1; i <= 10; i++) await expect(page.locator('#limitations')).toContainText(`L-${String(i).padStart(2, '0')}`);
-    await page.goto('./#/credits'); await expect(page.locator('main')).toContainText('No third-party assets are included');
+    await page.goto('./#/credits'); await expect(page.locator('main')).toContainText('Shippori Mincho'); await expect(page.locator('main')).toContainText('SIL Open Font License'); await expect(page.locator('main')).toContainText('Nothing is loaded from third-party servers');
     await expect(page.locator('main')).toContainText('not derived from KanjiVG');
   });
   test('library: kanji are listed from released units only; stroke order is not claimed; unknown ids are stated honestly', async ({ page }) => {

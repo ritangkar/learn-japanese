@@ -4,6 +4,8 @@ import { renderQuestion } from './exercise.js';
 import { applyAnswers } from '../engine/session.js';
 import { localDay } from '../core/clock.js';
 import { pctText } from './format.js';
+import { icon } from './icons.js';
+import { ring } from './components.js';
 
 /** Apply one answer to the store (SRS facets, attempts, confusion counters). */
 export function recordAnswer(ctx, q, result, latencyMs) {
@@ -29,7 +31,9 @@ export function runSession(ctx, env, opts) {
   const bar = h('div', { class: 'bar', role: 'progressbar', 'aria-valuemin': '0', 'aria-valuemax': String(total), 'aria-valuenow': '0', 'aria-label': 'Progress' }, h('i'));
   const counter = h('span', { class: 'small muted', 'aria-live': 'off' });
   const stage = h('div', { class: 'stage' });
-  host.append(opts.header || null, h('div', { class: 'row between' }, h('strong', null, opts.title), counter), bar, stage);
+  host.append(h('div', { class: 'session-head' }, h('div', { class: 'row between' }, h('strong', null, opts.title), counter), bar), opts.header || null, stage);
+  let finished = false;
+  ctx.leaveGuard = () => !finished && answers.length > 0;
 
   function setProgress() {
     const done = Math.min(index, total);
@@ -74,6 +78,7 @@ export function runSession(ctx, env, opts) {
     }, 1000);
   }
   function finish() {
+    finished = true; ctx.leaveGuard = null;
     clearInterval(timer);
     ctx.audio.setListeningMode(false);
     const correct = answers.filter((a) => a.result.correct).length;
@@ -90,9 +95,11 @@ export function runSession(ctx, env, opts) {
 
 export function summaryCard({ title, summary, passMark = null, actions = [] }) {
   const pass = passMark === null ? null : summary.accuracy >= passMark;
-  return h('div', { class: 'card summary', role: 'status', 'aria-live': 'polite' },
-    h('h2', null, title),
-    h('p', { class: 'big' }, `${summary.correct} of ${summary.total} correct (${pctText(summary.accuracy)})`),
-    pass === null ? null : h('p', { class: `banner ${pass ? 'ok' : 'info'}` }, pass ? `✔ You reached the ${pctText(passMark)} goal.` : `You need ${pctText(passMark)} to continue. Review the explanation and try again: mistakes are how memory is built.`),
-    h('div', { class: 'row' }, actions));
+  return h('div', { class: 'card summary completion', role: 'status', 'aria-live': 'polite' },
+    h('div', { class: 'badge' }, icon(pass === false ? 'refresh' : 'check', { size: 40 })),
+    h('h2', { style: 'margin:0' }, title),
+    ring({ value: summary.correct, max: Math.max(1, summary.total), label: pctText(summary.accuracy), sub: 'correct', size: 96, gold: pass !== false }),
+    h('p', { class: 'big', style: 'margin:0' }, `${summary.correct} of ${summary.total} correct (${pctText(summary.accuracy)})`),
+    pass === null ? null : h('p', { class: `banner ${pass ? 'ok' : 'info'}` }, pass ? `You reached the ${pctText(passMark)} goal.` : `You need ${pctText(passMark)} to continue. Review the explanation and try again: mistakes are how memory is built.`),
+    h('div', { class: 'row', style: 'justify-content:center;width:100%' }, actions));
 }

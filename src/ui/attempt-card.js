@@ -19,7 +19,7 @@ export function attemptSummary(a, now = Date.now()) {
  * @param {object} ctx @param {object} a the live attempt (store.state.examlive)
  * @param {{onDiscarded?:()=>void}} opts
  */
-export function attemptCard(ctx, a, { onDiscarded } = {}) {
+export function attemptCard(ctx, a, { onDiscarded, onResume = null } = {}) {
   const sm = attemptSummary(a);
   const pct = sm.totalQ ? (100 * sm.answered) / sm.totalQ : 0;
   const timeLine = sm.state === 'pending' ? 'Not started yet: the clock starts when you press Start section.' : sm.expired ? 'Time for this section ran out while you were away. It will be submitted as it stands when you resume.' : sm.running ? `${mmss(sm.remaining)} left in this section. The clock kept running while you were away.` : 'Between sections.';
@@ -29,8 +29,9 @@ export function attemptCard(ctx, a, { onDiscarded } = {}) {
     h('div', { class: 'meta' }, h('div', null, 'Answered', h('b', null, `${sm.answered} of ${sm.totalQ}`)), h('div', null, 'Last saved', h('b', null, sm.lastSaved ? new Date(sm.lastSaved).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'just now'))),
     progress(pct, { label: 'Questions answered', thin: true }),
     h('p', { class: 'small muted', style: 'margin:0' }, timeLine),
+    h('p', { class: 'small', style: 'margin:0' }, h('strong', null, 'Resume'), ' continues exactly where you stopped; the saved answers and the clock are kept. ', h('strong', null, 'Discard'), ' deletes this attempt (you will be asked to confirm).'),
     h('div', { class: 'row' },
-      h('a', { class: 'btn primary', href: '#/exam?resume=1', id: 'resume-attempt' }, icon('play', { size: 18 }), 'Resume'),
+      onResume ? h('button', { class: 'btn primary', type: 'button', id: 'exam-resume', onclick: onResume }, icon('play', { size: 18 }), 'Resume') : h('a', { class: 'btn primary', href: '#/exam?resume=1', id: 'resume-attempt' }, icon('play', { size: 18 }), 'Resume'),
       h('button', { class: 'btn danger', type: 'button', id: 'discard-attempt', onclick: async () => {
         const ok = await confirmDialog({ title: 'Discard this attempt?', text: `Your ${sm.answered} saved answer${sm.answered === 1 ? '' : 's'} in "${sm.title}" will be deleted and the attempt will not be scored. This cannot be undone. Your learning progress and earlier results are not affected.`, confirmLabel: 'Discard attempt', cancelLabel: 'Keep it', danger: true });
         if (!ok) return;

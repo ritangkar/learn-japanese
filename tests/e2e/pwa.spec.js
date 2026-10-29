@@ -13,7 +13,7 @@ test.describe('Journey F: online load -> cache -> offline navigation and activit
     await expect(page.locator('#offline-indicator')).toHaveText('Ready offline');
     await context.setOffline(true);
     // navigation + an activity (lesson practice) + the map, all offline
-    await page.goto('./#/'); await page.reload(); await waitReady(page);
+    await page.goto('./#/explore'); await page.reload(); await waitReady(page);
     await expect(page.locator('[data-dest="tokyo"]')).toBeVisible();
     await page.goto('./#/lesson/n5_u01_l1');
     await page.getByRole('button', { name: 'Next', exact: true }).click(); await page.getByRole('button', { name: 'Next', exact: true }).click(); await page.getByRole('button', { name: 'Start practice' }).click();
@@ -39,7 +39,8 @@ test.describe('manifest and install metadata (AC35 automatable part)', () => {
   test('manifest fields, 4 PNG icons, apple meta tags', async ({ page, request }) => {
     await page.goto('./');
     const m = await (await request.get('manifest.webmanifest')).json();
-    expect(m).toMatchObject({ start_url: './#/', scope: './', display: 'standalone', background_color: '#FAF6EE', theme_color: '#2E4A7D' });
+    expect(m).toMatchObject({ start_url: './#/', scope: './', display: 'standalone', background_color: '#FAF4E8', theme_color: '#233E78' });
+    expect(m.id).toBe('./'); expect(m.shortcuts.map((x) => x.url)).toEqual(['./#/learn', './#/explore', './#/journal']);
     expect(m.icons.map((i) => i.sizes).sort()).toEqual(['192x192', '512x512', '512x512']);
     expect(m.icons.some((i) => i.purpose === 'maskable')).toBe(true);
     for (const src of [...m.icons.map((i) => i.src), 'icons/apple-touch-icon.png']) { const r = await request.get(src); expect(r.status()).toBe(200); expect(r.headers()['content-type']).toBe('image/png'); }

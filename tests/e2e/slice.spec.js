@@ -4,7 +4,7 @@ import { watch, waitReady, solveSession, skipTour, waitSwReady } from './helpers
 // Completes one lesson through the UI: explanation pages, practice, optional context, exit check.
 async function doLesson(page, id) {
   await page.goto(`./#/lesson/${id}`);
-  await expect(page.locator('.lesson-head h2')).toBeVisible();
+  await expect(page.locator('.lesson-hero h2')).toBeVisible();
   for (let i = 0; i < 8; i++) { const next = page.getByRole('button', { name: 'Next', exact: true }); if (await next.count()) await next.click(); else break; }
   await page.getByRole('button', { name: 'Start practice' }).click();
   for (let i = 0; i < 6; i++) {
@@ -22,6 +22,7 @@ test.describe('VERTICAL SLICE: unit + Tokyo destination + review loop + export/i
     const rec = watch(page);
     await page.goto('./'); await waitReady(page); await skipTour(page); await waitSwReady(page);
     // Tokyo starts "available" and the map shows it
+    await page.goto('./#/explore');
     await expect(page.locator('[data-dest="tokyo"]')).toHaveAttribute('data-state', 'available');
     // unit n5_u01 and n5_u02 through the UI
     for (const l of ['n5_u01_l1', 'n5_u01_l2', 'n5_u01_l3', 'n5_u01_l4', 'n5_u01_l5', 'n5_u01_l6', 'n5_u01_l7']) await doLesson(page, l);
@@ -39,7 +40,7 @@ test.describe('VERTICAL SLICE: unit + Tokyo destination + review loop + export/i
     await page.goto('./#/dest/tokyo'); await page.locator('#quest-q_tokyo_1').click(); await solveSession(page);
     expect(await page.evaluate(() => Object.keys(window.__tabi.store.state.journal.stamps).length)).toBe(1);
     // map reflects completion
-    await page.goto('./#/'); await expect(page.locator('[data-dest="tokyo"]')).toHaveAttribute('data-state', 'completed');
+    await page.goto('./#/explore'); await expect(page.locator('[data-dest="tokyo"]')).toHaveAttribute('data-state', 'completed');
     // review loop: make some facets due, run the review
     await page.evaluate(() => { const st = window.__tabi.store; const recs = Object.values(st.state.srs).slice(0, 12).map((r) => { const c = [...r]; c[1] = 0; return c; }); st.putFacets(recs); });
     await page.goto('./#/review'); const rev = await solveSession(page); expect(rev.length).toBeGreaterThanOrEqual(10);
@@ -67,10 +68,10 @@ test.describe('VERTICAL SLICE: unit + Tokyo destination + review loop + export/i
     await expect(page.locator('#offline-indicator')).toHaveText('Ready offline');
     await context.setOffline(true);
     await page.reload(); await waitReady(page);
-    await page.evaluate(() => { location.hash = '#/'; });
+    await page.evaluate(() => { location.hash = '#/explore'; });
     await expect(page.locator('[data-dest="tokyo"]')).toBeVisible();
     await page.goto('./#/review'); await expect(page.locator('main')).toBeVisible();
-    await page.goto('./#/lesson/n5_u01_l1'); await expect(page.locator('.lesson-head h2')).toBeVisible();
+    await page.goto('./#/lesson/n5_u01_l1'); await expect(page.locator('.lesson-hero h2')).toBeVisible();
     await context.setOffline(false);
     expect(rec.crossOrigin).toEqual([]);
   });

@@ -5,24 +5,61 @@ test.describe('Explore Japan map (AC13, AC12, J04)', () => {
   test.beforeEach(async ({ page }) => { await page.goto('./'); await waitReady(page); await skipTour(page); });
   test('AC13: map is SVG, under 120 KB, no external requests, with a list alternative and a legend', async ({ page }) => {
     const rec = watch(page);
-    await page.goto('./#/'); await page.waitForSelector('.map-svg');
+    await page.goto('./#/explore'); await page.waitForSelector('.map-svg');
     const size = await page.evaluate(() => new XMLSerializer().serializeToString(document.querySelector('.map-svg')).length);
     expect(size).toBeLessThan(120 * 1024);
     expect(await page.locator('.map-svg image, .map-svg foreignObject').count()).toBe(0);
     await expect(page.getByText('Stylised map, not for navigation').first()).toBeVisible();
-    await page.getByText('Map legend').click(); await expect(page.locator('.legend li')).toHaveCount(7);
+    await page.getByText('What the pins mean').click(); await expect(page.locator('.legend li')).toHaveCount(7);
     await page.getByRole('link', { name: 'List', exact: true }).click();
     await expect(page.locator('#dest-list')).toBeVisible();
     await expect(page.locator('#dest-list a', { hasText: 'Tokyo' }).first()).toBeVisible();
     expect(rec.crossOrigin).toEqual([]); expect(rec.bad).toEqual([]);
   });
   test('pins: tap shows a sheet; keyboard focus works; state is in the accessible name', async ({ page }) => {
-    await page.waitForSelector('.map-svg');
+    await page.goto('./#/explore'); await page.waitForSelector('.map-svg');
     const tokyo = page.locator('[data-dest="tokyo"]');
     await expect(tokyo).toHaveAttribute('aria-label', /Tokyo.*available/);
     await tokyo.focus(); await page.keyboard.press('Enter');
     await expect(page.locator('[data-dest-card="tokyo"]')).toBeVisible();
     await expect(page.locator('[data-dest-card="tokyo"] [data-state-chip]')).toHaveText('available');
+  });
+  test('journey 3: selecting several stops updates the sheet and the location backdrop each time; locked stops explain themselves', async ({ page }) => {
+    await page.goto('./#/explore'); await page.waitForSelector('.map-svg');
+    const picks = [['tokyo', /available/], ['kyoto', /locked/], ['hakone', /locked/], ['tokyo', /available/]];
+    for (const [id, chip] of picks) {
+      await page.locator(`[data-dest="${id}"]`).dispatchEvent('click');
+      await expect(page.locator(`[data-dest-card="${id}"]`)).toBeVisible();
+      await expect(page.locator(`[data-dest-card="${id}"] [data-state-chip]`)).toHaveText(chip);
+      await expect(page.locator('#scene-bg')).toHaveAttribute('data-scene', id);
+      await expect(page.locator('.scene-bg .layer.on svg')).toHaveAttribute('data-scene', id);
+      await expect(page.locator('[data-dest-card]')).toHaveCount(1);
+    }
+    await page.locator('[data-dest="kyoto"]').dispatchEvent('click');
+    await expect(page.locator('[data-dest-card="kyoto"] .lock-note')).toContainText(/Locked/);
+    expect(page.url()).toContain('stop=kyoto');
+    // a locked stop has no start action; an available one does
+    await expect(page.locator('[data-dest-card="kyoto"] #sheet-open')).toHaveText(/See details/);
+    await page.locator('[data-dest="tokyo"]').dispatchEvent('click');
+    await expect(page.locator('[data-dest-card="tokyo"] #sheet-open')).toHaveText(/Explore this stop/);
+    await page.locator('#sheet-open').click();
+    await expect(page.locator('#dest-title')).toContainText('Tokyo');
+    await expect(page.locator('#scene-bg')).toHaveAttribute('data-scene', 'tokyo');
+  });
+  test('journey 3: map controls: magnifier zoom in/out really change the map, reset restores it, Map/List toggle shows which view is active', async ({ page }) => {
+    await page.goto('./#/explore'); await page.waitForSelector('.map-svg');
+    const w = () => page.evaluate(() => Math.round(document.querySelector('.map-svg').getBoundingClientRect().width));
+    await expect(page.locator('#zoom-in')).toHaveAccessibleName(/Zoom in/); await expect(page.locator('#zoom-out')).toHaveAccessibleName(/Zoom out/); await expect(page.locator('#zoom-reset')).toHaveAccessibleName(/Reset/);
+    const w0 = await w();
+    await page.locator('#zoom-in').click(); const w1 = await w(); expect(w1).toBeGreaterThan(w0);
+    await page.locator('#zoom-in').click(); expect(await w()).toBeGreaterThan(w1);
+    for (let i = 0; i < 8 && await page.locator('#zoom-out').isEnabled(); i++) await page.locator('#zoom-out').click();
+    await expect(page.locator('#zoom-out')).toBeDisabled(); // fully zoomed out: the control says so instead of doing nothing
+    expect(await w()).toBeLessThan(w1);
+    await page.locator('#zoom-in').click(); await page.locator('#zoom-reset').click(); expect(await w()).toBe(w0);
+    await expect(page.locator('#view-map')).toHaveAttribute('aria-current', 'true'); await expect(page.locator('#view-list')).not.toHaveAttribute('aria-current', 'true');
+    await page.locator('#view-list').click(); await expect(page.locator('#view-list')).toHaveAttribute('aria-current', 'true'); await expect(page.locator('#dest-list')).toBeVisible(); await expect(page.locator('.map-svg')).toHaveCount(0);
+    await page.locator('#view-map').click(); await expect(page.locator('.map-svg')).toBeVisible();
   });
   test('J04/AC12: a locked destination cannot be started from its page and shows what is missing', async ({ page }) => {
     await page.goto('./#/dest/tokyo_station');
@@ -35,7 +72,8 @@ test.describe('Explore Japan map (AC13, AC12, J04)', () => {
     await expect(page.getByText('still hidden')).toBeVisible();
   });
   test('Tokyo area sub-map opens from the national map', async ({ page }) => {
-    await page.locator('[data-dest="tokyo"]').click();
+    await page.goto('./#/explore'); await page.waitForSelector('.map-svg');
+    await page.locator('[data-dest="tokyo"]').dispatchEvent('click');
     await page.getByRole('link', { name: 'Tokyo area map' }).click();
     await expect(page.locator('.tokyo-map')).toBeVisible();
   });
@@ -49,7 +87,7 @@ test.describe('Explore Japan map (AC13, AC12, J04)', () => {
     // complete through the real engine path by running the quest UI once
     await page.goto('./#/dest/tokyo'); await page.locator('#quest-q_tokyo_1').click();
     const { solveSession } = await import('./helpers.js'); await solveSession(page);
-    await page.goto('./#/'); await expect(page.locator('[data-dest="tokyo"]')).toHaveAttribute('data-state', /completed|revisit_available/);
+    await page.goto('./#/explore'); await expect(page.locator('[data-dest="tokyo"]')).toHaveAttribute('data-state', /completed|revisit_available/);
     await page.goto('./#/journal'); await expect(page.locator('.stamp').first()).toBeVisible();
     await expect(page.getByText(/Unverified/).first()).toBeVisible();
     await page.goto('./#/achievements'); await expect(page.locator('[data-ach="ach_first_stamp"]')).toHaveAttribute('data-earned', '1');

@@ -1,7 +1,7 @@
 import { h } from '../dom.js';
 import { jaNode, romajiHint } from '../format.js';
 import { makeEnv } from '../env.js';
-import { errorCard, statusBadge, back } from '../common.js';
+import { errorCard, statusBadge, back, heroTitle } from '../common.js';
 import { conceptMastery, MASTERY_LABEL } from '../../engine/mastery.js';
 import { today } from '../env.js';
 import { LEVEL_LABEL } from '../labels.js';
@@ -36,7 +36,7 @@ export async function libraryScreen({ ctx, query }) {
   const tabs = h('div', { class: 'row', role: 'tablist', 'aria-label': 'Library sections' }, [['vocab', 'Vocabulary'], ['grammar', 'Grammar'], ['kanji', 'Kanji']].map(([id, label]) => h('a', { class: 'btn small', role: 'tab', 'aria-selected': tab === id ? 'true' : 'false', href: `#/library?tab=${id}${q ? `&q=${encodeURIComponent(q)}` : ''}` }, label)));
   const search = h('div', null, h('label', { for: 'lib-q' }, 'Search'), h('input', { type: 'text', id: 'lib-q', value: query.q || '', oninput: (e) => { clearTimeout(search._t); search._t = setTimeout(() => { location.hash = `#/library?tab=${tab}&q=${encodeURIComponent(e.target.value)}`; }, 250); } }));
   render();
-  return h('div', { class: 'stack' }, h('h2', null, 'Library'), h('p', { class: 'small muted' }, LEVEL_LABEL), tabs, search, list);
+  return h('div', { class: 'stack' }, heroTitle('Library', 'Learn'), h('p', { class: 'small muted' }, LEVEL_LABEL), tabs, search, list);
 }
 
 export async function kanjiScreen({ ctx, params }) {

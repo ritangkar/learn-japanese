@@ -79,13 +79,14 @@ export async function solveCurrent(page, { correct = true } = {}) {
 }
 
 /** Answer exercises until the session summary appears (or `max` reached). Returns the list of results. */
-export async function solveSession(page, { correct = () => true, max = 60 } = {}) {
+export async function solveSession(page, { correct = () => true, max = 60, award = true } = {}) {
   const results = [];
   for (let i = 0; i < max; i++) {
     if (await page.locator('.summary').count()) break;
     if (!(await page.locator('.exercise').count())) { await page.waitForTimeout(50); continue; }
     results.push(await solveCurrent(page, { correct: correct(i) }));
   }
+  if (award) await dismissAward(page);
   return results;
 }
 
@@ -104,4 +105,16 @@ export async function examRunSection(page, { correct = () => true, skip = [] } =
   }
   await page.locator('#q-submit').click();
   await page.locator('#confirm-submit').click();
+}
+
+/** The stamp-awarding moment is a modal dialog; when the summary announces a new stamp, wait for it and close it so the test can go on. */
+export async function dismissAward(page) {
+  const summary = page.locator('.summary');
+  if (!(await summary.count())) return false;
+  if (!/Stamp earned/.test(await summary.innerText())) return false;
+  const btn = page.locator('#award-continue');
+  await btn.waitFor({ state: 'visible', timeout: 5000 });
+  await btn.click();
+  await page.locator('#stamp-award').waitFor({ state: 'detached', timeout: 5000 });
+  return true;
 }

@@ -145,8 +145,8 @@ dialog[open] { animation: pop-in 240ms cubic-bezier(.2, .9, .3, 1.2); }
 @keyframes shimmer { to { background-position: -200% 0; } }
 
 /* ---------- home ---------- */
-.home-hero { position: relative; margin: 0 -16px 0; padding: 18px 18px 150px; display: flex; flex-direction: column; justify-content: flex-start; }
-.home-hero + .next-card, .home-hero + .attempt-card { margin-top: -64px; }
+.home-hero { position: relative; margin: 0 -16px 0; padding: 14px 18px 104px; display: flex; flex-direction: column; justify-content: flex-start; }
+.home-hero + .next-card, .home-hero + .attempt-card { margin-top: -44px; }
 .home-hero h1 { margin: 2px 0 2px; font-size: 1.85rem; }
 .next-card { background: var(--indigo-deep); color: #fff; border-radius: var(--radius); padding: 16px; display: grid; gap: 10px; box-shadow: var(--shadow); border: 2px solid #fff; }
 .next-card .eyebrow { color: #C9D6F5; }
@@ -292,3 +292,14 @@ dialog[open] { animation: pop-in 240ms cubic-bezier(.2, .9, .3, 1.2); }
 .home-hero + .next-card, .home-hero + .attempt-card { position: relative; z-index: 2; }
 .stamp-cell { text-decoration: none; }
 .stamp-cell .small { text-decoration: none; color: var(--ink); }
+.session-head { position: sticky; top: 56px; z-index: 30; background: var(--paper); padding: 8px 0 10px; display: grid; gap: 6px; border-bottom: 1px solid var(--hairline); margin: 0 -2px; padding-inline: 2px; }
+.feedback { display: flex; gap: 10px; align-items: flex-start; }
+.feedback .fb-text { flex: 1; }
+.feedback > .icon { flex: none; margin-top: 2px; }
+.stage-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.stage-chips .chip[aria-current="step"] { background: var(--indigo); color: var(--on-indigo); border-color: var(--indigo); }
+.lesson-hero { display: grid; gap: 8px; }
+.explain-card { animation: sheet-in 240ms cubic-bezier(.2, .8, .2, 1); }
+.nav-row { display: flex; gap: 8px; justify-content: space-between; }
+.nav-row .btn { flex: 1; }
+.brand-mark { color: var(--vermilion); flex: none; }

@@ -1,4 +1,5 @@
 import { h } from '../dom.js';
+import { heroTitle } from '../common.js';
 import { createBackup, parseBackup, applyBackup, markExported, currentSummary, orphanReport } from '../../core/backup.js';
 import { dayToDate } from '../../core/clock.js';
 
@@ -52,7 +53,7 @@ export function backupScreen({ ctx }) {
       h('label', { class: 'check', for: 'confirm-overwrite' }, confirm, 'I understand this overwrites my current progress.'), go));
   }
 
-  return h('div', { class: 'stack' }, h('h2', null, 'Backup and restore'),
+  return h('div', { class: 'stack' }, heroTitle('Backup and restore', 'Profile'),
     h('div', { class: 'card' }, h('h3', null, 'Export'), h('p', null, 'Save your progress and settings as a file. Last backup: ', h('strong', null, fmt(last)), '.'), h('button', { class: 'btn primary', type: 'button', id: 'do-export', onclick: doExport }, 'Export backup file'),
       h('p', { class: 'small muted' }, 'The file contains your settings, progress, review schedule and journal (not lessons or audio). It is created on this device and is not uploaded anywhere.')),
     h('div', { class: 'card' }, h('h3', null, 'Import'), h('label', { for: 'import-file' }, 'Choose a backup file (.json, up to 5 MB)'), h('input', { type: 'file', id: 'import-file', accept: 'application/json,.json', onchange: onFile }), previewBox),

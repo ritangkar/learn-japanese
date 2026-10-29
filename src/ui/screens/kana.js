@@ -1,7 +1,7 @@
 import { h, s } from '../dom.js';
 import { runSession, summaryCard } from '../session.js';
 import { makeEnv, today } from '../env.js';
-import { errorCard, back } from '../common.js';
+import { errorCard, back, heroTitle } from '../common.js';
 import { generate } from '../../engine/generators.js';
 import { showRomajiForKana } from '../../engine/mastery.js';
 import { STROKES, hasStrokes, strokePath } from '../../content/strokes.js';
@@ -57,7 +57,7 @@ export async function kanaScreen({ ctx, query }) {
     })));
   }
   const learnedIds = all.filter((k) => intro.has(k.id)).map((k) => k.id);
-  const host = h('div', { class: 'stack' }, h('h2', null, 'Kana trainer'),
+  const host = h('div', { class: 'stack' }, heroTitle('Kana trainer', 'Learn'),
     h('div', { class: 'row', role: 'tablist', 'aria-label': 'Script' }, ['hiragana', 'katakana'].map((sc) => h('a', { class: 'btn small', role: 'tab', 'aria-selected': sc === script ? 'true' : 'false', href: `#/kana?script=${sc}` }, sc === 'hiragana' ? 'Hiragana ひらがな' : 'Katakana カタカナ'))));
   const practiceBox = h('div', { class: 'card', id: 'kana-practice' });
   const modes = [['kana_recog', 'Read it', 'See a kana, pick its sound.'], ['kana_recall', 'Write it', 'See a sound, type or pick the kana.'], ['kana_listen', 'Hear it', 'Hear a kana, pick the one you heard.'], ['matching', 'Match', 'Pair kana with sounds.']];

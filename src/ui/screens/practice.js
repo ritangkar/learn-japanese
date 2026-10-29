@@ -2,7 +2,8 @@ import { h } from '../dom.js';
 import { runSession, summaryCard } from '../session.js';
 import { makeEnv, today } from '../env.js';
 import { currentPlan, nextBlock, blockHref, finishBlock, elapsedMinutes, flowState } from '../flow.js';
-import { errorCard, back } from '../common.js';
+import { errorCard, back, heroTitle } from '../common.js';
+import { completionView } from '../completion.js';
 import { reviewSet } from '../../engine/sets.js';
 import { generate } from '../../engine/generators.js';
 import { shuffle } from '../../engine/prng.js';
@@ -36,7 +37,7 @@ export async function reviewScreen({ ctx, query }) {
   const flow = query.flow === '1'; const started = Date.now();
   const p = currentPlan(ctx, content);
   const block = p.blocks.find((b) => b.type === 'review');
-  if (!block) return h('div', { class: 'stack' }, h('h2', null, 'Reviews'), h('div', { class: 'card' }, h('p', null, 'Nothing is due right now. Nice and tidy.'), afterBlock(ctx, content, flow)));
+  if (!block) return h('div', { class: 'stack' }, heroTitle('Reviews', 'Learn'), h('div', { class: 'card' }, h('p', null, 'Nothing is due right now. Nice and tidy.'), afterBlock(ctx, content, flow)));
   applyDeferrals(ctx, p);
   const env = makeEnv(ctx, content, { seed: `${today()}|review` });
   const qs = reviewSet(block.items, content, env.seed, today());
@@ -89,10 +90,11 @@ export async function questScreen({ ctx, params, query }) {
       const stamp = res.events.find((e) => e.type === 'stamp');
       if (stamp) ctx.audio.sfx('fb_stamp');
       ctx.questAttempts = { ...(ctx.questAttempts || {}), [quest.id]: attempt + 1 };
-      stage.replaceChildren(summaryCard({ title: 'Quest result', summary, passMark: quest.min_accuracy, actions: [...(summary.accuracy < quest.min_accuracy ? [h('a', { class: 'btn', href: `#/quest/${quest.id}${flow ? '?flow=1' : ''}`, onclick: () => setTimeout(() => ctx.rerender(), 0) }, 'Try again')] : []), ...afterBlock(ctx, content, flow)] }),
-        stamp ? h('div', { class: 'banner ok', role: 'status' }, `🎫 Stamp earned: ${dest.name_en}! A postcard was added to your journal.`) : null,
-        res.state.progress.destinations[dest.id]?.completedAt ? null : (summary.accuracy >= quest.min_accuracy ? h('p', { class: 'banner info' }, 'Quest passed. The stamp arrives once all units for this stop are complete.') : null),
-        ...ach.map((n) => h('p', { class: 'banner ok' }, `Achievement: ${n}`)));
+      const passed = summary.accuracy >= quest.min_accuracy;
+      const xpEv = res.events.filter((e) => e.type === 'xp');
+      stage.replaceChildren(completionView({ ctx, content, title: 'Quest result', subtitle: `${dest.name_en}: ${qType?.name || 'Quest'}`, summary, passMark: quest.min_accuracy, events: [...xpEv, ...res.events.filter((e) => e.type === 'stamp'), ...ach.map((n) => ({ type: 'achievement', name: n }))],
+        lines: [res.state.progress.destinations[dest.id]?.completedAt ? null : (passed ? h('p', { class: 'banner info', style: 'width:100%;margin:0' }, 'Quest passed. The stamp arrives once all units for this stop are complete.') : null)],
+        actions: [...(!passed ? [h('a', { class: 'btn', href: `#/quest/${quest.id}${flow ? '?flow=1' : ''}`, onclick: () => setTimeout(() => ctx.rerender(), 0) }, 'Try again')] : []), ...afterBlock(ctx, content, flow)] }));
     } });
   return h('div', { class: 'stack' }, back(`#/dest/${dest.id}`, dest.name_en), sess);
 }
@@ -127,7 +129,7 @@ export async function drillScreen({ ctx, params, query }) {
     qs = [...(kanaIds.length ? generate({ type: 'kana_recog', from: 'kana', ids: kanaIds, n: 4 }, gctx) : []), ...(vocabIds.length ? generate({ type: 'vocab_meaning', from: 'vocab', ids: vocabIds, n: 4 }, gctx) : []), ...(vocabIds.length ? generate({ type: 'word_listen', from: 'vocab', ids: vocabIds, n: 2 }, gctx) : [])];
     qs = shuffle(qs, env.seed);
   }
-  if (!qs.length) return h('div', { class: 'stack' }, h('h2', null, 'Practice'), h('div', { class: 'card' }, h('p', null, 'There is nothing to practise here yet.'), afterBlock(ctx, content, flow)));
+  if (!qs.length) return h('div', { class: 'stack' }, heroTitle('Practice', 'Learn'), h('div', { class: 'card' }, h('p', null, 'There is nothing to practise here yet.'), afterBlock(ctx, content, flow)));
   const titles = { contrast: 'Tell them apart', leech: 'Stubborn items', listening_drill: 'Listening drill', construction_drill: 'Build sentences', mixed_practice: 'Mixed practice' };
   const sess = runSession(ctx, env, { title: titles[params.type] || 'Practice', questions: qs, retryWrong: true,
     onFinish: (summary, stage) => {
