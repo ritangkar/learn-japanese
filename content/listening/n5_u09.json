@@ -1,0 +1,4 @@
+[
+{"id":"n5u09_ls1","audio_mode":"tts","synthetic_audio_flag":true,"speaker_voice_hint":[],"unit_id":"n5_u09","instructional_level":"N5","item_type":"Word recognition (lesson practice)","title":"Which adjective?","script_turns":[{"speaker":"A","text_ja":"たかい"},{"speaker":"A","text_ja":"おもい"},{"speaker":"A","text_ja":"さむい"},{"speaker":"A","text_ja":"ひろい"}],"question_ids":["q_n5u09_gl01","q_n5u09_gl02","q_n5u09_gl03","q_n5u09_gl04"],"provenance":"orig"},
+{"id":"n5u09_ls2","audio_mode":"tts","synthetic_audio_flag":true,"speaker_voice_hint":[],"unit_id":"n5_u09","instructional_level":"N5","item_type":"Verbal expressions (lesson practice)","title":"How much? What kind?","script_turns":[{"speaker":"A","text_ja":"とても たかい です"},{"speaker":"A","text_ja":"あまり おいしく ない です"},{"speaker":"A","text_ja":"しずか な こうえん です"},{"speaker":"A","text_ja":"おいしい です が たかい です"}],"question_ids":["q_n5u09_gl05","q_n5u09_gl06","q_n5u09_gl07","q_n5u09_gl08"],"provenance":"orig"}
+]

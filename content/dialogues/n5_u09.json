@@ -1,0 +1,6 @@
+[
+{"id":"n5u09_d1","unit_id":"n5_u09","instructional_level":"N5","title":"How is this town?","setting":"shibuya","turns":[{"speaker":"A","sentence_id":"s_n5u09_k33"},{"speaker":"B","sentence_id":"s_n5u09_k18"}],"comprehension_question_ids":["q_n5u09_dg01"],"register":"polite","provenance":"orig"},
+{"id":"n5u09_d2","unit_id":"n5_u09","instructional_level":"N5","title":"A good cake?","setting":"shibuya","turns":[{"speaker":"A","sentence_id":"s_n5u09_k12"},{"speaker":"B","sentence_id":"s_n5u09_k30"}],"comprehension_question_ids":["q_n5u09_dg02","q_n5u09_dg03"],"register":"polite","provenance":"orig"},
+{"id":"n5u09_d3","unit_id":"n5_u09","instructional_level":"N5","title":"Shopping for clothes","setting":"shibuya","turns":[{"speaker":"A","sentence_id":"s_n5u09_t02"},{"speaker":"B","sentence_id":"s_n5u09_t07"}],"comprehension_question_ids":["q_n5u09_dg04","q_n5u09_dg05"],"register":"polite","provenance":"orig"},
+{"id":"n5u09_d4","unit_id":"n5_u09","instructional_level":"N5","title":"A quiet place","setting":"shibuya","turns":[{"speaker":"A","sentence_id":"s_n5u09_k34"},{"speaker":"B","sentence_id":"s_n5u09_k07"},{"speaker":"A","sentence_id":"s_n5u09_k17"}],"comprehension_question_ids":["q_n5u09_dg06"],"register":"polite","provenance":"orig"}
+]

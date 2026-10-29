@@ -213,8 +213,18 @@
    ],
    "kanji_introduced_target": 10,
    "scenario_theme": "shibuya_streets",
-   "content_status": "to_be_authored",
-   "lessons": []
+   "content_status": "auto_checked",
+   "lessons": [
+    "n5_u09_l1",
+    "n5_u09_l2",
+    "n5_u09_l3",
+    "n5_u09_l4",
+    "n5_u09_l5",
+    "n5_u09_l6",
+    "n5_u09_l7",
+    "n5_u09_l8",
+    "n5_u09_l9"
+   ]
   },
   {
    "id": "n5_u10",
