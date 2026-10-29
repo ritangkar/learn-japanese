@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { watch, waitReady, skipTour, solveSession, solveCurrent } from './helpers.js';
+import { watch, waitReady, waitSwReady, skipTour, solveSession, solveCurrent } from './helpers.js';
 import { seedProfile } from './profiles.js';
 
 const fireInstallPrompt = (page, outcome = 'accepted') => page.evaluate((o) => {
@@ -282,5 +282,32 @@ test.describe('Journey 10: GitHub Pages sub-path production build', () => {
       await page.goto(`./${r}`); await page.reload(); await waitReady(page);
       await expect(page.locator('main h1').first()).toBeVisible();
     }
+  });
+});
+
+test.describe('Journey 8: the redesigned screens work offline', () => {
+  test('after the first load, Home, Explore (with the stop sheet), Learn, Journal and a lesson all work offline; fonts come from the cache; progress survives a reload', async ({ page, context }) => {
+    const rec = watch(page);
+    await page.goto('./'); await waitReady(page); await skipTour(page); await waitSwReady(page);
+    await page.goto('./#/status'); await page.getByRole('button', { name: 'Check again' }).click();
+    await expect(page.locator('#offline-indicator')).toHaveText('Ready offline');
+    await context.setOffline(true);
+    await page.goto('./#/explore'); await page.reload(); await waitReady(page);
+    await page.locator('[data-dest="tokyo"]').dispatchEvent('click');
+    await expect(page.locator('[data-dest-card="tokyo"]')).toBeVisible();
+    await expect(page.locator('#scene-bg')).toHaveAttribute('data-scene', 'tokyo');
+    for (const [r, h1] of [['#/learn', 'itinerary'], ['#/journal', 'Stamp book'], ['#/', 'Welcome aboard']]) { await page.goto(`./${r}`); await expect(page.locator('main h1').first()).toContainText(h1); }
+    const fonts = await page.evaluate(async () => { await document.fonts.ready; return [...document.fonts].filter((f) => f.status === 'loaded').length; });
+    expect(fonts).toBeGreaterThan(0);
+    await page.goto('./#/lesson/n5_u01_l1');
+    await page.getByRole('button', { name: 'Next', exact: true }).click(); await page.getByRole('button', { name: 'Next', exact: true }).click(); await page.getByRole('button', { name: 'Start practice' }).click();
+    const res = await solveSession(page, { max: 6 }); expect(res.length).toBeGreaterThanOrEqual(5);
+    await page.evaluate(() => window.__tabi.store.flush());
+    const facets = await page.evaluate(() => Object.keys(window.__tabi.store.state.srs).length); expect(facets).toBeGreaterThan(0);
+    await page.reload(); await waitReady(page);
+    expect(await page.evaluate(() => Object.keys(window.__tabi.store.state.srs).length)).toBe(facets);
+    await context.setOffline(false);
+    await page.goto('./#/explore'); await expect(page.locator('.map-svg')).toBeVisible();
+    expect(rec.crossOrigin).toEqual([]);
   });
 });

@@ -46,9 +46,11 @@ See [docs/qa/TRACEABILITY.md](docs/qa/TRACEABILITY.md) and [docs/QA_REPORT.md](d
 * Lessons, exercises (23 types), spaced repetition (FSRS-4.5 ported from the open-spaced-repetition `ts-fsrs` 3.5.7, at day granularity), daily planner with comeback / welcome-back / backlog modes.
 * Kana trainer with original (simplified) stroke guides; kanji introduced gradually with furigana.
 * JLPT area: official test structure facts (sections, minutes, pass marks, with source and verification date), section practice, an exam runner with timers and autosave, a readiness check, and an exam-date planner that never promises a pass.
+* **Redesigned travel experience** (see [docs/redesign/](docs/redesign/)): five tabs (Home, Explore, Learn, JLPT, Journal); a Home dashboard with one clear next step; an illustrated, location-aware backdrop that changes with the stop you select; an Explore map with Map/List toggle, magnifier zoom controls and a stop sheet (art, status, unlock requirements, progress, stamp preview); original station-style **stamps** with an awarding moment and a stamp book; an unfinished-exam attempt card with safe Resume/Discard; and an **install** card (native prompt on Chromium, step-by-step Share → Add to Home Screen on iPhone/iPad Safari).
 * Explore Japan: SVG map with 27 destinations in 9 regions, quests, stamps, postcards, journal.
 * Procedural audio (22 original sounds), optional ambience (off by default, gesture-gated), device text-to-speech with a transcript fallback, optional local recording for self-comparison.
 * Export / import with preview and confirmation, quarantine of corrupted data, storage meter with warnings.
+* Fonts: Shippori Mincho and Zen Kaku Gothic New (Latin subsets, SIL OFL 1.1) are stored in the app; Japanese text uses your device fonts. Nothing is loaded from third-party servers.
 * Accessibility: keyboard flows, 44 px targets, reduced motion (OS and in-app), 200 % text, axe-checked screens.
 
 Deferred or not implemented features are listed in [docs/FEATURES.md](docs/FEATURES.md).
