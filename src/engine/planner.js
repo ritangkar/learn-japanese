@@ -152,7 +152,11 @@ export function plan(state, content, nowMs, opts = {}) {
   const lesson = nextLesson(state.progress, content);
   const newWords = Math.max(1, Math.round(PARAMS.new_words_per_session_default * scale * (ra.value !== null && ra.value < 0.8 ? 0.7 : 1)));
   out.newItemBudget = { words: newWords, grammar: PARAMS.new_grammar_per_session_default };
-  if (gateOk && lesson) {
+  const lessonsToday = Object.values(state.progress.lessons).filter((l) => l.doneAt === today).length;
+  if (gateOk && lesson && lessonsToday >= 1) {
+    rules.push('E05_done_today');
+    blocks.push({ id: 'new_lesson_more', type: 'lesson', title: `${lesson.title} (another lesson)`, lessonId: lesson.id, minutes: budget.new_material, core: false, reason_code: 'E05', reason_text: 'You already learned something new today. This is an optional extra, never required.' });
+  } else if (gateOk && lesson) {
     rules.push('E05');
     add({ id: 'new_lesson', type: 'lesson', title: lesson.title, lessonId: lesson.id, minutes: budget.new_material, reason_code: 'E05', reason_text: `Next step in ${content.unitById.get(lesson.unit_id)?.title || 'your unit'}. ${ra.value !== null && ra.value < 0.8 ? 'Recent accuracy was a bit low, so the pace is eased.' : 'Reviews are under control, so it is a good moment for something new.'}` });
   } else if (!lesson && !suppressNew) notes.push('You have finished all released lessons. New units are added as content is released (see Content status).');

@@ -41,3 +41,9 @@ export const ja = (text, props = {}) => h('span', { lang: 'ja', class: 'ja', ...
 export function ruby(segs) {
   return h('span', { lang: 'ja', class: 'ja' }, segs.map(([b, r]) => (r ? h('ruby', null, b, h('rt', null, r)) : b)));
 }
+
+// Null-safe append/prepend: optional children (null/undefined/false) are skipped instead of rendering the text "null".
+for (const name of ['append', 'prepend']) {
+  const orig = Element.prototype[name];
+  Element.prototype[name] = function safe(...nodes) { return orig.apply(this, nodes.filter((n) => n !== null && n !== undefined && n !== false)); };
+}

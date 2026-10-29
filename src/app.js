@@ -3,6 +3,8 @@ import { Router } from './core/router.js';
 import { routes } from './ui/routes.js';
 import { registerSW, applyUpdate, checkOffline, STATUS } from './pwa/offline.js';
 import { StorageFullError } from './core/storage.js';
+import { createAudio } from './audio/index.js';
+import { loadContent } from './content/loader.js';
 
 const TABS = [
   { id: 'explore', label: 'Explore', icon: '🗺', href: '#/', match: (p) => p === '/' || p.startsWith('/dest') || p.startsWith('/map') || p.startsWith('/journal') || p.startsWith('/achievements') },
@@ -21,7 +23,10 @@ export function applyDisplaySettings(settings) {
 }
 
 export function startApp({ store, root }) {
-  const ctx = { store, ui: { notice: null }, sw: { reg: null, offline: { status: STATUS.NOT_READY } } };
+  const ctx = { store, ui: { notice: null }, sw: { reg: null, offline: { status: STATUS.NOT_READY } }, installPrompt: null };
+  ctx.audio = createAudio({ getSettings: () => store.state.settings });
+  ctx.getContent = () => { ctx._content ||= loadContent().catch((e) => { ctx._content = null; throw e; }); return ctx._content; };
+  window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); ctx.installPrompt = e; });
   const bannerHost = h('div', { id: 'banners', role: 'region', 'aria-label': 'Notices' });
   const outlet = h('main', { id: 'main', class: 'main', tabindex: '-1' });
   const live = h('div', { id: 'live', class: 'sr-only', 'aria-live': 'polite', role: 'status' });
@@ -67,6 +72,7 @@ export function startApp({ store, root }) {
     renderTabs(loc.path);
     renderBanners();
     const render = loc.route ? loc.route.render : null;
+    if (!store.state.meta.tourDone && loc.path === '/' && !ctx.tourSkipped) { location.replace('#/tour'); return; }
     clear(outlet);
     if (!render) { outlet.append(h('p', null, 'Page not found. ', h('a', { href: '#/' }, 'Back to start'))); return; }
     const hideChrome = !!loc.route.immersive;

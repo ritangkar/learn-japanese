@@ -72,6 +72,11 @@ function build(type, id, i, ctx, kanaById, vocabById) {
     const p = placeChoices({ text: v.surface, ja: true }, wrongs, seed);
     return baseQ('mcq', id, i, { stem: { prompt: `Which word means "${v.meanings_en[0]}"?` }, ...p, explanation_correct: `"${v.meanings_en[0]}" is ${v.surface} (${v.romaji}).`, facet: 'produce', unit_id: v.unit_id });
   }
+  if (type === 'vocab_read') {
+    const wrongs = distractors(v, cands.filter((x) => x.romaji !== v.romaji), 3, seed, (x) => x.romaji).map((x) => ({ text: x.romaji, concept: x.id }));
+    const p = placeChoices({ text: v.romaji }, wrongs, seed);
+    return baseQ('mcq', id, i, { stem: { prompt: 'How is this word read?', ja: v.surface, ruby: v.surface !== v.reading_kana ? { [v.surface]: v.reading_kana } : undefined }, ...p, explanation_correct: `${v.surface} is read "${v.romaji}" and means "${v.meanings_en[0]}".`, facet: 'read', unit_id: v.unit_id });
+  }
   if (type === 'word_listen') {
     const wrongs = distractors(v, cands.filter((x) => x.reading_kana !== v.reading_kana), 3, seed, (x) => x.reading_kana).map((x) => ({ text: x.reading_kana, ja: true, concept: x.id }));
     const p = placeChoices({ text: v.reading_kana, ja: true }, wrongs, seed);

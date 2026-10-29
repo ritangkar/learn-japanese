@@ -10,6 +10,11 @@ export function checkAnswer(q, response) {
     const grade = Number(response); // 1..4 (again, hard, good, easy)
     return { ...base, correct: grade >= 2, score: grade >= 2 ? 1 : 0, grade, selfGraded: true };
   }
+  if (q.type === 'conversation_sim') {
+    const steps = q.steps || []; const picks = Array.isArray(response) ? response : [];
+    const score = steps.length ? steps.reduce((a, st, i) => a + ({ best: 1, ok: 0.5, bad: 0 }[st.options.find((o) => o.id === picks[i])?.quality] ?? 0), 0) / steps.length : 0;
+    return { ...base, correct: score >= 0.8, score };
+  }
   if (q.type === 'matching') {
     const pairs = q.pairs || [];
     const given = response || {};

@@ -32,7 +32,7 @@ export async function waitSwReady(page) {
   })).toBe(true);
 }
 
-/** Dismiss the first-run tour state so tests start on the normal screens. */
+/** Mark the first-run tour as done in storage, reload, and land on the home screen. */
 export async function skipTour(page) {
   await page.evaluate(() => {
     const raw = localStorage.getItem('jla:v1:meta');
@@ -40,4 +40,49 @@ export async function skipTour(page) {
     meta.tourDone = true;
     localStorage.setItem('jla:v1:meta', JSON.stringify(meta));
   });
+  await page.reload();
+  await page.waitForFunction(() => !!window.__tabi);
+  await page.evaluate(() => { location.hash = '#/'; });
+  await page.waitForSelector('#start-today');
+}
+
+/** Solve the exercise currently shown, through the UI (clicks and typing). `correct=false` picks a wrong answer where possible. */
+export async function solveCurrent(page, { correct = true } = {}) {
+  const info = await page.evaluate(() => { const q = document.querySelector('.exercise')?.q; return q ? { type: q.type, answer: q.answer, pairs: q.pairs || null, tiles: q.tiles || null, choices: q.choices ? q.choices.map((c) => c.id) : null, id: q.id } : null; });
+  if (!info) throw new Error('no exercise on screen');
+  const ex = page.locator('.exercise');
+  if (['flashcard', 'srs_review', 'handwriting_guided', 'shadowing'].includes(info.type)) {
+    await ex.getByRole('button', { name: /Show answer|I have tried it/ }).click();
+    await ex.getByRole('button', { name: correct ? /3 · Good/ : /1 · Again/ }).click();
+  } else if (info.type === 'matching') {
+    const pairs = correct ? info.pairs : info.pairs.map((p, i, a) => [p[0], a[(i + 1) % a.length][1]]);
+    for (const [l, r] of pairs) { await ex.locator('.match-grid .col').nth(0).getByRole('button', { name: new RegExp(`^${l}`) }).click(); await ex.locator('.match-grid .col').nth(1).getByRole('button', { name: r, exact: true }).first().click(); }
+    await ex.getByRole('button', { name: 'Check' }).click();
+  } else if (info.type === 'sentence_order') {
+    const order = correct ? info.answer : [...info.answer].reverse();
+    for (const t of order) await ex.locator('.tiles.bank').getByRole('button', { name: t, exact: true }).first().click();
+    await ex.getByRole('button', { name: 'Check' }).click();
+  } else if (info.choices) {
+    const id = correct ? info.answer : info.choices.find((c) => c !== info.answer);
+    await ex.locator(`[data-choice="${id}"]`).click();
+    await ex.getByRole('button', { name: 'Check' }).click();
+  } else {
+    await ex.locator('input[type="text"]').fill(correct ? String(info.answer) : 'zzz');
+    await ex.getByRole('button', { name: 'Check' }).click();
+  }
+  await ex.locator('.feedback').waitFor();
+  const result = await ex.locator('.feedback').getAttribute('data-result');
+  await ex.getByRole('button', { name: 'Continue' }).click();
+  return { type: info.type, id: info.id, result };
+}
+
+/** Answer exercises until the session summary appears (or `max` reached). Returns the list of results. */
+export async function solveSession(page, { correct = () => true, max = 60 } = {}) {
+  const results = [];
+  for (let i = 0; i < max; i++) {
+    if (await page.locator('.summary').count()) break;
+    if (!(await page.locator('.exercise').count())) { await page.waitForTimeout(50); continue; }
+    results.push(await solveCurrent(page, { correct: correct(i) }));
+  }
+  return results;
 }
