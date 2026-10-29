@@ -289,7 +289,7 @@ export function runAll(raw, ctx = {}) {
   // A14 assets (manifest) - same rules as scripts/license-audit.mjs
   {
     const errors = [];
-    const ALLOWED = ['CC0-1.0', 'CC-BY-4.0', 'CC-BY-3.0', 'owner-produced', 'original'];
+    const ALLOWED = ['CC0-1.0', 'CC-BY-4.0', 'CC-BY-3.0', 'OFL-1.1', 'owner-produced', 'original'];
     for (const a of raw.assets) {
       for (const f of ['id', 'name', 'type', 'origin', 'license', 'local_path', 'verified_by', 'verified_on']) if (!a[f]) errors.push(err(a.id || '?', `manifest field '${f}' missing`));
       if (a.origin === 'third_party') {

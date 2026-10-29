@@ -10,7 +10,9 @@ export const LEGEND = [
 ];
 
 /** Draw the glyph for a state at (0,0). */
-export function pinGlyph(state, pct = 0, r = 15) {
+export function pinGlyph(state, pct = 0, size = 15) {
+  // the glyph artwork is drawn for radius 15; `size` scales it so pins stay readable on a phone-sized map
+  const r = 15;
   const g = s('g', { class: `pin-glyph ${state}` });
   const star = () => s('path', { d: 'M0 -7 L2 -2 L7 -2 L3 1.5 L4.5 7 L0 3.8 L-4.5 7 L-3 1.5 L-7 -2 L-2 -2 Z', class: 'pin-ink' });
   if (state === 'visible_locked') g.append(s('polygon', { points: `0,${-r - 2} ${r + 2},0 0,${r + 2} ${-r - 2},0`, class: 'pin-base' }), s('rect', { x: -5, y: -2, width: 10, height: 8, class: 'pin-ink' }), s('path', { d: 'M-3 -2 V-5 A3 3 0 0 1 3 -5 V-2', class: 'pin-ink-stroke', fill: 'none' }));
@@ -23,6 +25,7 @@ export function pinGlyph(state, pct = 0, r = 15) {
     g.append(s('circle', { r, class: 'pin-base' }), s('path', { d: 'M-6 0 L-2 5 L7 -5', class: 'pin-ink-stroke', fill: 'none' }));
     if (state === 'revisit_available') g.append(s('rect', { x: 6, y: -r - 4, width: 12, height: 12, rx: 2, class: 'pin-badge' }), s('path', { d: `M12 ${-r - 1} l-4 5 h8 z`, class: 'pin-ink' }));
   }
+  g.setAttribute('transform', `scale(${size / 15})`);
   return g;
 }
 
@@ -31,8 +34,8 @@ export function pinGlyph(state, pct = 0, r = 15) {
  */
 export function renderMap({ destinations, states, route, onSelect, selected = null }) {
   const svg = s('svg', { viewBox: `0 0 ${VIEW.w} ${VIEW.h}`, class: 'map-svg', role: 'group', 'aria-label': 'Stylised map of Japan with destinations. Not for navigation. A list of the same destinations is available.' });
-  svg.append(s('rect', { x: 0, y: 0, width: VIEW.w, height: VIEW.h, class: 'map-sea' }));
-  for (const name of ['hokkaido', 'honshu', 'kyushu', 'shikoku', 'awaji', 'sado']) svg.append(s('path', { d: islandPath(name), class: 'map-land' }));
+  svg.append(s('defs', null, s('linearGradient', { id: 'seaGrad', x1: 0, y1: 0, x2: 0, y2: 1 }, s('stop', { offset: 0, class: 'sea-a' }), s('stop', { offset: 1, class: 'sea-b' })), s('filter', { id: 'landShadow', x: '-5%', y: '-5%', width: '110%', height: '110%' }, s('feDropShadow', { dx: 0, dy: 6, stdDeviation: 7, 'flood-opacity': 0.22 }))), s('rect', { x: 0, y: 0, width: VIEW.w, height: VIEW.h, class: 'map-sea', fill: 'url(#seaGrad)' }), s('g', { class: 'map-waves', 'aria-hidden': 'true' }, ...Array.from({ length: 14 }, (_, i) => s('path', { d: `M${(i * 173) % 900 + 20} ${(i * 211) % 1000 + 40} q 18 -14 36 0 t 36 0`, fill: 'none', class: 'wave' }))));
+  for (const name of ['hokkaido', 'honshu', 'kyushu', 'shikoku', 'awaji', 'sado']) svg.append(s('path', { d: islandPath(name), class: 'map-land', filter: 'url(#landShadow)' }));
   svg.append(s('g', { class: 'map-inset' }, s('rect', { x: OKINAWA_INSET.x, y: OKINAWA_INSET.y, width: OKINAWA_INSET.w, height: OKINAWA_INSET.h, rx: 12, class: 'inset-frame' }), s('path', { d: insetIslandPath(), class: 'map-land' }), s('text', { x: OKINAWA_INSET.x + 10, y: OKINAWA_INSET.y + 22, class: 'map-label' }, 'Okinawa (inset)')));
   // nodes: sub-stops of Tokyo are represented by the Tokyo node
   const nodeOf = (d) => (d.parent_id === 'tokyo' ? 'tokyo' : d.id);
@@ -56,7 +59,7 @@ export function renderMap({ destinations, states, route, onSelect, selected = nu
     const sub = id === 'tokyo' ? kids('tokyo') : [];
     const label = `${d.name_en}${sub.length ? `, area with ${sub.length} more stops` : ''}, ${STATE_LABEL[st.state]}`;
     const g = s('g', { class: `pin ${selected === id ? 'sel' : ''}`, transform: `translate(${x} ${y})`, role: 'button', tabindex: 0, 'aria-label': label, 'data-dest': id, 'data-state': st.state });
-    g.append(s('circle', { r: 16, class: 'pin-hit', fill: 'transparent' }), pinGlyph(st.state, st.pct), s('text', { class: 'pin-name', y: 38, 'text-anchor': 'middle' }, d.name_en));
+    g.append(s('circle', { r: 42, class: 'pin-hit', fill: 'transparent' }), pinGlyph(st.state, st.pct, 27), s('text', { class: 'pin-name', y: 58, 'text-anchor': 'middle' }, d.name_en));
     if (sub.length) g.append(s('g', { class: 'pin-more', 'aria-hidden': 'true' }, s('circle', { cx: 22, cy: -16, r: 4 }), s('circle', { cx: 32, cy: -16, r: 4 }), s('circle', { cx: 42, cy: -16, r: 4 })));
     const act = () => onSelect(id);
     g.addEventListener('click', act);
@@ -76,7 +79,7 @@ export function renderTokyoMap({ destinations, states, onSelect, selected = null
     let [x, y] = tokyoXY(d);
     if (d.id === 'tokyo') { x -= 34; y -= 24; }
     const g = s('g', { class: `pin ${selected === d.id ? 'sel' : ''}`, transform: `translate(${x} ${y})`, role: 'button', tabindex: 0, 'aria-label': `${d.name_en}, ${STATE_LABEL[st.state]}`, 'data-dest': d.id, 'data-state': st.state });
-    g.append(s('circle', { r: 30, class: 'pin-hit', fill: 'transparent' }), pinGlyph(st.state, st.pct, 16), s('text', { class: 'pin-name', y: 40, 'text-anchor': 'middle' }, d.name_en));
+    g.append(s('circle', { r: 46, class: 'pin-hit', fill: 'transparent' }), pinGlyph(st.state, st.pct, 28), s('text', { class: 'pin-name', y: 60, 'text-anchor': 'middle' }, d.name_en));
     g.addEventListener('click', () => onSelect(d.id));
     g.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onSelect(d.id); } });
     svg.append(g);

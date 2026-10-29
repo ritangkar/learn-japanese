@@ -1,7 +1,9 @@
 import { h } from './dom.js';
 import { storageScreen } from './screens/storage.js';
 import { statusScreen } from './screens/offline-status.js';
-import { homeScreen, tokyoScreen, destinationScreen, journalScreen, achievementsScreen } from './screens/explore.js';
+import { exploreScreen, tokyoScreen, destinationScreen } from './screens/explore.js';
+import { homeScreen } from './screens/home.js';
+import { journalScreen, achievementsScreen } from './screens/journal.js';
 import { meScreen } from './screens/me.js';
 import { learnScreen, summaryScreen } from './screens/learn.js';
 import { lessonScreen } from './screens/lesson.js';
@@ -16,13 +18,14 @@ import { backupScreen } from './screens/backup.js';
 import { tourScreen, contentStatusScreen, privacyScreen, aboutScreen, creditsScreen } from './screens/info.js';
 
 export const routes = [
-  { pattern: '/', title: 'Explore', render: homeScreen },
-  { pattern: '/tokyo', title: 'Tokyo area', render: tokyoScreen },
-  { pattern: '/dest/:id', title: 'Destination', render: destinationScreen },
-  { pattern: '/journal', title: 'Travel journal', render: journalScreen },
-  { pattern: '/achievements', title: 'Achievements', render: achievementsScreen },
+  { pattern: '/', title: 'Home', render: homeScreen, scene: 'current' },
+  { pattern: '/explore', title: 'Explore Japan', render: exploreScreen, scene: 'explicit' },
+  { pattern: '/tokyo', title: 'Tokyo area', render: tokyoScreen, scene: 'explicit' },
+  { pattern: '/dest/:id', title: 'Destination', render: destinationScreen, scene: 'explicit' },
+  { pattern: '/journal', title: 'Stamp book', render: journalScreen, scene: 'explicit' },
+  { pattern: '/achievements', title: 'Achievements', render: achievementsScreen, scene: 'explicit' },
   { pattern: '/me', title: 'Me', render: meScreen },
-  { pattern: '/learn', title: 'Today', render: learnScreen },
+  { pattern: '/learn', title: 'Learn', render: learnScreen, scene: 'current' },
   { pattern: '/summary', title: 'Today is done', render: summaryScreen },
   { pattern: '/lesson/:id', title: 'Lesson', render: lessonScreen, immersive: true },
   { pattern: '/review', title: 'Review', render: reviewScreen, immersive: true },

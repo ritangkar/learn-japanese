@@ -16,7 +16,7 @@ const manifestPath = arg('--manifest', join(root, 'content/assets.manifest.json'
 const distDir = arg('--dist', join(root, 'dist'));
 const srcDir = arg('--src', join(root, 'src'));
 
-export const ALLOWED_LICENSES = ['CC0-1.0', 'CC-BY-4.0', 'MIT', 'owner-produced', 'generated-original'];
+export const ALLOWED_LICENSES = ['CC0-1.0', 'CC-BY-4.0', 'MIT', 'OFL-1.1', 'owner-produced', 'generated-original'];
 const MEDIA = new Set(['.mp3', '.ogg', '.wav', '.m4a', '.aac', '.flac', '.opus', '.webm', '.woff', '.woff2', '.ttf', '.otf', '.jpg', '.jpeg', '.gif', '.webp', '.svg', '.mp4']);
 const problems = [];
 const fail = (m) => problems.push(m);

@@ -1,7 +1,7 @@
 // AC27 (disallowed or missing manifest entries fail the build), AC36 (no paid service), AC39 (manifest lists every asset).
 import { describe, it, expect } from 'vitest';
 import { spawnSync } from 'node:child_process';
-import { readFileSync, existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 
 const run = (...args) => spawnSync('node', ['scripts/license-audit.mjs', ...args], { cwd: process.cwd(), encoding: 'utf8' });
 
@@ -22,8 +22,18 @@ describe('licence audit (AC27, AC39)', () => {
     expect(r.status).toBe(1);
     expect(r.stderr).toMatch(/media file with no manifest entry/);
   });
-  it('the fixture manifest is not part of the shipped content', () => {
-    expect(JSON.parse(readFileSync('content/assets.manifest.json', 'utf8'))).toEqual([]);
+  it('the shipped manifest lists exactly the bundled OFL fonts, each with its licence text and an existing file', () => {
+    const m = JSON.parse(readFileSync('content/assets.manifest.json', 'utf8'));
+    expect(m.length).toBe(5);
+    for (const a of m) {
+      expect(a.type).toBe('font'); expect(a.license).toBe('OFL-1.1'); expect(a.origin).toBe('third_party'); expect(a.redistribution_allowed).toBe(true);
+      expect(existsSync(a.local_path), a.local_path).toBe(true);
+      expect(a.attribution_text).toMatch(/SIL Open Font License/);
+    }
+    expect(existsSync('public/fonts/OFL-shippori-mincho.txt')).toBe(true); expect(existsSync('public/fonts/OFL-zen-kaku-gothic-new.txt')).toBe(true);
+  });
+  it('the negative fixture manifest is never the shipped one', () => {
+    expect(JSON.parse(readFileSync('content/assets.manifest.json', 'utf8')).some((a) => /fixture|jingle/i.test(JSON.stringify(a)))).toBe(false);
   });
 });
 

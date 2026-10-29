@@ -1,4 +1,11 @@
 // Tiny view helpers. No framework, no innerHTML with data (XSS-safe by construction).
+/** CSP forbids inline style attributes (style-src 'self'); the CSSOM is allowed, so a style string is applied property by property. */
+export function applyStyle(el, text) {
+  for (const decl of String(text).split(';')) {
+    const i = decl.indexOf(':'); if (i < 1) continue;
+    el.style.setProperty(decl.slice(0, i).trim(), decl.slice(i + 1).trim());
+  }
+}
 export function h(tag, props, ...children) {
   const el = document.createElement(tag);
   if (props) {
@@ -6,6 +13,7 @@ export function h(tag, props, ...children) {
       if (v === null || v === undefined || v === false) continue;
       if (k === 'class') el.className = v;
       else if (k === 'dataset') Object.assign(el.dataset, v);
+      else if (k === 'style') applyStyle(el, v);
       else if (k.startsWith('on') && typeof v === 'function') el.addEventListener(k.slice(2).toLowerCase(), v);
       else if (k === 'text') el.textContent = v;
       else if (v === true) el.setAttribute(k, '');
@@ -28,6 +36,7 @@ export function s(tag, props, ...children) {
   if (props) for (const [k, v] of Object.entries(props)) {
     if (v === null || v === undefined || v === false) continue;
     if (k.startsWith('on') && typeof v === 'function') el.addEventListener(k.slice(2).toLowerCase(), v);
+    else if (k === 'style') applyStyle(el, v);
     else el.setAttribute(k === 'class' ? 'class' : k, String(v));
   }
   append(el, children);

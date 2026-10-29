@@ -25,7 +25,7 @@ const TEXT_PAIRS = [
   ['ink', 'paper'], ['ink', 'surface'], ['ink', 'surface-2'], ['ink', 'mist'], ['ink-2', 'paper'], ['ink-2', 'surface'], ['ink-2', 'mist'], ['ink-2', 'surface-2'],
   ['indigo', 'paper'], ['indigo', 'surface'], ['indigo', 'mist'], ['on-indigo', 'indigo'], ['vermilion', 'paper'], ['vermilion', 'surface'], ['on-vermilion', 'vermilion'],
   ['matcha', 'paper'], ['matcha', 'surface'], ['gold', 'paper'], ['gold', 'surface'],
-  ['ok-ink', 'ok-bg'], ['bad-ink', 'bad-bg'], ['warn-ink', 'warn-bg'], ['info-ink', 'info-bg'],
+  ['sakura-ink', 'sakura-bg'], ['sakura-ink', 'paper'], ['sakura-ink', 'surface'], ['ok-ink', 'ok-bg'], ['bad-ink', 'bad-bg'], ['warn-ink', 'warn-bg'], ['info-ink', 'info-bg'],
 ];
 const UI_PAIRS = [['border', 'paper'], ['border', 'surface'], ['focus', 'paper'], ['focus', 'surface'], ['indigo', 'surface']];
 
@@ -47,8 +47,8 @@ describe('WCAG AA contrast per token pair (AC31/R022, task 9)', () => {
 
 describe('contrast helper sanity', () => {
   it('parses tokens and computes known ratios', () => {
-    expect(light.ink).toBe('#1F2A37');
-    expect(dark.paper).toBe('#121A24');
+    expect(light.ink).toBe('#1E2230');
+    expect(dark.paper).toBe('#121827');
     expect(ratio('#000000', '#FFFFFF')).toBeCloseTo(21, 1);
     expect(ratio('#777777', '#FFFFFF')).toBeLessThan(4.5); // known AA failure (4.48)
     expect(ratio(light.ink, light.paper)).toBeGreaterThan(10);

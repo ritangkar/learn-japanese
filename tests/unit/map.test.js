@@ -50,7 +50,7 @@ describe('map rendering (AC13)', () => {
     const xml = new XMLSerializer().serializeToString(svg);
     expect(xml.length).toBeLessThan(120 * 1024);
     const bare = xml.replace('xmlns="http://www.w3.org/2000/svg"', '');
-    expect(bare).not.toMatch(/https?:\/\//); expect(bare).not.toMatch(/href=|src=|url\(/);
+    expect(bare).not.toMatch(/https?:\/\//); expect(bare).not.toMatch(/href=|src=/); expect(bare).not.toMatch(/url\((?!#)/); // only same-document gradient/filter references are allowed
   });
   it('has an accessible name, a focusable button per visible pin with its state in the label, and a legend-worthy shape per state', () => {
     expect(svg.getAttribute('aria-label')).toMatch(/Not for navigation/);

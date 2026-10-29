@@ -27,8 +27,8 @@ export function nextLesson(progress, content) {
 }
 
 // ---------- XP and study days ----------
-const XP_BASE = { lesson: 20, review: 15, quest: 40, practice: 10, mock_section: 25, comeback: 15 };
-const XP_DAY_CAP = { lesson: 100, review: 60, quest: 120, practice: 60, mock_section: 100, comeback: 15 };
+export const XP_BASE = { lesson: 20, review: 15, quest: 40, practice: 10, mock_section: 25, comeback: 15 };
+export const XP_DAY_CAP = { lesson: 100, review: 60, quest: 120, practice: 60, mock_section: 100, comeback: 15 };
 export function xpFor(type, accuracy) { return Math.round((XP_BASE[type] || 0) * (0.5 + 0.5 * Math.max(0, Math.min(1, accuracy)))); }
 
 /** Award XP for an activity. Repeats of the same activity key beyond 2 give 0; per-day caps apply per activity type. */
