@@ -56,3 +56,9 @@ export function stratified(pool, groupOf, n, seed) {
   while (chosen.length < n && names.some((g) => lists.get(g).length)) { const g = names[i % names.length]; i++; const x = lists.get(g).shift(); if (x) chosen.push(x); }
   return shuffle(chosen, `${seed}|final`);
 }
+
+export const CHOICE_PRACTICE_TYPES = new Set(['mcq', 'kana_recog', 'fill_blank', 'translate', 'error_correction', 'reading_comp', 'listening_comp', 'dialogue_complete', 'context_vocab', 'information_retrieval', 'exam_style']);
+/** Choice-based questions of a level for section practice, readiness check and milestone sets (mock questions are never in the bundle). */
+export function practicePool(content, level, groupOf, group = null) {
+  return content.questions.filter((q) => q.instructional_level === level && CHOICE_PRACTICE_TYPES.has(q.type) && !q.generated && (!group || groupOf(q) === group));
+}

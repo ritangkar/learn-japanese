@@ -13,6 +13,8 @@ const out = join(ROOT, 'public/content');
 rmSync(out, { recursive: true, force: true });
 mkdirSync(join(out, 'mocks'), { recursive: true });
 const levels = ['N5', 'N4', 'N3', 'N2', 'N1'];
+// Questions, passages and listening items that belong to a mock ship ONLY inside the mock file (so mocks stay unseen in practice).
+const mockOnly = new Set(raw.mocks.flatMap((m) => m.sections.flatMap((x) => [...x.question_ids, ...(x.shared_passages || []), ...(x.listening_ids || [])])));
 const visible = (id) => STATUS_ORDER[statusOf(raw, id)] >= STATUS_ORDER.auto_checked;
 const stamp = (it) => ({ ...it, content_status: statusOf(raw, it.id), ...(raw.status[it.id]?.review ? { review: raw.status[it.id].review } : {}) });
 const levelOfItem = (it) => it.instructional_level || idx.unitLevel.get(it.unit_id);
@@ -29,7 +31,7 @@ const releasedUnit = (u) => ['auto_checked', 'human_reviewed'].includes(unitStat
 // per-level bundles
 const sizes = {};
 for (const L of levels) {
-  const keep = (arr) => arr.filter((x) => levelOfItem(x) === L && visible(x.id) && releasedUnit(idx.units.get(x.unit_id))).map(stamp);
+  const keep = (arr) => arr.filter((x) => levelOfItem(x) === L && visible(x.id) && !mockOnly.has(x.id) && releasedUnit(idx.units.get(x.unit_id))).map(stamp);
   const bundle = { level: L, vocab: keep(raw.vocab), kanji: keep(raw.kanji), grammar: keep(raw.grammar), sentences: keep(raw.sentences), dialogues: keep(raw.dialogues), passages: keep(raw.passages), listening: keep(raw.listening), questions: keep(raw.questions), lessons: keep(raw.lessons), quests: raw.quests.filter((q) => idx.unitLevel.get(q.unit_id) === L && visible(q.id) && releasedUnit(idx.units.get(q.unit_id))).map(stamp) };
   sizes[L] = write(`${L}.json`, bundle);
 }

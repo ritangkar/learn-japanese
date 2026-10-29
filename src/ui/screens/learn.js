@@ -37,6 +37,7 @@ export async function learnScreen({ ctx }) {
   if (core.length || opt.length) host.append(h('div', { class: 'divider', role: 'separator' }, 'Optional: you are free to stop above this line'));
   opt.forEach((b) => host.append(card(b)));
   if (core.length && !ext) host.append(h('button', { class: 'btn block', type: 'button', onclick: () => { ctx.showExtension = true; ctx.rerender(); } }, 'Keep going: show optional extras'));
+  host.append(h('div', { class: 'card' }, h('h3', null, 'More practice'), h('div', { class: 'grid2' }, h('a', { class: 'btn', href: '#/kana' }, 'Kana trainer'), h('a', { class: 'btn', href: '#/library' }, 'Library'), h('a', { class: 'btn', href: '#/speak' }, 'Speaking practice'), h('a', { class: 'btn', href: '#/jlpt' }, 'JLPT area'))));
   host.append(h('p', { class: 'small muted' }, `Plan for ${dayToDate(p.day)}. The plan is computed on your device from your own progress; the same progress always gives the same plan.`));
   return host;
 }

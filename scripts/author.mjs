@@ -14,10 +14,12 @@ let drift = 0; let written = 0;
 const curPath = join(root, 'content/curriculum.json');
 const cur = JSON.parse(readFileSync(curPath, 'utf8'));
 const lessonMap = {};
+const allQuests = [];
 for (const f of readdirSync(dir).filter((x) => x.endsWith('.mjs')).sort()) {
   const mod = (await import(pathToFileURL(join(dir, f)).href)).default;
   const name = f.replace(/\.mjs$/, '');
   for (const l of mod.lessons || []) (lessonMap[l.unit_id] ||= []).push(l.id);
+  allQuests.push(...(mod.quests || []));
   for (const [coll, sub] of Object.entries(OUT)) {
     const arr = mod[coll];
     if (!arr || !arr.length) continue;
@@ -36,6 +38,8 @@ for (const u of cur.units) {
   if (lessonMap[u.id]) { u.lessons = lessonMap[u.id]; if (u.content_status === 'to_be_authored') u.content_status = 'draft'; }
   else { u.lessons = []; u.content_status = 'to_be_authored'; }
 }
+const questPath = join(root, 'content/quests.json'); const questText = fmt(allQuests);
+if (check) { if (!existsSync(questPath) || readFileSync(questPath, 'utf8') !== questText) { console.error('DRIFT: content/quests.json'); drift++; } } else writeFileSync(questPath, questText);
 const curText = `${JSON.stringify(cur, null, 1)}\n`;
 if (check) { if (readFileSync(curPath, 'utf8') !== curText) { console.error('DRIFT: content/curriculum.json (lessons)'); drift++; } } else writeFileSync(curPath, curText);
 if (check) { if (drift) { console.error(`${drift} file(s) differ from authoring sources. Run: node scripts/author.mjs`); process.exit(1); } console.log('authoring check: committed JSON equals authoring output'); }

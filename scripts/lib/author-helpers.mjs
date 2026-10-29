@@ -20,3 +20,22 @@ export function unit(unitId, level = 'N5') {
 /** Choice list from [id, text, isJapanese?] tuples. */
 export const choices = (list) => list.map(([id, text, ja]) => (ja ? { id, text, ja: true } : { id, text }));
 export const countChars = (paragraphs) => paragraphs.join('').replace(/\s/g, '').length;
+
+const words = (t) => new Set(t.toLowerCase().replace(/[()]/g, '').split(/[^a-z]+/).filter((w) => w.length > 2));
+/** One meaning question per word, built from the vocabulary table (tagged "templated" so coverage reports it separately). */
+export function meaningQuestions(Q, vocab, pool = vocab) {
+  const first = (v) => v.meanings_en[0];
+  return vocab.map((v, i) => {
+    const mine = words(first(v)); const cands = [];
+    for (let k = 1; cands.length < 3 && k < pool.length * 3; k++) {
+      const c = pool[(i * 5 + k * 7) % pool.length];
+      const theirs = words(first(c));
+      if (c.id === v.id || [...theirs].some((w) => mine.has(w)) || cands.some((x) => first(x) === first(c)) || first(c) === first(v)) continue;
+      cands.push(c);
+    }
+    const opts = [v, ...cands]; const ids = ['a', 'b', 'c', 'd'];
+    const ordered = [1, 2, 3, 0].map((o) => opts[(o + i) % 4]);
+    const ans = ids[ordered.indexOf(v)];
+    return Q(`q_${v.unit_id.replace(/_/g, '')}_vm_${v.id.slice(2)}`, 'mcq', { stem: { prompt: 'What does this word mean?', ja: v.surface }, choices: ordered.map((o, k) => ({ id: ids[k], text: first(o), concept: o.id })), answer: ans, explanation_correct: `${v.surface} (${v.romaji}) means "${first(v)}".`, explanation_per_distractor: Object.fromEntries(ordered.map((o, k) => [ids[k], `${o.surface} means "${first(o)}".`]).filter(([k]) => k !== ans)), facet: 'meaning', targets: [v.id], difficulty: 1, tags: ['templated'] });
+  });
+}

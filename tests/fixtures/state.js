@@ -3,6 +3,7 @@ import { defaultSnapshot } from '../../src/core/defaults.js';
 import { makeContent } from '../../src/content/runtime.js';
 import { newRecord, reviewRecord } from '../../src/engine/srs.js';
 import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 
 export const FIXTURE_MARK = 'FIXTURE — not shipped, not counted';
 export const DAY = 20000; // an arbitrary "today" (day number)
@@ -11,7 +12,7 @@ export const emptyState = () => defaultSnapshot(NOW);
 
 /** Real built content (public/content/*.json) as a runtime model. */
 export function realContent() {
-  const rd = (f) => JSON.parse(readFileSync(new URL(`../../public/content/${f}`, import.meta.url), 'utf8'));
+  const rd = (f) => JSON.parse(readFileSync(join(process.cwd(), 'public/content', f), 'utf8'));
   return makeContent({ core: rd('core.json'), bundles: { N5: rd('N5.json') } });
 }
 

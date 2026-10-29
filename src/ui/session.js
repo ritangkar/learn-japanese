@@ -43,6 +43,7 @@ export function runSession(ctx, env, opts) {
     setProgress();
     const item = queue[index];
     item.asks++;
+    ctx.audio.setListeningMode(!!item.q.stem.audio_text);
     let answeredNow = false;
     const view = renderQuestion(item.q, env, {
       onChecked: ({ response, result, latencyMs }) => {
@@ -74,6 +75,7 @@ export function runSession(ctx, env, opts) {
   }
   function finish() {
     clearInterval(timer);
+    ctx.audio.setListeningMode(false);
     const correct = answers.filter((a) => a.result.correct).length;
     const totalN = answers.length;
     const accuracy = totalN ? correct / totalN : 0;

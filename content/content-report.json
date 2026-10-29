@@ -200,17 +200,17 @@
  "coverage": {
   "N5": {
    "units_total": 12,
-   "units_released": 1,
-   "vocab": 48,
+   "units_released": 2,
+   "vocab": 121,
    "kanji": 0,
-   "grammar": 0,
-   "dialogues": 0,
-   "passages": 2,
-   "kana": 25,
-   "sentences": 32,
-   "listening": 2,
-   "questions_authored": 60,
-   "questions_templated": 48,
+   "grammar": 1,
+   "dialogues": 5,
+   "passages": 4,
+   "kana": 71,
+   "sentences": 99,
+   "listening": 4,
+   "questions_authored": 156,
+   "questions_templated": 153,
    "targets": {
     "vocab": 600,
     "kanji": 80,
@@ -222,8 +222,8 @@
    "mocks_released": 0,
    "mocks_target_long_term": 20,
    "status_distribution": {
-    "draft": 200,
-    "auto_checked": 224,
+    "draft": 154,
+    "auto_checked": 629,
     "human_reviewed": 0
    }
   },

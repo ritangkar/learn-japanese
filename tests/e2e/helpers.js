@@ -66,6 +66,8 @@ export async function solveCurrent(page, { correct = true } = {}) {
     const id = correct ? info.answer : info.choices.find((c) => c !== info.answer);
     await ex.locator(`[data-choice="${id}"]`).click();
     await ex.getByRole('button', { name: 'Check' }).click();
+  } else if (info.type === 'dictation' && (await ex.getByRole('button', { name: /Skip \(no penalty\)/ }).count())) {
+    await ex.getByRole('button', { name: /Skip \(no penalty\)/ }).click();
   } else {
     await ex.locator('input[type="text"]').fill(correct ? String(info.answer) : 'zzz');
     await ex.getByRole('button', { name: 'Check' }).click();

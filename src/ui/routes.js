@@ -1,11 +1,14 @@
 import { h } from './dom.js';
 import { storageScreen } from './screens/storage.js';
 import { statusScreen } from './screens/offline-status.js';
-import { homeScreen } from './screens/home.js';
+import { homeScreen, tokyoScreen, destinationScreen, journalScreen, achievementsScreen } from './screens/explore.js';
 import { meScreen } from './screens/me.js';
 import { learnScreen, summaryScreen } from './screens/learn.js';
 import { lessonScreen } from './screens/lesson.js';
 import { reviewScreen, activityScreen, questScreen, drillScreen } from './screens/practice.js';
+import { speakScreen } from './screens/speak.js';
+import { jlptHubScreen, jlptLevelScreen, mockStartScreen, readinessScreen, plannerScreen } from './screens/jlpt.js';
+import { examScreen } from './screens/exam.js';
 import { kanaScreen } from './screens/kana.js';
 import { libraryScreen, kanjiScreen } from './screens/library.js';
 import { settingsScreen, audioSettingsScreen } from './screens/settings.js';
@@ -14,6 +17,10 @@ import { tourScreen, contentStatusScreen, privacyScreen, aboutScreen, creditsScr
 
 export const routes = [
   { pattern: '/', title: 'Explore', render: homeScreen },
+  { pattern: '/tokyo', title: 'Tokyo area', render: tokyoScreen },
+  { pattern: '/dest/:id', title: 'Destination', render: destinationScreen },
+  { pattern: '/journal', title: 'Travel journal', render: journalScreen },
+  { pattern: '/achievements', title: 'Achievements', render: achievementsScreen },
   { pattern: '/me', title: 'Me', render: meScreen },
   { pattern: '/learn', title: 'Today', render: learnScreen },
   { pattern: '/summary', title: 'Today is done', render: summaryScreen },
@@ -22,6 +29,13 @@ export const routes = [
   { pattern: '/activity/:kind/:id', title: 'Practice', render: activityScreen, immersive: true },
   { pattern: '/quest/:id', title: 'Quest', render: questScreen, immersive: true },
   { pattern: '/drill/:type', title: 'Practice', render: drillScreen, immersive: true },
+  { pattern: '/speak', title: 'Speaking practice', render: speakScreen },
+  { pattern: '/jlpt', title: 'JLPT area', render: jlptHubScreen },
+  { pattern: '/jlpt/:level', title: 'JLPT level', render: jlptLevelScreen },
+  { pattern: '/mock/:id', title: 'Mock exam', render: mockStartScreen },
+  { pattern: '/exam', title: 'Exam', render: examScreen, immersive: true },
+  { pattern: '/readiness', title: 'Readiness', render: readinessScreen },
+  { pattern: '/planner', title: 'Exam-date planner', render: plannerScreen },
   { pattern: '/kana', title: 'Kana trainer', render: kanaScreen },
   { pattern: '/library', title: 'Library', render: libraryScreen },
   { pattern: '/kanji/:id', title: 'Kanji', render: kanjiScreen },

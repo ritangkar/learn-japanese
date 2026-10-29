@@ -33,8 +33,16 @@
    ],
    "kanji_introduced_target": 0,
    "scenario_theme": "arrival_greetings",
-   "content_status": "to_be_authored",
-   "lessons": []
+   "content_status": "auto_checked",
+   "lessons": [
+    "n5_u02_l1",
+    "n5_u02_l2",
+    "n5_u02_l3",
+    "n5_u02_l4",
+    "n5_u02_l5",
+    "n5_u02_l6",
+    "n5_u02_l7"
+   ]
   },
   {
    "id": "n5_u03",

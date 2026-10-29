@@ -1,0 +1,4 @@
+[
+{"id":"n5u02_ls1","audio_mode":"tts","synthetic_audio_flag":true,"speaker_voice_hint":[],"unit_id":"n5_u02","instructional_level":"N5","item_type":"Verbal expressions (lesson practice)","title":"Which greeting? Set 1","script_turns":[{"speaker":"A","text_ja":"おはようございます"},{"speaker":"A","text_ja":"ありがとうございます"},{"speaker":"A","text_ja":"さようなら"},{"speaker":"A","text_ja":"はじめまして"}],"question_ids":["q_n5u02_gl01","q_n5u02_gl02","q_n5u02_gl03","q_n5u02_gl04"],"provenance":"orig"},
+{"id":"n5u02_ls2","audio_mode":"tts","synthetic_audio_flag":true,"speaker_voice_hint":[],"unit_id":"n5_u02","instructional_level":"N5","item_type":"Verbal expressions (lesson practice)","title":"Which greeting? Set 2","script_turns":[{"speaker":"A","text_ja":"こんにちは"},{"speaker":"A","text_ja":"いただきます"},{"speaker":"A","text_ja":"ごめんなさい"},{"speaker":"A","text_ja":"おかえりなさい"}],"question_ids":["q_n5u02_gl05","q_n5u02_gl06","q_n5u02_gl07","q_n5u02_gl08"],"provenance":"orig"}
+]

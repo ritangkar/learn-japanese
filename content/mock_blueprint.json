@@ -1,0 +1,11 @@
+{
+  "label": "approximate planning blueprint, not official counts",
+  "note": "The real number of questions per section in official JLPT papers is not known to this project (open question U-002). These numbers are our own planning targets used only to scale section-practice timing and to plan content. They are not claimed to match any official paper.",
+  "levels": {
+    "N5": { "vocab": 25, "grammar_reading": 30, "listening": 24 },
+    "N4": { "vocab": 30, "grammar_reading": 40, "listening": 25 },
+    "N3": { "vocab": 35, "grammar_reading": 45, "listening": 28 },
+    "N2": { "lk_reading": 60, "listening": 32 },
+    "N1": { "lk_reading": 65, "listening": 35 }
+  }
+}

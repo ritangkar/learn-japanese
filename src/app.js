@@ -24,7 +24,12 @@ export function applyDisplaySettings(settings) {
 
 export function startApp({ store, root }) {
   const ctx = { store, ui: { notice: null }, sw: { reg: null, offline: { status: STATUS.NOT_READY } }, installPrompt: null };
-  ctx.audio = createAudio({ getSettings: () => store.state.settings });
+  ctx.audio = createAudio({ getSettings: () => store.state.settings, updateAudio: (patch) => store.update('settings', (x) => ({ ...x, audio: { ...x.audio, ...patch } })) });
+  store.subscribe(() => ctx.audio.applyGains());
+  const gesture = () => { ctx.audio.touch(); ctx.audio.unlock(); };
+  window.addEventListener('pointerdown', gesture, { passive: true }); window.addEventListener('keydown', gesture);
+  document.addEventListener('visibilitychange', () => ctx.audio.onVisibility(document.visibilityState === 'hidden'));
+  setInterval(() => { if (ctx.audio.tickInactivity()) renderBanners(); }, 60000);
   ctx.getContent = () => { ctx._content ||= loadContent().catch((e) => { ctx._content = null; throw e; }); return ctx._content; };
   window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); ctx.installPrompt = e; });
   const bannerHost = h('div', { id: 'banners', role: 'region', 'aria-label': 'Notices' });
@@ -37,6 +42,9 @@ export function startApp({ store, root }) {
   ctx.announce = (msg) => { live.textContent = ''; setTimeout(() => { live.textContent = msg; }, 20); };
   ctx.refreshBanners = () => renderBanners();
   ctx.headerTools = document.getElementById('header-tools');
+  const muteBtn = h('button', { class: 'btn small', type: 'button', id: 'master-mute', 'aria-pressed': String(!!store.state.settings.audio.masterMuted), 'aria-label': 'Mute all sound', onclick: () => { store.update('settings', (x) => ({ ...x, audio: { ...x.audio, masterMuted: !x.audio.masterMuted } })); } }, '🔊');
+  const syncMute = () => { const m = store.state.settings.audio.masterMuted; muteBtn.setAttribute('aria-pressed', String(m)); muteBtn.textContent = m ? '🔇' : '🔊'; muteBtn.setAttribute('aria-label', m ? 'Unmute all sound' : 'Mute all sound'); };
+  ctx.headerTools.append(muteBtn); syncMute(); store.subscribe(syncMute);
 
   function renderTabs(path) {
     clear(tabbar);
@@ -57,6 +65,7 @@ export function startApp({ store, root }) {
     if (health === 'urgent' || ctx.ui.storageFull) {
       bannerHost.append(h('div', { class: 'banner bad', role: 'alert' }, 'Storage is nearly full. ', h('a', { class: 'btn', href: '#/backup' }, 'Export a backup now')));
     } else if (health === 'warn') bannerHost.append(h('div', { class: 'banner warn' }, 'Storage is getting full. ', h('a', { href: '#/storage' }, 'Storage health')));
+    if (ctx.audio.needsResume()) bannerHost.append(h('div', { class: 'banner info', role: 'status', id: 'resume-sound' }, 'Ambience was on last time. ', h('button', { class: 'btn small', type: 'button', onclick: () => { ctx.audio.ambience.start(null, true); renderBanners(); } }, 'Tap to resume sound')));
     if (ctx.sw.reg && ctx.sw.reg.waiting) {
       bannerHost.append(h('div', { class: 'banner info', role: 'status' }, 'An app update is ready. ', h('button', { class: 'btn small', onclick: () => applyUpdate(ctx.sw.reg) }, 'Update now'), h('span', { class: 'small' }, 'Finish what you are doing first; your progress is kept.')));
     }
@@ -68,6 +77,7 @@ export function startApp({ store, root }) {
   let current = null;
   const router = new Router(routes, (loc) => {
     current = loc;
+    ctx.audio.setListeningMode(false);
     if (typeof ctx.cleanup === 'function') { try { ctx.cleanup(); } catch { /* ignore */ } ctx.cleanup = null; }
     renderTabs(loc.path);
     renderBanners();

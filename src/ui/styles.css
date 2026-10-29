@@ -172,3 +172,53 @@ th, td { border-bottom: 1px solid var(--hairline); padding: 6px 4px; text-align:
 .menu-item { display: grid; gap: 2px; padding: 12px 14px; background: var(--surface); border: 1px solid var(--hairline); border-radius: 12px; text-decoration: none; color: var(--ink); min-height: 56px; }
 .wordlist { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
 .wordlist li { padding: 6px 0; border-bottom: 1px solid var(--hairline); }
+
+/* ---------- map ---------- */
+.map-wrap { overflow: auto; border: 1px solid var(--hairline); border-radius: var(--radius); background: var(--map-sea); max-height: 70vh; touch-action: pan-x pan-y pinch-zoom; }
+.map-svg { display: block; width: 100%; height: auto; min-width: 320px; }
+.map-sea { fill: var(--map-sea); }
+.map-land { fill: var(--map-land); stroke: var(--map-land-line); stroke-width: 2; stroke-linejoin: round; }
+.map-river { stroke: var(--map-sea); stroke-width: 18; stroke-linecap: round; }
+.inset-frame { fill: none; stroke: var(--map-land-line); stroke-width: 2; stroke-dasharray: 8 6; }
+.map-label, .map-credit { fill: var(--ink-2); font-size: 18px; }
+.route { stroke: var(--ink-2); stroke-width: 3; stroke-dasharray: 8 8; opacity: .6; }
+.route.done { stroke-dasharray: none; stroke: var(--matcha); opacity: 1; stroke-width: 4; }
+.pin { cursor: pointer; }
+.pin:focus-visible .pin-base, .pin.sel .pin-base { stroke: var(--focus); stroke-width: 5; }
+.pin:focus { outline: none; }
+.pin-base { fill: var(--surface); stroke: var(--ink); stroke-width: 3; }
+.pin-base.dashed { stroke-dasharray: 5 4; }
+.visible_locked .pin-base { fill: var(--mist); stroke: var(--ink-2); }
+.available .pin-base { fill: var(--indigo); stroke: var(--ink); }
+.in_progress .pin-base { fill: var(--surface); }
+.completed .pin-base, .revisit_available .pin-base { fill: var(--matcha); }
+.pin-ink { fill: var(--on-indigo); }
+.visible_locked .pin-ink, .in_progress .pin-ink { fill: var(--ink); }
+.completed .pin-ink-stroke, .revisit_available .pin-ink-stroke { stroke: var(--paper); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+.visible_locked .pin-ink-stroke { stroke: var(--ink); stroke-width: 2.4; }
+.pin-q { fill: var(--ink); font-size: 20px; font-weight: 700; }
+.pin-ring-bg { stroke: var(--hairline); stroke-width: 5; }
+.pin-ring { stroke: var(--vermilion); stroke-width: 5; }
+.pin-badge { fill: var(--gold); stroke: var(--ink); stroke-width: 1.5; }
+.pin-pulse { fill: none; stroke: var(--indigo); stroke-width: 3; opacity: .5; animation: pulse 2s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes pulse { 0%, 100% { transform: scale(1); opacity: .6; } 50% { transform: scale(1.18); opacity: .15; } }
+.pin-name { fill: var(--ink); font-size: 20px; font-weight: 600; paint-order: stroke; stroke: var(--map-land); stroke-width: 5px; stroke-linejoin: round; }
+.pin-count { fill: var(--ink); font-size: 18px; font-weight: 700; paint-order: stroke; stroke: var(--map-land); stroke-width: 5px; }
+.legend { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+.legend li { display: flex; gap: 10px; align-items: center; }
+.legend svg { flex: none; width: 36px; height: 36px; }
+.scene { width: 100%; height: auto; border-radius: 12px; display: block; }
+.stamp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; }
+.stamp { text-align: center; }
+.stamp svg { width: 100%; max-width: 120px; height: auto; }
+.sheet { position: sticky; bottom: 70px; z-index: 5; box-shadow: 0 -2px 10px rgba(0,0,0,.15); }
+.zoom-row { display: flex; gap: 8px; margin: 6px 0; }
+
+/* ---------- exam ---------- */
+.exam-top { position: sticky; top: 52px; z-index: 10; }
+.timer.low { background: var(--bad-bg); color: var(--bad-ink); border-color: var(--bad-ink); }
+.qgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(56px, 1fr)); gap: 6px; }
+.qg.answered { background: var(--ok-bg); color: var(--ok-ink); }
+.qg.flagged { background: var(--warn-bg); color: var(--warn-ink); border-style: dashed; }
+.qg.cur { outline: 3px solid var(--focus); outline-offset: 1px; }
+.review-q { margin: 6px 0; }
