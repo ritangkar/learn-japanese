@@ -1,0 +1,35 @@
+{
+  "name": "tabi-nihongo",
+  "version": "0.1.0",
+  "description": "Tabi Nihongo (working title): zero-cost, offline-first Japanese-learning PWA. Static GitHub Pages site.",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "validate:spec": "node scripts/validate-spec.mjs",
+    "validate:content": "node scripts/validate-content.mjs",
+    "validate:fixtures": "node scripts/check-fixtures-not-shipped.mjs",
+    "license:audit": "node scripts/license-audit.mjs",
+    "coverage": "node scripts/coverage-report.mjs",
+    "icons": "node scripts/generate-icons.mjs",
+    "lint": "eslint src scripts tests",
+    "test": "vitest run",
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/serve-subpath.mjs",
+    "e2e": "playwright test",
+    "check": "npm run validate:spec && npm run validate:content && npm run license:audit && npm run lint && npm test"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@eslint/js": "^9.39.5",
+    "@playwright/test": "^1.63.0",
+    "ajv": "^8.20.0",
+    "eslint": "^9.39.5",
+    "globals": "^17.13.0",
+    "jsdom": "^29.1.1",
+    "ts-fsrs": "^3.5.7",
+    "vite": "^8.3.5",
+    "vitest": "^5.0.5"
+  }
+}
