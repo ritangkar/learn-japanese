@@ -19,7 +19,7 @@ export const ISLANDS = {
 export const OKINAWA_INSET = { x: 30, y: 880, w: 310, h: 190, island: [[40, 40], [90, 30], [130, 60], [170, 70], [215, 105], [190, 120], [150, 100], [110, 120], [70, 95], [45, 70]], naha: [190, 112] };
 
 /** Manual pin offsets (px) so crowded destinations (Kansai, Hiroshima/Miyajima, Tokyo area) do not overlap. */
-export const PIN_OFFSETS = { kyoto: [14, -16], osaka: [-6, 16], nara: [22, 14], himeji: [-26, -4], nagoya: [-8, 6], miyajima: [-18, 18], hiroshima: [8, -8], kamakura: [14, 14], hakone: [-10, 22], mount_fuji: [-20, -10] };
+export const PIN_OFFSETS = { kyoto: [-13, -27], osaka: [-11, 11], nara: [12, 4], nagoya: [13, -13], himeji: [0, -6], mount_fuji: [11, 30], hakone: [-32, -14], kamakura: [8, 17], miyajima: [-7, 4], hiroshima: [23, -2] };
 
 export function pinXY(dest) {
   if (dest.id === 'naha') return [OKINAWA_INSET.x + OKINAWA_INSET.naha[0], OKINAWA_INSET.y + OKINAWA_INSET.naha[1]];

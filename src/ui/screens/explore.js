@@ -45,9 +45,9 @@ export async function homeScreen({ ctx, query }) {
   const mapHost = h('div', { class: 'map-wrap', id: 'map-wrap', tabindex: 0, 'aria-label': 'Map of Japan, scrollable' });
   const draw = () => {
     mapHost.replaceChildren(renderMap({ destinations: content.destinations, states, route: content.route, selected, onSelect: (id) => { selected = id; const d = content.destById.get(id); sheet.replaceChildren(destCard(d, states[id], content, ctx, { compact: true })); draw(); } }));
-    mapHost.firstChild.style.width = `${zoom * 100}%`;
+    mapHost.firstChild.style.width = `${zoom * 100}%`; mapHost.firstChild.classList.toggle('labels-all', zoom >= 2);
   };
-  const zoomBy = (f) => { zoom = Math.min(4, Math.max(1, zoom * f)); mapHost.firstChild.style.width = `${zoom * 100}%`; };
+  const zoomBy = (f) => { zoom = Math.min(4, Math.max(1, zoom * f)); mapHost.firstChild.style.width = `${zoom * 100}%`; mapHost.firstChild.classList.toggle('labels-all', zoom >= 2); };
   const legend = h('details', { class: 'card' }, h('summary', null, 'Map legend'), h('ul', { class: 'legend' }, LEGEND.map(([k, text]) => { const svg = s('svg', { viewBox: '-26 -26 52 52', 'aria-hidden': 'true' }); svg.append(pinGlyph(k, 0.5, 14)); return h('li', null, svg, h('span', null, text)); }), h('li', null, h('span', { class: 'small muted' }, 'Dashed route lines are upcoming; solid lines connect completed stops. Stylised map, not for navigation.'))));
   const host = h('div', { class: 'stack' },
     h('div', { class: 'card tint' }, h('div', { class: 'small muted' }, 'You are in'), h('h2', { id: 'current-stop' }, `${cur.name_en} `, h('span', { class: 'ja', lang: 'ja' }, cur.name_ja)),

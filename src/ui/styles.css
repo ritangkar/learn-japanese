@@ -222,3 +222,6 @@ th, td { border-bottom: 1px solid var(--hairline); padding: 6px 4px; text-align:
 .qg.flagged { background: var(--warn-bg); color: var(--warn-ink); border-style: dashed; }
 .qg.cur { outline: 3px solid var(--focus); outline-offset: 1px; }
 .review-q { margin: 6px 0; }
+.map-svg:not(.labels-all) .pin:not(.sel):not([data-state="available"]):not([data-state="in_progress"]) .pin-name { display: none; }
+.criteria { padding-left: 1.1rem; }
+.criteria li { margin: 6px 0; }

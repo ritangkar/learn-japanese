@@ -88,3 +88,20 @@ export async function solveSession(page, { correct = () => true, max = 60 } = {}
   }
   return results;
 }
+
+/** In exam mode: answer the currently shown question (correct or wrong) by clicking a choice. */
+export async function examAnswer(page, correct = true) {
+  const info = await page.evaluate(() => { const q = document.querySelector('.exercise')?.q; return q ? { answer: q.answer, choices: (q.choices || []).map((c) => c.id) } : null; });
+  const id = correct ? info.answer : info.choices.find((c) => c !== info.answer);
+  await page.locator(`.exercise [data-choice="${id}"]`).click();
+}
+/** Answer every question of the active exam section in order, then submit it. `skip` = indexes to leave unanswered. */
+export async function examRunSection(page, { correct = () => true, skip = [] } = {}) {
+  const n = await page.locator('.qgrid .qg').count();
+  for (let i = 0; i < n; i++) {
+    if (!skip.includes(i)) await examAnswer(page, correct(i));
+    if (i < n - 1) await page.locator('#q-next').click();
+  }
+  await page.locator('#q-submit').click();
+  await page.locator('#confirm-submit').click();
+}

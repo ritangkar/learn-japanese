@@ -56,7 +56,7 @@ export function renderMap({ destinations, states, route, onSelect, selected = nu
     const sub = id === 'tokyo' ? kids('tokyo') : [];
     const label = `${d.name_en}${sub.length ? `, area with ${sub.length} more stops` : ''}, ${STATE_LABEL[st.state]}`;
     const g = s('g', { class: `pin ${selected === id ? 'sel' : ''}`, transform: `translate(${x} ${y})`, role: 'button', tabindex: 0, 'aria-label': label, 'data-dest': id, 'data-state': st.state });
-    g.append(s('circle', { r: 30, class: 'pin-hit', fill: 'transparent' }), pinGlyph(st.state, st.pct), s('text', { class: 'pin-name', y: 38, 'text-anchor': 'middle' }, d.name_en));
+    g.append(s('circle', { r: 16, class: 'pin-hit', fill: 'transparent' }), pinGlyph(st.state, st.pct), s('text', { class: 'pin-name', y: 38, 'text-anchor': 'middle' }, d.name_en));
     if (sub.length) g.append(s('text', { class: 'pin-count', x: 20, y: -18, 'text-anchor': 'middle' }, `+${sub.length}`));
     const act = () => onSelect(id);
     g.addEventListener('click', act);

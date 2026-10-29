@@ -23,9 +23,9 @@ describe('map geometry follows the spec (D-011)', () => {
     const [nx, ny] = pinXY(spec.destinations.find((d) => d.id === 'naha'));
     expect(nx).toBeGreaterThan(OKINAWA_INSET.x); expect(nx).toBeLessThan(OKINAWA_INSET.x + OKINAWA_INSET.w); expect(ny).toBeGreaterThan(OKINAWA_INSET.y); expect(ny).toBeLessThan(OKINAWA_INSET.y + OKINAWA_INSET.h);
   });
-  it('no two national pins overlap within 14 units after manual offsets', () => {
+  it('no two national pins are closer than 30 units after manual offsets (hit areas do not overlap)', () => {
     const pts = spec.destinations.filter((d) => d.is_geographic && d.parent_id !== 'tokyo').map((d) => [d.id, ...pinXY(d)]);
-    for (let i = 0; i < pts.length; i++) for (let j = i + 1; j < pts.length; j++) expect(Math.hypot(pts[i][1] - pts[j][1], pts[i][2] - pts[j][2]), `${pts[i][0]} vs ${pts[j][0]}`).toBeGreaterThan(14);
+    for (let i = 0; i < pts.length; i++) for (let j = i + 1; j < pts.length; j++) expect(Math.hypot(pts[i][1] - pts[j][1], pts[i][2] - pts[j][2]), `${pts[i][0]} vs ${pts[j][0]}`).toBeGreaterThan(30);
   });
   it('Tokyo sub-map places the central stops inside its frame', () => {
     for (const id of ['tokyo_tower', 'asakusa', 'shibuya', 'shinjuku', 'tokyo_station']) { const [x, y] = tokyoXY(spec.destinations.find((d) => d.id === id)); expect(x, id).toBeGreaterThan(0); expect(x, id).toBeLessThan(TOKYO_BOUNDS.w); expect(y, id).toBeGreaterThan(0); expect(y, id).toBeLessThan(TOKYO_BOUNDS.h); }

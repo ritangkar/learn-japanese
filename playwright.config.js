@@ -22,7 +22,7 @@ export default defineConfig({
   workers: 1,
   retries: 0,
   reporter: [['list'], ['json', { outputFile: 'test-results/e2e.json' }]],
-  use: { baseURL: `http://localhost:${PORT}/${REPO}/`, serviceWorkers: 'allow', trace: 'off' },
+  use: { baseURL: `http://localhost:${PORT}/${REPO}/`, serviceWorkers: 'allow', trace: 'off', reducedMotion: 'reduce' },
   projects,
   webServer: { command: `node scripts/serve-subpath.mjs`, url: `http://localhost:${PORT}/${REPO}/`, reuseExistingServer: true, env: { REPO_NAME: REPO, PORT: String(PORT) } },
 });
