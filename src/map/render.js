@@ -57,7 +57,7 @@ export function renderMap({ destinations, states, route, onSelect, selected = nu
     const label = `${d.name_en}${sub.length ? `, area with ${sub.length} more stops` : ''}, ${STATE_LABEL[st.state]}`;
     const g = s('g', { class: `pin ${selected === id ? 'sel' : ''}`, transform: `translate(${x} ${y})`, role: 'button', tabindex: 0, 'aria-label': label, 'data-dest': id, 'data-state': st.state });
     g.append(s('circle', { r: 16, class: 'pin-hit', fill: 'transparent' }), pinGlyph(st.state, st.pct), s('text', { class: 'pin-name', y: 38, 'text-anchor': 'middle' }, d.name_en));
-    if (sub.length) g.append(s('text', { class: 'pin-count', x: 20, y: -18, 'text-anchor': 'middle' }, `+${sub.length}`));
+    if (sub.length) g.append(s('g', { class: 'pin-more', 'aria-hidden': 'true' }, s('circle', { cx: 22, cy: -16, r: 4 }), s('circle', { cx: 32, cy: -16, r: 4 }), s('circle', { cx: 42, cy: -16, r: 4 })));
     const act = () => onSelect(id);
     g.addEventListener('click', act);
     g.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); act(); } });

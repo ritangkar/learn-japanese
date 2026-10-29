@@ -134,7 +134,14 @@ function renderChoices(q, env, body, setResponse, check, initial) {
     setResponse(id, true);
   }
   body.append(group);
-  body.addEventListener('keydown', (e) => { const n = Number(e.key); if (n >= 1 && n <= buttons.length && e.target.tagName !== 'INPUT') { select(order[n - 1].id); } else if (e.key === 'Enter' && !check.disabled && document.activeElement?.getAttribute('role') !== 'radio') check.click(); });
+  body.addEventListener('keydown', (e) => {
+    const n = Number(e.key);
+    if (n >= 1 && n <= buttons.length && e.target.tagName !== 'INPUT') { select(order[n - 1].id); buttons[n - 1].focus(); return; }
+    if (e.key !== 'Enter' || check.disabled) return;
+    // Enter on a different, unselected choice selects it (default click); otherwise it checks the selected answer.
+    const onOther = e.target.getAttribute && e.target.getAttribute('role') === 'radio' && e.target.getAttribute('aria-checked') !== 'true';
+    if (!onOther) { e.preventDefault(); check.click(); }
+  });
   if (initial) select(initial);
 }
 

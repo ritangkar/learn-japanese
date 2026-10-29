@@ -28,8 +28,8 @@ export async function waitSwReady(page) {
   await page.evaluate(async () => { await navigator.serviceWorker.ready; });
   await expect.poll(async () => page.evaluate(async () => {
     const reg = await navigator.serviceWorker.getRegistration();
-    return !!(reg && reg.active);
-  })).toBe(true);
+    return !!(reg && reg.active && navigator.serviceWorker.controller);
+  }), { timeout: 15000 }).toBe(true).catch(async () => { await page.reload(); await page.waitForFunction(() => !!navigator.serviceWorker.controller); });
 }
 
 /** Mark the first-run tour as done in storage, reload, and land on the home screen. */

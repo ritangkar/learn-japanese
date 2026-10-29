@@ -59,7 +59,7 @@ export function runSession(ctx, env, opts) {
     mount(stage, view);
     if (opts.timedSeconds) startTimer(view, () => answeredNow);
     const first = view.querySelector('input, .choice, button');
-    if (first) first.focus({ preventScroll: true });
+    if (first) { if (first.isConnected) first.focus({ preventScroll: true }); else setTimeout(() => { if (first.isConnected) first.focus({ preventScroll: true }); }, 0); } // focus now, or right after the first question is attached
     window.scrollTo(0, 0);
   }
   function startTimer(view, isAnswered) {
