@@ -191,7 +191,7 @@ test.describe('Journey 4 and 5: stamp awarding and gamification (earned once, pe
     const xp = () => page.evaluate(() => window.__tabi.store.state.journal.xp.total);
     expect(await xp()).toBe(0);
     for (let i = 0; i < 3; i++) {
-      await page.goto('./#/lesson/n5_u01_l1');
+      await page.goto('./#/learn'); await page.goto('./#/lesson/n5_u01_l1'); // leave the previous completion screen first: same-hash navigation would not re-render
       await page.getByRole('button', { name: 'Next', exact: true }).click(); await page.getByRole('button', { name: 'Next', exact: true }).click(); await page.getByRole('button', { name: 'Start practice' }).click();
       await solveSession(page); // practice
       for (let k = 0; k < 3 && !(await page.getByRole('heading', { name: /Lesson complete/ }).count()); k++) { const cont = page.locator('.summary').getByRole('button', { name: /Continue|Finish/ }); if (await cont.count()) await cont.click(); await solveSession(page); }

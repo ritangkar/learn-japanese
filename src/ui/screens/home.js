@@ -65,9 +65,12 @@ export async function homeScreen({ ctx }) {
   }
 
   // install suggestion (never when installed or snoozed)
-  const rerender = () => ctx.rerender();
-  const inst = installCard(ctx, { onChange: rerender });
-  if (inst) host.append(inst);
+  // The browser may offer installation after the page has rendered, so the slot refreshes itself when availability changes.
+  const slot = h('div', { id: 'install-slot' });
+  const fill = () => { const c = installCard(ctx, { onChange: fill }); slot.replaceChildren(...(c ? [c] : [])); };
+  fill();
+  const unsub = ctx.install.subscribe(fill); ctx.cleanup = unsub;
+  host.append(slot);
 
   // daily rhythm
   if (gam !== 'off' && !fresh) {
