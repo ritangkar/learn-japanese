@@ -28,6 +28,7 @@ Every defect found while building and testing, with how it was found, how it was
 | D-022 | Explore | N4 destinations (Kamakura, Nikko) showed "The quest for this stop has not been written yet" because quests live in the N4 level bundle, which the map and stop screens never loaded. | New journey C3 for Kamakura and Nikko | Home, Tokyo and stop screens load the bundle of every level the learner has opened (`loadUnlockedLevels`). | `tests/e2e/explore.spec.js` journey C3 (kamakura, nikko) |
 | D-023 | Test | The full-mock e2e test raced the "Unfinished attempt" screen (conditional click on `#exam-resume`). | New full-mock test | Unconditional wait and click, as the other exam tests do. | `tests/e2e/jlpt.spec.js` full mock |
 | D-024 | Test | AC28 content-status test hard-coded "0 of 20" N5 mocks; failed on all three viewports once mock 1 shipped. | Full e2e run (189 passed, 3 failed) | The count is read from `content/index.json`. | `tests/e2e/misc.spec.js` AC28 |
+| D-025 | Test | AC29 keyboard-only lesson test failed intermittently (390x844, slower CI runner): after Continue the answered exercise was briefly still in the DOM, so the test read its stale answer/order and pressed the wrong key. | CI run on PR 2 (and an earlier CI run) | The test waits for a new question id before answering. | `tests/e2e/a11y.spec.js` AC29 (9/9 passes across 3 viewports locally) |
 
 ## Known open issues (not fixed in this release)
 

@@ -2,7 +2,7 @@ name: Build, test and deploy to GitHub Pages
 
 on:
   push:
-    branches: [claude/tabi-nihongo-pwa-q9l93j]
+    branches: [main, claude/tabi-nihongo-pwa-q9l93j]
   pull_request:
   workflow_dispatch:
 
@@ -36,7 +36,7 @@ jobs:
 
   deploy:
     needs: build
-    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/claude/tabi-nihongo-pwa-q9l93j'
+    if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/claude/tabi-nihongo-pwa-q9l93j')
     runs-on: ubuntu-latest
     permissions:
       pages: write
