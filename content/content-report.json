@@ -1,0 +1,347 @@
+{
+ "results": [
+  {
+   "id": "A01",
+   "name": "JSON Schema conformance",
+   "status": "pass",
+   "errors": 0,
+   "note": null
+  },
+  {
+   "id": "A02",
+   "name": "Unique IDs and no dangling references",
+   "status": "pass",
+   "errors": 0,
+   "note": null
+  },
+  {
+   "id": "A03",
+   "name": "Prerequisite DAG is acyclic and unit order respected",
+   "status": "pass",
+   "errors": 0,
+   "note": null
+  },
+  {
+   "id": "A04",
+   "name": "Kana reading is kana-only and non-empty; romaji matches via converter round-trip",
+   "status": "pass",
+   "errors": 0,
+   "note": null
+  },
+  {
+   "id": "A05",
+   "name": "Kanji gating (introduced earlier-or-equal, or furigana present)",
+   "status": "pass",
+   "errors": 0,
+   "note": null
+  },
+  {
+   "id": "A06",
+   "name": "Vocabulary gating: referenced vocab introduced earlier-or-equal",
+   "status": "pass",
+   "errors": 0,
+   "note": null
+  },
+  {
+   "id": "A07",
+   "name": "Reading plausibility (dictionary cross-check)",
+   "status": "not_run",
+   "errors": 0,
+   "note": "NOT RUN: no build-time dictionary present (third-party dictionary data is not used by default). Readings are NOT dictionary-verified."
+  },
+  {
+   "id": "A08",
+   "name": "MCQ integrity",
+   "status": "pass",
+   "errors": 0,
+   "note": null
+  },
+  {
+   "id": "A09",
+   "name": "Answer accept-list normalised (NFKC, kana variants) and non-empty",
+   "status": "pass",
+   "errors": 0,
+   "note": null
+  },
+  {
+   "id": "A10",
+   "name": "Question uniqueness across mocks (id, stem hash, 5-gram Jaccard < 0.8)",
+   "status": "pass",
+   "errors": 0,
+   "note": null
+  },
+  {
+   "id": "A11",
+   "name": "Passage and listening-script uniqueness across mocks",
+   "status": "pass",
+   "errors": 0,
+   "note": null
+  },
+  {
+   "id": "A12",
+   "name": "Mock timing equals jlpt official section minutes",
+   "status": "pass",
+   "errors": 0,
+   "note": null
+  },
+  {
+   "id": "A13",
+   "name": "TTS alignment: spoken text equals displayed text; chunk <= 12 s estimate",
+   "status": "pass",
+   "errors": 0,
+   "note": null
+  },
+  {
+   "id": "A14",
+   "name": "Asset references exist; third-party assets have manifest entries with allowed licence",
+   "status": "pass",
+   "errors": 0,
+   "note": null
+  },
+  {
+   "id": "A15",
+   "name": "Provenance fields present; no official question text",
+   "status": "pass",
+   "errors": 0,
+   "note": null
+  },
+  {
+   "id": "A16",
+   "name": "Coverage computation vs targets and status distribution",
+   "status": "pass",
+   "errors": 0,
+   "note": null
+  },
+  {
+   "id": "X01",
+   "name": "human_reviewed requires a named reviewer and date",
+   "status": "pass",
+   "errors": 0,
+   "note": null
+  },
+  {
+   "id": "X02",
+   "name": "No placeholder text in shipped content (AC26)",
+   "status": "pass",
+   "errors": 0,
+   "note": null
+  },
+  {
+   "id": "X03",
+   "name": "Spiral rule: >= 20% of a unit's exercise items come from earlier units",
+   "status": "pass",
+   "errors": 0,
+   "note": null
+  },
+  {
+   "id": "X04",
+   "name": "Each grammar point has >= 6 authored questions across >= 3 types",
+   "status": "pass",
+   "errors": 0,
+   "note": null
+  },
+  {
+   "id": "X05",
+   "name": "Authored units are complete (lessons, listening, reading, introductions)",
+   "status": "pass",
+   "errors": 0,
+   "note": null
+  },
+  {
+   "id": "X06",
+   "name": "Kana-scope gating: kana used only after introduction",
+   "status": "pass",
+   "errors": 0,
+   "note": null
+  },
+  {
+   "id": "X07",
+   "name": "No fixture data in content/",
+   "status": "pass",
+   "errors": 0,
+   "note": null
+  },
+  {
+   "id": "X08",
+   "name": "No fabricated JLPT claims (/180, official lists, pass predictions, CEFR)",
+   "status": "pass",
+   "errors": 0,
+   "note": null
+  },
+  {
+   "id": "X09",
+   "name": "Status consistency: released units/mocks contain only auto_checked or higher items",
+   "status": "pass",
+   "errors": 0,
+   "note": null
+  },
+  {
+   "id": "X10",
+   "name": "Mock questions carry section and an official item type valid for the level",
+   "status": "pass",
+   "errors": 0,
+   "note": null
+  },
+  {
+   "id": "X11",
+   "name": "Lessons have practice and an exit check >= 70%",
+   "status": "pass",
+   "errors": 0,
+   "note": null
+  },
+  {
+   "id": "X12",
+   "name": "Lesson-level gating: kana, vocabulary and questions appear only after the lesson that introduces them",
+   "status": "pass",
+   "errors": 0,
+   "note": null
+  }
+ ],
+ "coverage": {
+  "N5": {
+   "units_total": 12,
+   "units_released": 1,
+   "vocab": 48,
+   "kanji": 0,
+   "grammar": 0,
+   "dialogues": 0,
+   "passages": 2,
+   "kana": 25,
+   "sentences": 32,
+   "listening": 2,
+   "questions_authored": 60,
+   "questions_templated": 48,
+   "targets": {
+    "vocab": 600,
+    "kanji": 80,
+    "grammar_points": 45,
+    "dialogues": 30,
+    "reading_passages": 25,
+    "intended_coverage_of_reference": "high (core quality level)"
+   },
+   "mocks_released": 0,
+   "mocks_target_long_term": 20,
+   "status_distribution": {
+    "draft": 200,
+    "auto_checked": 224,
+    "human_reviewed": 0
+   }
+  },
+  "N4": {
+   "units_total": 8,
+   "units_released": 0,
+   "vocab": 0,
+   "kanji": 0,
+   "grammar": 0,
+   "dialogues": 0,
+   "passages": 0,
+   "kana": 0,
+   "sentences": 0,
+   "listening": 0,
+   "questions_authored": 0,
+   "questions_templated": 0,
+   "targets": {
+    "vocab": 350,
+    "kanji": 60,
+    "grammar_points": 40,
+    "dialogues": 15,
+    "reading_passages": 12,
+    "intended_coverage_of_reference": "partial"
+   },
+   "mocks_released": 0,
+   "mocks_target_long_term": 20,
+   "status_distribution": {
+    "draft": 0,
+    "auto_checked": 0,
+    "human_reviewed": 0
+   }
+  },
+  "N3": {
+   "units_total": 8,
+   "units_released": 0,
+   "vocab": 0,
+   "kanji": 0,
+   "grammar": 0,
+   "dialogues": 0,
+   "passages": 0,
+   "kana": 0,
+   "sentences": 0,
+   "listening": 0,
+   "questions_authored": 0,
+   "questions_templated": 0,
+   "targets": {
+    "vocab": 150,
+    "kanji": 40,
+    "grammar_points": 25,
+    "dialogues": 8,
+    "reading_passages": 8,
+    "intended_coverage_of_reference": "foundation slice"
+   },
+   "mocks_released": 0,
+   "mocks_target_long_term": 20,
+   "status_distribution": {
+    "draft": 0,
+    "auto_checked": 0,
+    "human_reviewed": 0
+   }
+  },
+  "N2": {
+   "units_total": 8,
+   "units_released": 0,
+   "vocab": 0,
+   "kanji": 0,
+   "grammar": 0,
+   "dialogues": 0,
+   "passages": 0,
+   "kana": 0,
+   "sentences": 0,
+   "listening": 0,
+   "questions_authored": 0,
+   "questions_templated": 0,
+   "targets": {
+    "vocab": 80,
+    "kanji": 30,
+    "grammar_points": 20,
+    "dialogues": 4,
+    "reading_passages": 6,
+    "intended_coverage_of_reference": "foundation slice"
+   },
+   "mocks_released": 0,
+   "mocks_target_long_term": 20,
+   "status_distribution": {
+    "draft": 0,
+    "auto_checked": 0,
+    "human_reviewed": 0
+   }
+  },
+  "N1": {
+   "units_total": 7,
+   "units_released": 0,
+   "vocab": 0,
+   "kanji": 0,
+   "grammar": 0,
+   "dialogues": 0,
+   "passages": 0,
+   "kana": 0,
+   "sentences": 0,
+   "listening": 0,
+   "questions_authored": 0,
+   "questions_templated": 0,
+   "targets": {
+    "vocab": 60,
+    "kanji": 25,
+    "grammar_points": 15,
+    "dialogues": 3,
+    "reading_passages": 5,
+    "intended_coverage_of_reference": "foundation slice"
+   },
+   "mocks_released": 0,
+   "mocks_target_long_term": 20,
+   "status_distribution": {
+    "draft": 0,
+    "auto_checked": 0,
+    "human_reviewed": 0
+   }
+  }
+ }
+}

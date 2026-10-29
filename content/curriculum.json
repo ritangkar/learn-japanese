@@ -1,0 +1,716 @@
+{
+ "units": [
+  {
+   "id": "n5_u01",
+   "level": "N5",
+   "order": 0,
+   "title": "Sounds and the first hiragana",
+   "focus": "Mora rhythm, vowels, k/s/t/n/h rows",
+   "kana_scope": "hiragana rows a-ka-sa-ta-na",
+   "grammar_themes": [],
+   "kanji_introduced_target": 0,
+   "scenario_theme": "arrival_greetings",
+   "content_status": "auto_checked",
+   "lessons": [
+    "n5_u01_l1",
+    "n5_u01_l2",
+    "n5_u01_l3",
+    "n5_u01_l4",
+    "n5_u01_l5",
+    "n5_u01_l6",
+    "n5_u01_l7"
+   ]
+  },
+  {
+   "id": "n5_u02",
+   "level": "N5",
+   "order": 1,
+   "title": "Finish hiragana; first greetings",
+   "focus": "m/y/r/w rows, n, voiced marks, polite greetings",
+   "kana_scope": "hiragana complete (basic + dakuten)",
+   "grammar_themes": [
+    "greeting set expressions"
+   ],
+   "kanji_introduced_target": 0,
+   "scenario_theme": "arrival_greetings",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n5_u03",
+   "level": "N5",
+   "order": 2,
+   "title": "Combined sounds and self-introduction",
+   "focus": "Small ya/yu/yo, small tsu, long vowels",
+   "kana_scope": "hiragana youon, sokuon, long vowels",
+   "grammar_themes": [
+    "X wa Y desu",
+    "question particle ka"
+   ],
+   "kanji_introduced_target": 0,
+   "scenario_theme": "introductions",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n5_u04",
+   "level": "N5",
+   "order": 3,
+   "title": "Katakana I, numbers and time",
+   "focus": "Katakana core, numbers to 10000, clock times",
+   "kana_scope": "katakana basic rows",
+   "grammar_themes": [
+    "counters introduction"
+   ],
+   "kanji_introduced_target": 6,
+   "scenario_theme": "station_tickets",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n5_u05",
+   "level": "N5",
+   "order": 4,
+   "title": "Katakana II and food words",
+   "focus": "Katakana full set including dakuten/combos, loanwords",
+   "kana_scope": "katakana complete",
+   "grammar_themes": [
+    "kore/sore/are",
+    "kono/sono/ano"
+   ],
+   "kanji_introduced_target": 6,
+   "scenario_theme": "konbini_shopping",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n5_u06",
+   "level": "N5",
+   "order": 5,
+   "title": "People, things and ownership",
+   "focus": "Family and people words, no for possession",
+   "kana_scope": "",
+   "grammar_themes": [
+    "no possessive",
+    "mo",
+    "ja arimasen"
+   ],
+   "kanji_introduced_target": 8,
+   "scenario_theme": "tokyo_tower_visit",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n5_u07",
+   "level": "N5",
+   "order": 6,
+   "title": "Places, location and existence",
+   "focus": "Location nouns, aru/iru",
+   "kana_scope": "",
+   "grammar_themes": [
+    "ni location",
+    "aru/iru",
+    "koko/soko/asoko"
+   ],
+   "kanji_introduced_target": 9,
+   "scenario_theme": "residential_street",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n5_u08",
+   "level": "N5",
+   "order": 7,
+   "title": "Daily actions",
+   "focus": "Polite present verbs, particles wo/de/he",
+   "kana_scope": "",
+   "grammar_themes": [
+    "masu forms",
+    "wo",
+    "de means/place",
+    "he/ni direction"
+   ],
+   "kanji_introduced_target": 10,
+   "scenario_theme": "asakusa_walk",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n5_u09",
+   "level": "N5",
+   "order": 8,
+   "title": "Describing things",
+   "focus": "i- and na-adjectives, degree words",
+   "kana_scope": "",
+   "grammar_themes": [
+    "i-adjective forms",
+    "na-adjective forms",
+    "ga but"
+   ],
+   "kanji_introduced_target": 10,
+   "scenario_theme": "shibuya_streets",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n5_u10",
+   "level": "N5",
+   "order": 9,
+   "title": "Past, dates and experiences",
+   "focus": "Past polite, dates, days of week",
+   "kana_scope": "",
+   "grammar_themes": [
+    "mashita/deshita",
+    "dates"
+   ],
+   "kanji_introduced_target": 10,
+   "scenario_theme": "shinjuku_transfer",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n5_u11",
+   "level": "N5",
+   "order": 10,
+   "title": "Wants, requests and shopping",
+   "focus": "tai, te-form basics, requests, money",
+   "kana_scope": "",
+   "grammar_themes": [
+    "tai",
+    "te kudasai",
+    "te-form basics"
+   ],
+   "kanji_introduced_target": 11,
+   "scenario_theme": "hakone_trip",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n5_u12",
+   "level": "N5",
+   "order": 11,
+   "title": "N5 consolidation and Fuji summit milestone",
+   "focus": "Mixed review, reading passages, listening set",
+   "kana_scope": "",
+   "grammar_themes": [
+    "integration"
+   ],
+   "kanji_introduced_target": 10,
+   "scenario_theme": "fuji_capstone",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n4_u01",
+   "level": "N4",
+   "order": 12,
+   "title": "Te-form in depth",
+   "focus": "Te-form conjugation, te-iru, sequences",
+   "kana_scope": "",
+   "grammar_themes": [
+    "te-form",
+    "te iru",
+    "te kara"
+   ],
+   "kanji_introduced_target": 8,
+   "scenario_theme": "",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n4_u02",
+   "level": "N4",
+   "order": 13,
+   "title": "Permission, prohibition, obligation",
+   "focus": "te mo ii, te wa ikemasen, nakereba",
+   "kana_scope": "",
+   "grammar_themes": [
+    "te mo ii",
+    "te wa ikenai",
+    "nakereba narimasen"
+   ],
+   "kanji_introduced_target": 8,
+   "scenario_theme": "",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n4_u03",
+   "level": "N4",
+   "order": 14,
+   "title": "Plain form and casual speech",
+   "focus": "Dictionary and nai forms, casual register",
+   "kana_scope": "",
+   "grammar_themes": [
+    "plain form",
+    "nai form",
+    "casual speech"
+   ],
+   "kanji_introduced_target": 8,
+   "scenario_theme": "",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n4_u04",
+   "level": "N4",
+   "order": 15,
+   "title": "Experience, plans, intentions",
+   "focus": "ta koto ga aru, tsumori, you ni suru",
+   "kana_scope": "",
+   "grammar_themes": [
+    "ta koto ga aru",
+    "tsumori",
+    "volitional"
+   ],
+   "kanji_introduced_target": 8,
+   "scenario_theme": "",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n4_u05",
+   "level": "N4",
+   "order": 16,
+   "title": "Ability and comparison",
+   "focus": "Potential, yori/hou ga, ichiban",
+   "kana_scope": "",
+   "grammar_themes": [
+    "potential",
+    "comparison",
+    "superlative"
+   ],
+   "kanji_introduced_target": 8,
+   "scenario_theme": "",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n4_u06",
+   "level": "N4",
+   "order": 17,
+   "title": "Giving and receiving; reasons",
+   "focus": "ageru/morau/kureru, kara/node",
+   "kana_scope": "",
+   "grammar_themes": [
+    "giving/receiving",
+    "kara",
+    "node"
+   ],
+   "kanji_introduced_target": 8,
+   "scenario_theme": "",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n4_u07",
+   "level": "N4",
+   "order": 18,
+   "title": "Conditionals and time clauses",
+   "focus": "to/tara/ba basics, toki",
+   "kana_scope": "",
+   "grammar_themes": [
+    "tara",
+    "to",
+    "toki"
+   ],
+   "kanji_introduced_target": 6,
+   "scenario_theme": "",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n4_u08",
+   "level": "N4",
+   "order": 19,
+   "title": "N4 consolidation and Osaka milestone",
+   "focus": "Mixed review and reading",
+   "kana_scope": "",
+   "grammar_themes": [
+    "integration"
+   ],
+   "kanji_introduced_target": 6,
+   "scenario_theme": "",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n3_u01",
+   "level": "N3",
+   "order": 20,
+   "title": "Connecting ideas",
+   "focus": "Reason, contrast, purpose",
+   "kana_scope": "",
+   "grammar_themes": [
+    "tame ni",
+    "noni",
+    "keredo"
+   ],
+   "kanji_introduced_target": 6,
+   "scenario_theme": "",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n3_u02",
+   "level": "N3",
+   "order": 21,
+   "title": "Passive, causative and humble/honorific intro",
+   "focus": "Voice and basic keigo",
+   "kana_scope": "",
+   "grammar_themes": [
+    "passive",
+    "causative",
+    "keigo intro"
+   ],
+   "kanji_introduced_target": 6,
+   "scenario_theme": "",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n3_u03",
+   "level": "N3",
+   "order": 22,
+   "title": "Hearsay, appearance, inference",
+   "focus": "sou da, you da, rashii",
+   "kana_scope": "",
+   "grammar_themes": [
+    "sou da hearsay",
+    "you da",
+    "rashii"
+   ],
+   "kanji_introduced_target": 6,
+   "scenario_theme": "",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n3_u04",
+   "level": "N3",
+   "order": 23,
+   "title": "Conditionals in nuance",
+   "focus": "tara/ba/nara/to contrast",
+   "kana_scope": "",
+   "grammar_themes": [
+    "conditionals contrast"
+   ],
+   "kanji_introduced_target": 6,
+   "scenario_theme": "",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n3_u05",
+   "level": "N3",
+   "order": 24,
+   "title": "Reading short essays",
+   "focus": "Paragraph structure, conjunction markers",
+   "kana_scope": "",
+   "grammar_themes": [
+    "conjunctions"
+   ],
+   "kanji_introduced_target": 6,
+   "scenario_theme": "",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n3_u06",
+   "level": "N3",
+   "order": 25,
+   "title": "Workplace and service language",
+   "focus": "Emails, notices, announcements",
+   "kana_scope": "",
+   "grammar_themes": [
+    "service register"
+   ],
+   "kanji_introduced_target": 5,
+   "scenario_theme": "",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n3_u07",
+   "level": "N3",
+   "order": 26,
+   "title": "Listening for gist",
+   "focus": "Longer dialogues, outline listening",
+   "kana_scope": "",
+   "grammar_themes": [
+    "listening strategies"
+   ],
+   "kanji_introduced_target": 3,
+   "scenario_theme": "",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n3_u08",
+   "level": "N3",
+   "order": 27,
+   "title": "N3 consolidation and Hiroshima milestone",
+   "focus": "Mixed review",
+   "kana_scope": "",
+   "grammar_themes": [
+    "integration"
+   ],
+   "kanji_introduced_target": 2,
+   "scenario_theme": "",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n2_u01",
+   "level": "N2",
+   "order": 28,
+   "title": "Formal written patterns",
+   "focus": "Reports, notices, structured prose",
+   "kana_scope": "",
+   "grammar_themes": [
+    "formal connectors"
+   ],
+   "kanji_introduced_target": 6,
+   "scenario_theme": "",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n2_u02",
+   "level": "N2",
+   "order": 29,
+   "title": "Opinion and argument",
+   "focus": "Stating and contrasting views",
+   "kana_scope": "",
+   "grammar_themes": [
+    "opinion patterns"
+   ],
+   "kanji_introduced_target": 6,
+   "scenario_theme": "",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n2_u03",
+   "level": "N2",
+   "order": 30,
+   "title": "Nuance: limits, extent, concession",
+   "focus": "Advanced nuance grammar",
+   "kana_scope": "",
+   "grammar_themes": [
+    "extent patterns"
+   ],
+   "kanji_introduced_target": 6,
+   "scenario_theme": "",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n2_u04",
+   "level": "N2",
+   "order": 31,
+   "title": "News and media Japanese",
+   "focus": "Headline and article structure",
+   "kana_scope": "",
+   "grammar_themes": [
+    "news register"
+   ],
+   "kanji_introduced_target": 4,
+   "scenario_theme": "",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n2_u05",
+   "level": "N2",
+   "order": 32,
+   "title": "Long reading and integrated comprehension",
+   "focus": "Multi-text comparison",
+   "kana_scope": "",
+   "grammar_themes": [
+    "reading strategies"
+   ],
+   "kanji_introduced_target": 3,
+   "scenario_theme": "",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n2_u06",
+   "level": "N2",
+   "order": 33,
+   "title": "Natural-speed listening",
+   "focus": "Reduced forms, hesitations",
+   "kana_scope": "",
+   "grammar_themes": [
+    "listening reduced forms"
+   ],
+   "kanji_introduced_target": 2,
+   "scenario_theme": "",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n2_u07",
+   "level": "N2",
+   "order": 34,
+   "title": "Business keigo",
+   "focus": "Honorific and humble in context",
+   "kana_scope": "",
+   "grammar_themes": [
+    "keigo business"
+   ],
+   "kanji_introduced_target": 2,
+   "scenario_theme": "",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n2_u08",
+   "level": "N2",
+   "order": 35,
+   "title": "N2 consolidation and Sapporo milestone",
+   "focus": "Mixed review",
+   "kana_scope": "",
+   "grammar_themes": [
+    "integration"
+   ],
+   "kanji_introduced_target": 1,
+   "scenario_theme": "",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n1_u01",
+   "level": "N1",
+   "order": 36,
+   "title": "Abstract and literary expression",
+   "focus": "Advanced written grammar",
+   "kana_scope": "",
+   "grammar_themes": [
+    "literary patterns"
+   ],
+   "kanji_introduced_target": 5,
+   "scenario_theme": "",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n1_u02",
+   "level": "N1",
+   "order": 37,
+   "title": "Idioms, four-character compounds",
+   "focus": "Compound idioms",
+   "kana_scope": "",
+   "grammar_themes": [
+    "idioms"
+   ],
+   "kanji_introduced_target": 5,
+   "scenario_theme": "",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n1_u03",
+   "level": "N1",
+   "order": 38,
+   "title": "Editorials and argument structure",
+   "focus": "Dense reading",
+   "kana_scope": "",
+   "grammar_themes": [
+    "editorial patterns"
+   ],
+   "kanji_introduced_target": 5,
+   "scenario_theme": "",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n1_u04",
+   "level": "N1",
+   "order": 39,
+   "title": "Lectures and discussion listening",
+   "focus": "Extended listening",
+   "kana_scope": "",
+   "grammar_themes": [
+    "lecture listening"
+   ],
+   "kanji_introduced_target": 3,
+   "scenario_theme": "",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n1_u05",
+   "level": "N1",
+   "order": 40,
+   "title": "Academic vocabulary",
+   "focus": "Specialist and nominal style",
+   "kana_scope": "",
+   "grammar_themes": [
+    "nominal style"
+   ],
+   "kanji_introduced_target": 4,
+   "scenario_theme": "",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n1_u06",
+   "level": "N1",
+   "order": 41,
+   "title": "Fine nuance and register contrast",
+   "focus": "Synonym contrast",
+   "kana_scope": "",
+   "grammar_themes": [
+    "nuance contrast"
+   ],
+   "kanji_introduced_target": 3,
+   "scenario_theme": "",
+   "content_status": "to_be_authored",
+   "lessons": []
+  },
+  {
+   "id": "n1_u07",
+   "level": "N1",
+   "order": 42,
+   "title": "N1 consolidation and Okinawa milestone",
+   "focus": "Mixed review",
+   "kana_scope": "",
+   "grammar_themes": [
+    "integration"
+   ],
+   "kanji_introduced_target": 0,
+   "scenario_theme": "",
+   "content_status": "to_be_authored",
+   "lessons": []
+  }
+ ],
+ "unlock_next": {
+  "N5": {
+   "curriculum_released_units_completed_pct": 90,
+   "mastery_avg_min": 0.7,
+   "readiness_check": "n5_readiness",
+   "milestone_exam": "n5_milestone"
+  },
+  "N4": {
+   "curriculum_released_units_completed_pct": 90,
+   "mastery_avg_min": 0.7,
+   "readiness_check": "n4_readiness",
+   "milestone_exam": "n4_milestone"
+  },
+  "N3": {
+   "curriculum_released_units_completed_pct": 90,
+   "mastery_avg_min": 0.7,
+   "readiness_check": "n3_readiness",
+   "milestone_exam": "n3_milestone"
+  },
+  "N2": {
+   "curriculum_released_units_completed_pct": 90,
+   "mastery_avg_min": 0.7,
+   "readiness_check": "n2_readiness",
+   "milestone_exam": "n2_milestone"
+  },
+  "N1": null
+ }
+}

@@ -1,0 +1,4 @@
+[
+{"id":"n5u01_r1","unit_id":"n5_u01","instructional_level":"N5","title":"Shop labels","paragraphs":["あかい かさ","あおい くつ","ちいさい とけい","おおきい いす"],"translation_en":"A red umbrella / Blue shoes / A small clock / A big chair","word_count_chars":23,"question_ids":["q_n5u01_rq01","q_n5u01_rq02","q_n5u01_rq03"],"genre":"labels","provenance":"orig"},
+{"id":"n5u01_r2","unit_id":"n5_u01","instructional_level":"N5","title":"Menu board","paragraphs":["おいしい すし","おいしい さかな","おいしい にく","おいしい おかし"],"translation_en":"Delicious sushi / Delicious fish / Delicious meat / Delicious sweets","word_count_chars":26,"question_ids":["q_n5u01_rq04","q_n5u01_rq05"],"genre":"menu","provenance":"orig"}
+]

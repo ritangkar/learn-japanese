@@ -1,0 +1,4 @@
+[
+{"id":"n5u01_ls1","audio_mode":"tts","synthetic_audio_flag":true,"speaker_voice_hint":[],"unit_id":"n5_u01","instructional_level":"N5","item_type":"Word recognition (lesson practice)","title":"Which word? Set 1","script_turns":[{"speaker":"A","text_ja":"かさ"},{"speaker":"A","text_ja":"ねこ"},{"speaker":"A","text_ja":"くち"},{"speaker":"A","text_ja":"あさ"}],"question_ids":["q_n5u01_lq01","q_n5u01_lq02","q_n5u01_lq03","q_n5u01_lq04"],"provenance":"orig"},
+{"id":"n5u01_ls2","audio_mode":"tts","synthetic_audio_flag":true,"speaker_voice_hint":[],"unit_id":"n5_u01","instructional_level":"N5","item_type":"Word recognition (lesson practice)","title":"Which word? Set 2","script_turns":[{"speaker":"A","text_ja":"とけい"},{"speaker":"A","text_ja":"おと"},{"speaker":"A","text_ja":"たこ"},{"speaker":"A","text_ja":"しお"}],"question_ids":["q_n5u01_lq05","q_n5u01_lq06","q_n5u01_lq07","q_n5u01_lq08"],"provenance":"orig"}
+]
