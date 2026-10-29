@@ -1,0 +1,4 @@
+[
+{"id":"n5u08_ls1","audio_mode":"tts","synthetic_audio_flag":true,"speaker_voice_hint":[],"unit_id":"n5_u08","instructional_level":"N5","item_type":"Word recognition (lesson practice)","title":"Which verb?","script_turns":[{"speaker":"A","text_ja":"たべます"},{"speaker":"A","text_ja":"よみます"},{"speaker":"A","text_ja":"いきます"},{"speaker":"A","text_ja":"かいます"}],"question_ids":["q_n5u08_gl01","q_n5u08_gl02","q_n5u08_gl03","q_n5u08_gl04"],"provenance":"orig"},
+{"id":"n5u08_ls2","audio_mode":"tts","synthetic_audio_flag":true,"speaker_voice_hint":[],"unit_id":"n5_u08","instructional_level":"N5","item_type":"Verbal expressions (lesson practice)","title":"Yes or no? Where?","script_turns":[{"speaker":"A","text_ja":"おちゃ を のみます"},{"speaker":"A","text_ja":"テレビ は みません"},{"speaker":"A","text_ja":"バス で いきます"},{"speaker":"A","text_ja":"どこ へ いきます か"}],"question_ids":["q_n5u08_gl05","q_n5u08_gl06","q_n5u08_gl07","q_n5u08_gl08"],"provenance":"orig"}
+]

@@ -23,12 +23,12 @@ export const countChars = (paragraphs) => paragraphs.join('').replace(/\s/g, '')
 
 const words = (t) => new Set(t.toLowerCase().replace(/[()]/g, '').split(/[^a-z]+/).filter((w) => w.length > 2));
 /** One meaning question per word, built from the vocabulary table (tagged "templated" so coverage reports it separately). */
-export function meaningQuestions(Q, vocab, pool = vocab) {
+export function meaningQuestions(Q, vocab, pool = vocab, stride = 7) {
   const first = (v) => v.meanings_en[0];
   return vocab.map((v, i) => {
     const mine = words(first(v)); const cands = [];
     for (let k = 1; cands.length < 3 && k < pool.length * 3; k++) {
-      const c = pool[(i * 5 + k * 7) % pool.length];
+      const c = pool[(i * 5 + k * stride) % pool.length];
       const theirs = words(first(c));
       if (c.id === v.id || [...theirs].some((w) => mine.has(w)) || cands.some((x) => first(x) === first(c)) || first(c) === first(v)) continue;
       cands.push(c);
