@@ -1,0 +1,12 @@
+[
+{"id":"k_nichi","unit_id":"n5_u10","instructional_level":"N5","char":"日","meanings_en":["day","sun"],"on_readings":["にち","じつ"],"kun_readings":["ひ","か"],"reading_notes":"In dates: 日 is にち (15日 じゅうごにち) or か (2日 ふつか).","stroke_count":4,"example_word_ids":["v_wd_nichi","v_dy_d02"],"tags":["time"],"provenance":"orig"},
+{"id":"k_getsu","unit_id":"n5_u10","instructional_level":"N5","char":"月","meanings_en":["moon","month"],"on_readings":["げつ","がつ"],"kun_readings":["つき"],"stroke_count":4,"example_word_ids":["v_wd_getsu","v_mo_05","v_tsuki"],"confusable_with":["k_nichi"],"tags":["time"],"provenance":"orig"},
+{"id":"k_ka","unit_id":"n5_u10","instructional_level":"N5","char":"火","meanings_en":["fire"],"on_readings":["か"],"kun_readings":["ひ"],"stroke_count":4,"example_word_ids":["v_wd_ka"],"tags":["time"],"provenance":"orig"},
+{"id":"k_sui","unit_id":"n5_u10","instructional_level":"N5","char":"水","meanings_en":["water"],"on_readings":["すい"],"kun_readings":["みず"],"stroke_count":4,"example_word_ids":["v_wd_sui","v_mizu"],"tags":["time"],"provenance":"orig"},
+{"id":"k_moku","unit_id":"n5_u10","instructional_level":"N5","char":"木","meanings_en":["tree","wood"],"on_readings":["もく"],"kun_readings":["き"],"stroke_count":4,"example_word_ids":["v_wd_moku"],"tags":["time"],"provenance":"orig"},
+{"id":"k_kin","unit_id":"n5_u10","instructional_level":"N5","char":"金","meanings_en":["gold","money"],"on_readings":["きん"],"kun_readings":["かね"],"stroke_count":8,"example_word_ids":["v_wd_kin","v_okane"],"tags":["time"],"provenance":"orig"},
+{"id":"k_do","unit_id":"n5_u10","instructional_level":"N5","char":"土","meanings_en":["earth","soil"],"on_readings":["ど"],"kun_readings":["つち"],"stroke_count":3,"example_word_ids":["v_wd_do"],"tags":["time"],"provenance":"orig"},
+{"id":"k_toshi","unit_id":"n5_u10","instructional_level":"N5","char":"年","meanings_en":["year"],"on_readings":["ねん"],"kun_readings":["とし"],"stroke_count":6,"example_word_ids":["v_kotoshi","v_kyonen","v_rainen"],"tags":["time"],"provenance":"orig"},
+{"id":"k_ima","unit_id":"n5_u10","instructional_level":"N5","char":"今","meanings_en":["now"],"on_readings":["こん"],"kun_readings":["いま"],"stroke_count":4,"example_word_ids":["v_ima","v_kongetsu","v_konshuu"],"tags":["time"],"provenance":"orig"},
+{"id":"k_nani","unit_id":"n5_u10","instructional_level":"N5","char":"何","meanings_en":["what"],"on_readings":["か"],"kun_readings":["なに","なん"],"stroke_count":7,"example_word_ids":["v_nani","v_nangatsu","v_nannichi"],"tags":["question"],"provenance":"orig"}
+]
