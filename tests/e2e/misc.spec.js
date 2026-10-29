@@ -79,7 +79,8 @@ test.describe('storage health and honesty screens', () => {
     await expect(page.locator('main')).toContainText('Auto-checked');
     const row = page.locator('tbody tr', { hasText: /^N5/ });
     await expect(row).toContainText(`${n5.vocab.length} / 600`);
-    await expect(row).toContainText('0 of 20');
+    const idx = await (await request.get('content/index.json')).json();
+    await expect(row).toContainText(`${idx.mocks.filter((m) => m.level === 'N5').length} of 20`);
     await expect(page.locator('main')).toContainText('Readings are not dictionary-verified');
     expect(n5.vocab.every((v) => v.content_status === 'auto_checked')).toBe(true);
     expect([...n5.vocab, ...n5.sentences, ...n5.questions].some((x) => x.content_status === 'human_reviewed')).toBe(false);
