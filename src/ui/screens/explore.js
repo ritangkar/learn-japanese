@@ -31,9 +31,17 @@ function listView(content, states) {
   return wrap;
 }
 
+/** Quests of N4+ destinations live in their level bundle; load the bundles of every level the learner has opened (offline failures are ignored: the stop then shows its normal "not available" text). */
+async function loadUnlockedLevels(ctx, content) {
+  for (const [level, state] of Object.entries(ctx.store.state.progress.levels || {})) {
+    if (level === 'N5' || !state || state === 'locked') continue;
+    try { await content.ensureLevel(level); } catch { /* bundle not cached offline */ }
+  }
+}
+
 export async function homeScreen({ ctx, query }) {
   let content;
-  try { content = await ctx.getContent(); } catch (e) { return errorCard(e); }
+  try { content = await ctx.getContent(); await loadUnlockedLevels(ctx, content); } catch (e) { return errorCard(e); }
   const st = ctx.store.state; const t = today();
   const states = destinationStates(st.progress, content);
   const ring = weeklyRing(st.journal, t, st.settings.weeklyGoalDays); const stk = streak(st.journal, t);
@@ -63,7 +71,7 @@ export async function homeScreen({ ctx, query }) {
 
 export async function tokyoScreen({ ctx }) {
   let content;
-  try { content = await ctx.getContent(); } catch (e) { return errorCard(e); }
+  try { content = await ctx.getContent(); await loadUnlockedLevels(ctx, content); } catch (e) { return errorCard(e); }
   const states = destinationStates(ctx.store.state.progress, content);
   const sheet = h('div', { id: 'sheet', 'aria-live': 'polite' });
   const kids = content.destinations.filter((d) => d.id === 'tokyo' || d.parent_id === 'tokyo');
@@ -76,7 +84,7 @@ export async function tokyoScreen({ ctx }) {
 
 export async function destinationScreen({ ctx, params }) {
   let content;
-  try { content = await ctx.getContent(); } catch (e) { return errorCard(e); }
+  try { content = await ctx.getContent(); await loadUnlockedLevels(ctx, content); } catch (e) { return errorCard(e); }
   const d = content.destById.get(params.id);
   if (!d) return h('p', null, 'Unknown destination. ', h('a', { href: '#/' }, 'Back to the map'));
   const { store } = ctx; const st = store.state;
@@ -106,7 +114,7 @@ export async function destinationScreen({ ctx, params }) {
 
 export async function journalScreen({ ctx }) {
   let content;
-  try { content = await ctx.getContent(); } catch (e) { return errorCard(e); }
+  try { content = await ctx.getContent(); await loadUnlockedLevels(ctx, content); } catch (e) { return errorCard(e); }
   const j = ctx.store.state.journal; const st = ctx.store.state;
   const stamps = Object.entries(j.stamps);
   const sec = (title, body) => h('div', { class: 'card' }, h('h3', null, title), body);
@@ -121,7 +129,7 @@ export async function journalScreen({ ctx }) {
 
 export async function achievementsScreen({ ctx }) {
   let content;
-  try { content = await ctx.getContent(); } catch (e) { return errorCard(e); }
+  try { content = await ctx.getContent(); await loadUnlockedLevels(ctx, content); } catch (e) { return errorCard(e); }
   const j = ctx.store.state.journal;
   return h('div', { class: 'stack' }, back('#/me', 'Me'), h('h2', null, 'Achievements'), h('p', { class: 'small muted' }, 'Each one is earned through practice evidence, never for just opening the app. N5 milestone text says internal progress: it is not JLPT certification.'),
     h('ul', { class: 'menu' }, content.core.achievements.map((a) => { const got = j.achievements[a.id]; return h('li', { class: 'card', 'data-ach': a.id, 'data-earned': got ? '1' : '0' }, h('div', { class: 'row between' }, h('strong', null, a.name), got ? h('span', { class: 'chip ok' }, `✔ earned ${dayToDate(got.day)}`) : h('span', { class: 'chip' }, 'not yet')), h('p', { class: 'small' }, `How: ${a.rule}`)); })));

@@ -126,7 +126,7 @@ test.describe('JLPT area (AC10, AC11, AC23, AC25, AC32-AC34)', () => {
     await expect(page.locator('main')).toContainText('Original practice exam. Not an official JLPT paper.');
     await expect(page.locator('main')).toContainText('20 min + 40 min + 30 min');
     await page.locator('#begin-mock').click();
-    if (await page.locator('#exam-resume').count()) await page.locator('#exam-resume').click();
+    await page.locator('#exam-resume').click();
     const counts = [];
     for (let i = 0; i < 3; i++) {
       await page.locator('#start-section').click();

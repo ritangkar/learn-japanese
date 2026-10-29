@@ -25,6 +25,8 @@ Every defect found while building and testing, with how it was found, how it was
 | D-019 | Test | Tests hard-coded "2 of 12 units", "0 of 20 mocks", and "no kanji released", so growing content failed them. | e2e after unit 4 | Counts are read from the shipped content. | jlpt, misc e2e |
 | D-020 | Test | A planner unit test assumed N5 had partial content. | unit run after unit 12 | The test uses N4 (no released units). | `tests/unit/exam.test.js` |
 | D-021 | Process | A commit with one failing unit test was pushed (the test depended on content size). | post-push unit run | Test fixed in the next commit; unit tests are now run before every commit. | CI workflow runs the unit tests before deploy |
+| D-022 | Explore | N4 destinations (Kamakura, Nikko) showed "The quest for this stop has not been written yet" because quests live in the N4 level bundle, which the map and stop screens never loaded. | New journey C3 for Kamakura and Nikko | Home, Tokyo and stop screens load the bundle of every level the learner has opened (`loadUnlockedLevels`). | `tests/e2e/explore.spec.js` journey C3 (kamakura, nikko) |
+| D-023 | Test | The full-mock e2e test raced the "Unfinished attempt" screen (conditional click on `#exam-resume`). | New full-mock test | Unconditional wait and click, as the other exam tests do. | `tests/e2e/jlpt.spec.js` full mock |
 
 ## Known open issues (not fixed in this release)
 
