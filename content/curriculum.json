@@ -293,8 +293,16 @@
    ],
    "kanji_introduced_target": 10,
    "scenario_theme": "fuji_capstone",
-   "content_status": "to_be_authored",
-   "lessons": []
+   "content_status": "auto_checked",
+   "lessons": [
+    "n5_u12_l1",
+    "n5_u12_l2",
+    "n5_u12_l3",
+    "n5_u12_l4",
+    "n5_u12_l5",
+    "n5_u12_l6",
+    "n5_u12_l7"
+   ]
   },
   {
    "id": "n4_u01",

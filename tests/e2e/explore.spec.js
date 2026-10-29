@@ -90,6 +90,7 @@ test.describe('Explore Japan map (AC13, AC12, J04)', () => {
     { dest: 'shibuya', quest: 'q_shibuya_1', unitsBefore: 7, unitsToComplete: 9 },
     { dest: 'shinjuku', quest: 'q_shinjuku_1', unitsBefore: 8, unitsToComplete: 10 },
     { dest: 'hakone', quest: 'q_hakone_1', unitsBefore: 9, unitsToComplete: 11 },
+    { dest: 'mount_fuji', quest: 'q_mount_fuji_1', unitsBefore: 10, unitsToComplete: 12 },
   ];
   for (const d of DESTS) {
     test(`journey C3 (${d.dest}): quest unavailable until prerequisite units are complete; completing the quest gives exactly one stamp`, async ({ page }) => {

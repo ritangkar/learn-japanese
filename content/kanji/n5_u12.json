@@ -1,0 +1,12 @@
+[
+{"id":"k_hon","unit_id":"n5_u12","instructional_level":"N5","char":"本","meanings_en":["book","origin","counter for long things"],"on_readings":["ほん"],"kun_readings":["もと"],"reading_notes":"In 日本 (Japan) it is read ほん (にほん) or ぽん (にっぽん).","stroke_count":5,"example_word_ids":["v_hon","v_nihon"],"confusable_with":["k_ki"],"tags":["common"],"provenance":"orig"},
+{"id":"k_sei","unit_id":"n5_u12","instructional_level":"N5","char":"生","meanings_en":["life","birth","raw"],"on_readings":["せい","しょう"],"kun_readings":["い","う","なま"],"stroke_count":5,"example_word_ids":["v_gakusei","v_sensei"],"tags":["common"],"provenance":"orig"},
+{"id":"k_saki","unit_id":"n5_u12","instructional_level":"N5","char":"先","meanings_en":["previous","ahead"],"on_readings":["せん"],"kun_readings":["さき"],"stroke_count":6,"example_word_ids":["v_sensei","v_senshuu","v_sengetsu"],"tags":["common"],"provenance":"orig"},
+{"id":"k_go2","unit_id":"n5_u12","instructional_level":"N5","char":"語","meanings_en":["language","word"],"on_readings":["ご"],"kun_readings":["かた"],"stroke_count":14,"example_word_ids":["v_nihongo"],"tags":["common"],"provenance":"orig"},
+{"id":"k_den","unit_id":"n5_u12","instructional_level":"N5","char":"電","meanings_en":["electricity"],"on_readings":["でん"],"kun_readings":[],"stroke_count":13,"example_word_ids":["v_densha","v_denwa","v_denki"],"tags":["common"],"provenance":"orig"},
+{"id":"k_kuruma","unit_id":"n5_u12","instructional_level":"N5","char":"車","meanings_en":["car","vehicle"],"on_readings":["しゃ"],"kun_readings":["くるま"],"stroke_count":7,"example_word_ids":["v_kuruma","v_densha"],"tags":["common"],"provenance":"orig"},
+{"id":"k_ki","unit_id":"n5_u12","instructional_level":"N5","char":"気","meanings_en":["spirit","mood","air"],"on_readings":["き","け"],"kun_readings":[],"stroke_count":6,"example_word_ids":["v_genki","v_ninki"],"tags":["common"],"provenance":"orig"},
+{"id":"k_ame","unit_id":"n5_u12","instructional_level":"N5","char":"雨","meanings_en":["rain"],"on_readings":["う"],"kun_readings":["あめ"],"stroke_count":8,"example_word_ids":["v_ame"],"tags":["weather"],"provenance":"orig"},
+{"id":"k_tomo","unit_id":"n5_u12","instructional_level":"N5","char":"友","meanings_en":["friend"],"on_readings":["ゆう"],"kun_readings":["とも"],"stroke_count":4,"example_word_ids":["v_tomodachi"],"tags":["people"],"provenance":"orig"},
+{"id":"k_me","unit_id":"n5_u12","instructional_level":"N5","char":"目","meanings_en":["eye"],"on_readings":["もく"],"kun_readings":["め"],"stroke_count":5,"example_word_ids":["v_megane"],"tags":["body"],"provenance":"orig"}
+]

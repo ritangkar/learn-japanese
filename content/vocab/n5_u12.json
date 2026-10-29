@@ -1,0 +1,9 @@
+[
+{"id":"v_fujisan","surface":"ふじさん","reading_kana":"ふじさん","romaji":"fujisan","meanings_en":["Mount Fuji"],"pos":"noun (proper)","unit_id":"n5_u12","instructional_level":"N5","example_sentence_ids":["s_n5u12_k01"],"destination_tags":["mount_fuji"],"provenance":"orig"},
+{"id":"v_noborimasu","surface":"のぼります","reading_kana":"のぼります","romaji":"noborimasu","meanings_en":["climb"],"pos":"verb","unit_id":"n5_u12","instructional_level":"N5","example_sentence_ids":["s_n5u12_k02"],"destination_tags":["mount_fuji"],"provenance":"orig"},
+{"id":"v_choujou","surface":"ちょうじょう","reading_kana":"ちょうじょう","romaji":"choujou","meanings_en":["summit","top"],"pos":"noun","unit_id":"n5_u12","instructional_level":"N5","example_sentence_ids":["s_n5u12_k03"],"destination_tags":["mount_fuji"],"provenance":"orig"},
+{"id":"v_umi","surface":"うみ","reading_kana":"うみ","romaji":"umi","meanings_en":["sea","ocean"],"pos":"noun","unit_id":"n5_u12","instructional_level":"N5","example_sentence_ids":["s_n5u12_k04"],"provenance":"orig"},
+{"id":"v_kaze","surface":"かぜ","reading_kana":"かぜ","romaji":"kaze","meanings_en":["wind"],"pos":"noun","unit_id":"n5_u12","instructional_level":"N5","example_sentence_ids":["s_n5u12_k05"],"provenance":"orig"},
+{"id":"v_fuyu","surface":"ふゆ","reading_kana":"ふゆ","romaji":"fuyu","meanings_en":["winter"],"pos":"noun (time)","unit_id":"n5_u12","instructional_level":"N5","example_sentence_ids":["s_n5u12_k06"],"provenance":"orig"},
+{"id":"v_kisetsu","surface":"きせつ","reading_kana":"きせつ","romaji":"kisetsu","meanings_en":["season"],"pos":"noun","unit_id":"n5_u12","instructional_level":"N5","example_sentence_ids":["s_n5u12_k07"],"provenance":"orig"}
+]

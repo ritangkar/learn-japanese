@@ -1,0 +1,4 @@
+[
+{"id":"n5u12_d1","unit_id":"n5_u12","instructional_level":"N5","title":"Planning the climb","setting":"mount_fuji","turns":[{"speaker":"A","sentence_id":"s_n5u12_k17"},{"speaker":"B","sentence_id":"s_n5u12_k18"},{"speaker":"A","sentence_id":"s_n5u12_k12"}],"comprehension_question_ids":["q_n5u12_dg01","q_n5u12_dg02"],"register":"polite","provenance":"orig"},
+{"id":"n5u12_d2","unit_id":"n5_u12","instructional_level":"N5","title":"After the climb","setting":"mount_fuji","turns":[{"speaker":"A","sentence_id":"s_n5u12_k03"},{"speaker":"B","sentence_id":"s_n5u12_k10"}],"comprehension_question_ids":["q_n5u12_dg03"],"register":"polite","provenance":"orig"}
+]
