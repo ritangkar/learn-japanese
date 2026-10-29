@@ -60,7 +60,7 @@ export async function solveCurrent(page, { correct = true } = {}) {
     await ex.getByRole('button', { name: 'Check' }).click();
   } else if (info.type === 'sentence_order') {
     const order = correct ? info.answer : [...info.answer].reverse();
-    for (const t of order) await ex.locator('.tiles.bank').getByRole('button', { name: t, exact: true }).first().click();
+    for (const t of order) await ex.locator('.tiles.bank button:not([disabled])').filter({ hasText: new RegExp(`^${t}$`) }).first().click(); // used tiles stay in the bank (disabled), so a repeated word needs the next enabled one
     await ex.getByRole('button', { name: 'Check' }).click();
   } else if (info.choices) {
     const id = correct ? info.answer : info.choices.find((c) => c !== info.answer);
