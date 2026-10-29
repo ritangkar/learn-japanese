@@ -11,22 +11,29 @@ A zero-cost, offline-first Japanese-learning web app (PWA) with a JLPT-oriented 
 
 The long-term goal is 20 distinct mock exams per level (100 in total). **That goal is not met in this release.** Mocks are never padded, cloned, shuffled, relabelled or lightly paraphrased to hit a number.
 
+<!-- mocks:begin -->
 | Level | Mocks released | Long-term goal |
 |---|---|---|
-| N5 | 0 of 20 released | 20 |
+| N5 | 1 of 20 released | 20 |
 | N4 | 0 of 20 released | 20 |
 | N3 | 0 of 20 released | 20 |
 | N2 | 0 of 20 released | 20 |
 | N1 | 0 of 20 released | 20 |
+<!-- mocks:end -->
 
-The in-app JLPT screen shows the same numbers, computed from the shipped content. The section practice, readiness check, planner and exam runner are fully implemented and tested; there is simply no mock paper content that meets the distinctness validators yet. Release 1.0 keeps the exam runner usable through section practice built from the original practice questions.
+The in-app JLPT screen shows the same numbers, computed from the shipped content. N5 has one original, mock-only practice paper (25 vocabulary, 30 grammar and reading, 24 listening questions; the per-section question counts are our own planning blueprint, not official counts). N4 to N1 have no released mock. Section practice, the readiness check, the planner and the exam runner are fully implemented and tested.
 
 ### Content coverage
 
 Live numbers are generated into [content/coverage.md](content/coverage.md) (`npm run coverage`) and shown in the app under *Content status*. Summary at the time of writing:
 
-* N5: 4 of 12 planned units released (hiragana, first greetings, combined sounds and self-introduction, katakana I with numbers, time and a station theme).
-* N4 to N1: no units released yet. The curriculum skeleton and unlock rules exist; the units are marked `to_be_authored` and are not releasable.
+<!-- coverage:begin -->
+* N5: 12 of 12 planned units released; 530 words, 80 kanji, 29 grammar points, 44 dialogues, 29 reading passages, 1298 hand-written and 1179 templated questions.
+* N4: 3 of 8 planned units released; 79 words, 24 kanji, 11 grammar points, 12 dialogues, 7 reading passages, 314 hand-written and 261 templated questions.
+* N3: no units released yet (the unit plan exists but the units are marked `to_be_authored` and are not releasable).
+* N2: no units released yet (the unit plan exists but the units are marked `to_be_authored` and are not releasable).
+* N1: no units released yet (the unit plan exists but the units are marked `to_be_authored` and are not releasable).
+<!-- coverage:end -->
 * `human_reviewed` share: **0 %**. No native-speaker reviewer exists for this project. All content is `auto_checked` at best: it passed the automated validators, nothing more.
 * Readings are **not dictionary-verified** (validator A07 is "not run": no dictionary is bundled).
 

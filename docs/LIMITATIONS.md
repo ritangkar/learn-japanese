@@ -4,7 +4,7 @@ These are explicit, user-visible limitations (they are also shown in the app und
 
 | ID | Limitation |
 |---|---|
-| L-01 | The target of 20 distinct mock exams per level (100 in total) is **not met**. Released mocks: N5 0, N4 0, N3 0, N2 0, N1 0 (see README). |
+| L-01 | The target of 20 distinct mock exams per level (100 in total) is **not met**. Released mocks: N5 1, N4 0, N3 0, N2 0, N1 0 (see README). |
 | L-02 | Listening audio is synthetic (the device's text-to-speech). It is not native-speaker exam audio. N2/N1 natural-speed multi-speaker listening cannot be reproduced. |
 | L-03 | No pronunciation scoring. Recording is optional, local, and for self-comparison only. |
 | L-04 | No handwriting recognition. Stroke-order guidance is self-assessed. Kana stroke guides are original and simplified. Kanji stroke diagrams are not available yet. |

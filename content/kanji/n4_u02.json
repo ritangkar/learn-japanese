@@ -1,0 +1,10 @@
+[
+{"id":"k_tome","unit_id":"n4_u02","instructional_level":"N4","char":"止","meanings_en":["stop"],"on_readings":["し"],"kun_readings":["と"],"reading_notes":"In 止まります / 止めます the kanji is と.","stroke_count":4,"example_word_ids":["v_tomemasu"],"tags":["actions"],"provenance":"orig"},
+{"id":"k_aku","unit_id":"n4_u02","instructional_level":"N4","char":"開","meanings_en":["open"],"on_readings":["かい"],"kun_readings":["あ","ひら"],"stroke_count":12,"example_word_ids":["v_akemasu"],"confusable_with":["k_shime"],"tags":["actions"],"provenance":"orig"},
+{"id":"k_shime","unit_id":"n4_u02","instructional_level":"N4","char":"閉","meanings_en":["close"],"on_readings":["へい"],"kun_readings":["し","と"],"stroke_count":11,"example_word_ids":["v_shimemasu"],"confusable_with":["k_aku"],"tags":["actions"],"provenance":"orig"},
+{"id":"k_tsuka","unit_id":"n4_u02","instructional_level":"N4","char":"使","meanings_en":["use"],"on_readings":["し"],"kun_readings":["つか"],"stroke_count":8,"example_word_ids":["v_tsukaimasu"],"tags":["actions"],"provenance":"orig"},
+{"id":"k_ritsu","unit_id":"n4_u02","instructional_level":"N4","char":"立","meanings_en":["stand"],"on_readings":["りつ"],"kun_readings":["た"],"stroke_count":5,"example_word_ids":["v_tachimasu"],"tags":["actions"],"provenance":"orig"},
+{"id":"k_aru","unit_id":"n4_u02","instructional_level":"N4","char":"歩","meanings_en":["walk"],"on_readings":["ほ"],"kun_readings":["ある","あゆ"],"stroke_count":8,"example_word_ids":["v_arukimasu"],"tags":["actions"],"provenance":"orig"},
+{"id":"k_machi2","unit_id":"n4_u02","instructional_level":"N4","char":"待","meanings_en":["wait"],"on_readings":["たい"],"kun_readings":["ま"],"stroke_count":9,"example_word_ids":["v_machimasu"],"confusable_with":["k_mochi"],"tags":["actions"],"provenance":"orig"},
+{"id":"k_mochi","unit_id":"n4_u02","instructional_level":"N4","char":"持","meanings_en":["hold","have"],"on_readings":["じ"],"kun_readings":["も"],"stroke_count":9,"example_word_ids":["v_mochimasu"],"confusable_with":["k_machi2"],"tags":["actions"],"provenance":"orig"}
+]

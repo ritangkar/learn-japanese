@@ -1,0 +1,10 @@
+[
+{"id":"k_n4_hikari","unit_id":"n4_u03","instructional_level":"N4","char":"光","meanings_en":["light"],"on_readings":["こう"],"kun_readings":["ひかり","ひか"],"stroke_count":6,"example_word_ids":["v_hikari"],"tags":["nature"],"provenance":"orig"},
+{"id":"k_n4_kami","unit_id":"n4_u03","instructional_level":"N4","char":"神","meanings_en":["god","deity"],"on_readings":["しん","じん"],"kun_readings":["かみ"],"stroke_count":9,"example_word_ids":["v_kamisama","v_jinja"],"tags":["culture"],"provenance":"orig"},
+{"id":"k_n4_mori","unit_id":"n4_u03","instructional_level":"N4","char":"森","meanings_en":["forest"],"on_readings":["しん"],"kun_readings":["もり"],"stroke_count":12,"example_word_ids":["v_mori"],"tags":["nature"],"provenance":"orig"},
+{"id":"k_n4_ike","unit_id":"n4_u03","instructional_level":"N4","char":"池","meanings_en":["pond"],"on_readings":["ち"],"kun_readings":["いけ"],"stroke_count":6,"example_word_ids":["v_ike"],"tags":["nature"],"provenance":"orig"},
+{"id":"k_n4_chika","unit_id":"n4_u03","instructional_level":"N4","char":"近","meanings_en":["near"],"on_readings":["きん"],"kun_readings":["ちか"],"stroke_count":7,"example_word_ids":["v_chikai"],"confusable_with":["k_n4_too"],"tags":["places"],"provenance":"orig"},
+{"id":"k_n4_too","unit_id":"n4_u03","instructional_level":"N4","char":"遠","meanings_en":["far"],"on_readings":["えん"],"kun_readings":["とお"],"stroke_count":13,"example_word_ids":["v_tooi"],"confusable_with":["k_n4_chika"],"tags":["places"],"provenance":"orig"},
+{"id":"k_n4_iro","unit_id":"n4_u03","instructional_level":"N4","char":"色","meanings_en":["colour"],"on_readings":["しょく"],"kun_readings":["いろ"],"stroke_count":6,"example_word_ids":["v_iro"],"tags":["nature"],"provenance":"orig"},
+{"id":"k_n4_hana","unit_id":"n4_u03","instructional_level":"N4","char":"花","meanings_en":["flower"],"on_readings":["か"],"kun_readings":["はな"],"stroke_count":7,"example_word_ids":["v_hana","v_hanami"],"tags":["nature"],"provenance":"orig"}
+]

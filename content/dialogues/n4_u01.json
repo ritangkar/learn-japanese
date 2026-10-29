@@ -1,0 +1,6 @@
+[
+{"id":"n4u01_d1","unit_id":"n4_u01","instructional_level":"N4","title":"Do you know her?","setting":"kamakura","turns":[{"speaker":"A","sentence_id":"s_n4u01_k29"},{"speaker":"B","sentence_id":"s_n4u01_k30"}],"comprehension_question_ids":["q_n4u01_dg01"],"register":"polite","provenance":"orig"},
+{"id":"n4u01_d2","unit_id":"n4_u01","instructional_level":"N4","title":"Have you eaten?","setting":"kamakura","turns":[{"speaker":"A","sentence_id":"s_n4u01_k31"},{"speaker":"B","sentence_id":"s_n4u01_k26"}],"comprehension_question_ids":["q_n4u01_dg02","q_n4u01_dg03"],"register":"polite","provenance":"orig"},
+{"id":"n4u01_d3","unit_id":"n4_u01","instructional_level":"N4","title":"Where do you live?","setting":"kamakura","turns":[{"speaker":"A","sentence_id":"s_n4u01_k32"},{"speaker":"B","sentence_id":"s_n4u01_k01"},{"speaker":"A","sentence_id":"s_n4u01_k28"}],"comprehension_question_ids":["q_n4u01_dg04"],"register":"polite","provenance":"orig"},
+{"id":"n4u01_d4","unit_id":"n4_u01","instructional_level":"N4","title":"What are you doing?","setting":"kamakura","turns":[{"speaker":"A","sentence_id":"s_n4u01_k33"},{"speaker":"B","sentence_id":"s_n4u01_k19"}],"comprehension_question_ids":["q_n4u01_dg05"],"register":"polite","provenance":"orig"}
+]

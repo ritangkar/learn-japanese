@@ -152,7 +152,7 @@ describe('readiness dashboard (AC32) and exam-date planner (AC33)', () => {
       expect(examPlanner(base(), fc, NOW, { level: 'N5', targetDate: '' }).error).toBeTruthy();
     });
     it('partial content is stated in the caveats', () => {
-      const r = examPlanner(base(), realContent(), NOW, { level: 'N5', targetDate: date(60) });
+      const r = examPlanner(base(), realContent(), NOW, { level: 'N4', targetDate: date(60) });
       expect(r.partialContent).toBe(true); expect(r.caveats.join(' ')).toMatch(/released/);
     });
   });

@@ -1,0 +1,4 @@
+[
+{"id":"n4u03_ls1","audio_mode":"tts","synthetic_audio_flag":true,"speaker_voice_hint":[],"unit_id":"n4_u03","instructional_level":"N4","item_type":"Verbal expressions (lesson practice)","title":"Casual present","script_turns":[{"speaker":"A","text_ja":"あした にっこう へ いく"},{"speaker":"A","text_ja":"ううん いかない"},{"speaker":"A","text_ja":"おまもり を かう"},{"speaker":"A","text_ja":"さんどう を とおる"}],"question_ids":["q_n4u03_gl01","q_n4u03_gl02","q_n4u03_gl03","q_n4u03_gl04"],"provenance":"orig"},
+{"id":"n4u03_ls2","audio_mode":"tts","synthetic_audio_flag":true,"speaker_voice_hint":[],"unit_id":"n4_u03","instructional_level":"N4","item_type":"Verbal expressions (lesson practice)","title":"Casual past","script_turns":[{"speaker":"A","text_ja":"きのう にっこう へ いった"},{"speaker":"A","text_ja":"おまもり を かった"},{"speaker":"A","text_ja":"くつ を ぬいだ"},{"speaker":"A","text_ja":"ひと が あつまった"}],"question_ids":["q_n4u03_gl05","q_n4u03_gl06","q_n4u03_gl07","q_n4u03_gl08"],"provenance":"orig"}
+]

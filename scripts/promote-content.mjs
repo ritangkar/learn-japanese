@@ -8,8 +8,10 @@ import { COLLECTIONS, statusOf } from '../src/content/model.js';
 
 const date = process.env.PROMOTE_DATE || new Date().toISOString().slice(0, 10);
 const { results, raw } = validate({ quiet: true, write: false });
-const bad = new Set(results.flatMap((r) => r.errors.map((e) => e.item)));
-const hardFail = results.filter((r) => r.status === 'fail');
+// X09 (status consistency) is a function of the statuses this script is about to write, so it cannot block promotion; it is re-checked by validate-content afterwards.
+const relevant = results.filter((r) => r.id !== 'X09');
+const bad = new Set(relevant.flatMap((r) => r.errors.map((e) => e.item)));
+const hardFail = relevant.filter((r) => r.status === 'fail');
 const authoredUnits = new Set(raw.curriculum.units.filter((u) => (u.lessons || []).length).map((u) => u.id));
 let promoted = 0; let kept = 0;
 const status = { ...raw.status };

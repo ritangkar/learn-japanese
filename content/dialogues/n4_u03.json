@@ -1,0 +1,6 @@
+[
+{"id":"n4u03_d1","unit_id":"n4_u03","instructional_level":"N4","title":"Going together","setting":"nikko","turns":[{"speaker":"A","sentence_id":"s_n4u03_c02"},{"speaker":"B","sentence_id":"s_n4u03_c03"},{"speaker":"A","sentence_id":"s_n4u03_c01"}],"comprehension_question_ids":["q_n4u03_dg01","q_n4u03_dg02"],"register":"casual","provenance":"orig"},
+{"id":"n4u03_d2","unit_id":"n4_u03","instructional_level":"N4","title":"Not today","setting":"nikko","turns":[{"speaker":"A","sentence_id":"s_n4u03_c02"},{"speaker":"B","sentence_id":"s_n4u03_c04"}],"comprehension_question_ids":["q_n4u03_dg03"],"register":"casual","provenance":"orig"},
+{"id":"n4u03_d3","unit_id":"n4_u03","instructional_level":"N4","title":"Fortune and charm","setting":"nikko","turns":[{"speaker":"A","sentence_id":"s_n4u03_t02"},{"speaker":"B","sentence_id":"s_n4u03_t03"}],"comprehension_question_ids":["q_n4u03_dg04"],"register":"casual","provenance":"orig"},
+{"id":"n4u03_d4","unit_id":"n4_u03","instructional_level":"N4","title":"Wait here","setting":"nikko","turns":[{"speaker":"A","sentence_id":"s_n4u03_c14"},{"speaker":"B","sentence_id":"s_n4u03_c06"}],"comprehension_question_ids":["q_n4u03_dg05"],"register":"casual","provenance":"orig"}
+]

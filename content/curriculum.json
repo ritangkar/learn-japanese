@@ -318,8 +318,18 @@
    ],
    "kanji_introduced_target": 8,
    "scenario_theme": "",
-   "content_status": "to_be_authored",
-   "lessons": []
+   "content_status": "auto_checked",
+   "lessons": [
+    "n4_u01_l1",
+    "n4_u01_l2",
+    "n4_u01_l3",
+    "n4_u01_l4",
+    "n4_u01_l5",
+    "n4_u01_l6",
+    "n4_u01_l7",
+    "n4_u01_l8",
+    "n4_u01_l9"
+   ]
   },
   {
    "id": "n4_u02",
@@ -335,8 +345,19 @@
    ],
    "kanji_introduced_target": 8,
    "scenario_theme": "",
-   "content_status": "to_be_authored",
-   "lessons": []
+   "content_status": "auto_checked",
+   "lessons": [
+    "n4_u02_l1",
+    "n4_u02_l2",
+    "n4_u02_l3",
+    "n4_u02_l4",
+    "n4_u02_l5",
+    "n4_u02_l6",
+    "n4_u02_l7",
+    "n4_u02_l8",
+    "n4_u02_l9",
+    "n4_u02_l10"
+   ]
   },
   {
    "id": "n4_u03",
@@ -352,8 +373,18 @@
    ],
    "kanji_introduced_target": 8,
    "scenario_theme": "",
-   "content_status": "to_be_authored",
-   "lessons": []
+   "content_status": "auto_checked",
+   "lessons": [
+    "n4_u03_l1",
+    "n4_u03_l2",
+    "n4_u03_l3",
+    "n4_u03_l4",
+    "n4_u03_l5",
+    "n4_u03_l6",
+    "n4_u03_l7",
+    "n4_u03_l8",
+    "n4_u03_l9"
+   ]
   },
   {
    "id": "n4_u04",

@@ -81,7 +81,7 @@ test.describe('Explore Japan map (AC13, AC12, J04)', () => {
   });
 
   // Every destination whose unit content exists: locked before its prerequisite units, one stamp after completion + primary quest, never duplicated.
-  const N5 = ['n5_u01', 'n5_u02', 'n5_u03', 'n5_u04', 'n5_u05', 'n5_u06', 'n5_u07', 'n5_u08', 'n5_u09', 'n5_u10', 'n5_u11', 'n5_u12'];
+  const N5 = ['n5_u01', 'n5_u02', 'n5_u03', 'n5_u04', 'n5_u05', 'n5_u06', 'n5_u07', 'n5_u08', 'n5_u09', 'n5_u10', 'n5_u11', 'n5_u12', 'n4_u01', 'n4_u02', 'n4_u03'];
   const DESTS = [
     { dest: 'konbini', quest: 'q_konbini_1', unitsBefore: 3, unitsToComplete: 5 },
     { dest: 'tokyo_tower', quest: 'q_tokyo_tower_1', unitsBefore: 4, unitsToComplete: 6 },
@@ -91,6 +91,8 @@ test.describe('Explore Japan map (AC13, AC12, J04)', () => {
     { dest: 'shinjuku', quest: 'q_shinjuku_1', unitsBefore: 8, unitsToComplete: 10 },
     { dest: 'hakone', quest: 'q_hakone_1', unitsBefore: 9, unitsToComplete: 11 },
     { dest: 'mount_fuji', quest: 'q_mount_fuji_1', unitsBefore: 10, unitsToComplete: 12 },
+    { dest: 'kamakura', quest: 'q_kamakura_1', unitsBefore: 13, unitsToComplete: 14, n4: true },
+    { dest: 'nikko', quest: 'q_nikko_1', unitsBefore: 14, unitsToComplete: 15, n4: true },
   ];
   for (const d of DESTS) {
     test(`journey C3 (${d.dest}): quest unavailable until prerequisite units are complete; completing the quest gives exactly one stamp`, async ({ page }) => {
@@ -101,6 +103,7 @@ test.describe('Explore Japan map (AC13, AC12, J04)', () => {
         st.update('progress', (p) => ({ ...p, lessons: { ...p.lessons, ...lessons }, units: { ...p.units, ...us } }));
       }, ids);
       await page.evaluate(async () => { await window.__tabi.ctx.getContent(); });
+      if (d.n4) await page.evaluate(() => window.__tabi.store.update('progress', (p) => ({ ...p, levels: { ...p.levels, N4: 'in_progress' } })));
       await complete(N5.slice(0, d.unitsBefore));
       await page.goto(`./#/dest/${d.dest}`);
       await expect(page.locator(`#quest-${d.quest}`)).toHaveCount(0);

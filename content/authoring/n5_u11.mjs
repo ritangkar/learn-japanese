@@ -55,7 +55,7 @@ const kanji = [
 const sn = (n, text, en, ids, extra = {}) => S(`s_n5u11_${n}`, 'sentence', text, text, en, ids, extra);
 const kj = (n, text, reading, en, ids, ruby) => S(`s_n5u11_${n}`, 'phrase', text, reading, en, ids, { ruby, kanji_used: [...text].filter((c) => /[一-龥]/.test(c)) });
 const sentences = [
-  ...CT.map(([k, kana, en], i) => S(`s_n5u11_c${k}`, 'phrase', kana, kana, en.replace(' (thing)', '').replace(' (things)', ''), [`v_ct_${k}`])),
+  ...CT.map(([k, kana, en]) => S(`s_n5u11_c${k}`, 'phrase', kana, kana, en.replace(' (thing)', '').replace(' (things)', ''), [`v_ct_${k}`])),
   sn('k01', 'こうえん で ともだち と あそびます', 'I play with my friend in the park.', ['v_kouen', 'v_tomodachi', 'v_asobimasu']), sn('k02', 'ぎんこう で はたらきます', 'I work at a bank.', ['v_ginkou', 'v_hatarakimasu']), sn('k03', 'しゃしん を とります', 'I take a photo.', ['v_shashin', 'v_torimasu']),
   sn('k04', 'スマホ を つかいます', 'I use a smartphone.', ['v_sumaho', 'v_tsukaimasu']), sn('k05', 'にほんご を おしえます', 'I teach Japanese.', ['v_nihongo', 'v_oshiemasu']), sn('k06', 'へや に はいります', 'I enter the room.', ['v_heya', 'v_hairimasu']),
   sn('k07', 'えき を でます', 'I leave the station.', ['v_eki', 'v_demasu']), sn('k08', 'バス に のります', 'I ride the bus.', ['v_basu', 'v_norimasu']), sn('k09', 'いす に すわります', 'I sit on a chair.', ['v_isu', 'v_suwarimasu']),

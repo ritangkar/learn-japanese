@@ -19,7 +19,8 @@ test.describe('JLPT area (AC10, AC11, AC23, AC25, AC32-AC34)', () => {
     for (const L of ['N5', 'N4', 'N3', 'N2', 'N1']) {
       const card = page.locator(`[data-level="${L}"]`); await expect(card).toBeVisible();
       await expect(card.locator('[data-testid="coverage-badge"]')).toBeVisible();
-      await expect(card.locator(`#mock-count-${L}`)).toContainText('Mock exams released: 0 of 20');
+      const released = await page.evaluate(async (lvl) => (await window.__tabi.ctx.getContent()).mockIndex.filter((m) => m.level === lvl).length, L);
+      await expect(card.locator(`#mock-count-${L}`)).toContainText(`Mock exams released: ${released} of 20`);
       await expect(card).toContainText('Instructional level (unofficial)');
     }
     await expect(page.locator('[data-level="N5"] .criteria li')).toHaveCount(4);
@@ -116,6 +117,33 @@ test.describe('JLPT area (AC10, AC11, AC23, AC25, AC32-AC34)', () => {
     await expect(page.locator('#exam-message')).toContainText('internal progress, not JLPT certification');
     expect(await page.evaluate(() => window.__tabi.store.state.progress.levels.N4)).toBe('unlocked');
     await page.goto('./#/jlpt'); await expect(page.locator('[data-level="N4"]')).not.toContainText('Locked');
+  });
+  test('full mock exam (AC23, AC25): official section minutes, listening notice, locked sections, results are a practice estimate only', async ({ page }) => {
+    await page.goto('./#/jlpt/N5');
+    await expect(page.locator('#mock-counter')).toContainText('Released: 1 of 20');
+    await expect(page.locator('#mock-counter')).toContainText('not reached');
+    await page.locator('a[href="#/mock/mock_n5_01"]').click();
+    await expect(page.locator('main')).toContainText('Original practice exam. Not an official JLPT paper.');
+    await expect(page.locator('main')).toContainText('20 min + 40 min + 30 min');
+    await page.locator('#begin-mock').click();
+    if (await page.locator('#exam-resume').count()) await page.locator('#exam-resume').click();
+    const counts = [];
+    for (let i = 0; i < 3; i++) {
+      await page.locator('#start-section').click();
+      await expect(page.locator('#exam-timer')).toBeVisible();
+      if (i === 2) await expect(page.locator('main')).toContainText(/synthetic voice|transcript/i);
+      counts.push(await page.locator('.qgrid .qg').count());
+      await examRunSection(page, { correct: (k) => k % 4 !== 0 });
+      if (i < 2) { const brk = page.locator('#break-min'); if (await brk.count()) await brk.fill('0'); }
+    }
+    expect(counts).toEqual([25, 30, 24]);
+    const res = page.locator('#exam-results');
+    await expect(res).toContainText('Practice estimate — not a JLPT score');
+    const text = await page.locator('main').innerText();
+    expect(text).not.toMatch(/\/\s?180|\bpass(ed)? the JLPT\b|CEFR|you will pass/i);
+    const att = await page.evaluate(() => window.__tabi.store.state.exams.attempts);
+    expect(att.length).toBe(1);
+    expect(await page.evaluate(() => window.__tabi.store.state.examlive)).toBeNull();
   });
   test('readiness dashboard: "Not enough data yet" under 20 attempts and never a JLPT score (AC32)', async ({ page }) => {
     await page.goto('./#/readiness');

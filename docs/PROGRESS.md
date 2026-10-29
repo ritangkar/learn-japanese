@@ -68,3 +68,10 @@ SVG map (original simplified outlines), pins by shape, Okinawa inset, Tokyo sub-
 * `scripts/license-audit.mjs`, `scripts/check-fixtures-not-shipped.mjs`, `scripts/check-sizes.mjs` run in every build; negative fixtures for the licence audit.
 * Docs: README (mock counters), LIMITATIONS, LICENSES, CONTENT_STATUS, FEATURES, generated `docs/qa/TRACEABILITY.md`.
 * GitHub Pages workflow `.github/workflows/pages.yml` (lint, validate, unit, build, e2e; deploy only from the designated branch).
+
+## P8 content batch 3 (N5 complete, first N4 units, first mock)
+* `n5_u05`–`n5_u12`: N5 is now 12 of 12 units (all authored, validated, promoted). Destinations Konbini, Tokyo Tower, Residential Street, Asakusa, Shibuya, Shinjuku, Hakone and Mount Fuji each have a quest covered by a table-driven e2e journey (quest absent before prerequisites, one stamp afterwards, never duplicated).
+* `mock_n5_01`: the first (and only) released mock — vocabulary 20 min / 25 questions, grammar & reading 40 min / 30, listening 30 min / 24. Mock-only items live in `content/mocks/`. **N5 mocks released: 1 of 20.** No mock was cloned, shuffled or paraphrased to reach the target.
+* `n4_u01` (te-form in depth), `n4_u02` (permission, prohibition, obligation; Kamakura quest), `n4_u03` (plain form and casual speech; Nikko quest). N4 units 4+ are not authored.
+* Tooling fixes found on the way: validator A10 compares full question text; promote ignores X09 circularity; coverage report syncs README blocks.
+* Validators at this point: 27 pass, 0 fail, 1 not run (A07 dictionary check; no dictionary is bundled).

@@ -1,0 +1,6 @@
+[
+{"id":"n4u02_d1","unit_id":"n4_u02","instructional_level":"N4","title":"At the temple gate","setting":"kamakura","turns":[{"speaker":"A","sentence_id":"s_n4u02_k02"},{"speaker":"B","sentence_id":"s_n4u02_k13"},{"speaker":"A","sentence_id":"s_n4u02_k30"}],"comprehension_question_ids":["q_n4u02_dg01","q_n4u02_dg02"],"register":"polite","provenance":"orig"},
+{"id":"n4u02_d2","unit_id":"n4_u02","instructional_level":"N4","title":"May I sit?","setting":"kamakura","turns":[{"speaker":"A","sentence_id":"s_n4u02_k04"},{"speaker":"B","sentence_id":"s_n4u02_k05"}],"comprehension_question_ids":["q_n4u02_dg03"],"register":"polite","provenance":"orig"},
+{"id":"n4u02_d3","unit_id":"n4_u02","instructional_level":"N4","title":"A busy tomorrow","setting":"kamakura","turns":[{"speaker":"A","sentence_id":"s_n4u02_k17"},{"speaker":"B","sentence_id":"s_n4u02_k23"}],"comprehension_question_ids":["q_n4u02_dg04","q_n4u02_dg05"],"register":"polite","provenance":"orig"},
+{"id":"n4u02_d4","unit_id":"n4_u02","instructional_level":"N4","title":"Borrowing a book","setting":"kamakura","turns":[{"speaker":"A","sentence_id":"s_n4u02_k08"},{"speaker":"B","sentence_id":"s_n4u02_k03"}],"comprehension_question_ids":["q_n4u02_dg06"],"register":"polite","provenance":"orig"}
+]

@@ -12,8 +12,8 @@
 * Accessibility: axe on all screens, keyboard flows, 44 px targets, reduced motion, 200 % text (AC29–AC31).
 
 ## Partial
-* **Curriculum content:** N5 units 1–4 only (see README and `content/coverage.md`). N4–N1 have unit skeletons and unlock rules but no released units.
-* **Mock exams:** the mock runner and validators exist; **zero** mock papers are released (L-01).
+* **Curriculum content:** N5 units 1–12 (all of N5) and N4 units 1–3 (see README and `content/coverage.md`). N4 units 4+ and N3–N1 have unit skeletons and unlock rules but no released units. Nothing is native-speaker reviewed.
+* **Mock exams:** the mock runner and validators exist; **one** mock paper is released (N5 mock 1 of the 20 targeted per level, L-01). The README states the released count per level.
 * **Kanji:** six kanji (一〜六) with readings and examples; stroke-order diagrams are not available.
 
 ## Deferred (not implemented in this release)

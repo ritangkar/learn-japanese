@@ -231,7 +231,7 @@ export function runAll(raw, ctx = {}) {
     for (const { mock, q } of mockQs) {
       const h = createHash('sha256').update(normalizeJa(qText(q)).toLowerCase()).digest('hex').slice(0, 16);
       if (hashes.has(h) && hashes.get(h) !== q.id) errors.push(err(q.id, `stem hash equals ${hashes.get(h)}`)); hashes.set(h, q.id);
-      gs.push({ mock, id: q.id, g: grams(`${q.stem.ja || ''}${q.stem.prompt}${q.stem.context_ja || ''}`) });
+      gs.push({ mock, id: q.id, g: grams(qText(q)) });
     }
     for (let i = 0; i < gs.length; i++) for (let j = i + 1; j < gs.length; j++) if (gs[i].id !== gs[j].id && jacc(gs[i].g, gs[j].g) >= 0.8) errors.push(err(gs[i].id, `5-gram Jaccard >= 0.8 with ${gs[j].id}`));
     results.push(ok('A10', 'Question uniqueness across mocks (id, stem hash, 5-gram Jaccard < 0.8)', errors, { mockQuestions: mockQs.length }));
@@ -524,7 +524,8 @@ export function computeCoverage(raw, idx, spec) {
   for (const L of levels) {
     const units = raw.curriculum.units.filter((u) => u.level === L);
     const rel = units.filter((u) => ['auto_checked', 'human_reviewed'].includes(u.content_status));
-    const count = (c) => raw[c].filter((x) => x.instructional_level === L && vis(x.id));
+    const mockOnly = new Set(raw.mocks.flatMap((m) => m.sections.flatMap((sec) => [...sec.question_ids, ...(sec.shared_passages || []), ...(sec.listening_ids || [])])));
+    const count = (c) => raw[c].filter((x) => x.instructional_level === L && vis(x.id) && !mockOnly.has(x.id));
     const dist = { draft: 0, auto_checked: 0, human_reviewed: 0 };
     for (const c of COLLECTIONS) for (const x of raw[c]) if ((x.instructional_level || idx.unitLevel.get(x.unit_id) || x.level) === L) dist[statusOf(raw, x.id)]++;
     const releasedMocks = raw.mocks.filter((m) => m.level === L && vis(m.id)).length;

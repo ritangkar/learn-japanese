@@ -1,0 +1,10 @@
+[
+{"id":"k_kai","unit_id":"n4_u01","instructional_level":"N4","char":"会","meanings_en":["meet","association"],"on_readings":["かい","え"],"kun_readings":["あ"],"reading_notes":"In 会います the kanji is あ; in 会社 it is かい.","stroke_count":6,"example_word_ids":["v_aimasu","v_kaisha"],"tags":["people"],"provenance":"orig"},
+{"id":"k_sha","unit_id":"n4_u01","instructional_level":"N4","char":"社","meanings_en":["company","shrine"],"on_readings":["しゃ"],"kun_readings":["やしろ"],"stroke_count":7,"example_word_ids":["v_kaisha"],"tags":["work"],"provenance":"orig"},
+{"id":"k_koku","unit_id":"n4_u01","instructional_level":"N4","char":"国","meanings_en":["country"],"on_readings":["こく"],"kun_readings":["くに"],"stroke_count":8,"example_word_ids":["v_gaikoku"],"tags":["places"],"provenance":"orig"},
+{"id":"k_gai","unit_id":"n4_u01","instructional_level":"N4","char":"外","meanings_en":["outside"],"on_readings":["がい","げ"],"kun_readings":["そと","ほか"],"stroke_count":5,"example_word_ids":["v_soto","v_gaikoku"],"tags":["places"],"provenance":"orig"},
+{"id":"k_ko","unit_id":"n4_u01","instructional_level":"N4","char":"子","meanings_en":["child"],"on_readings":["し","す"],"kun_readings":["こ"],"stroke_count":3,"example_word_ids":["v_kodomo"],"tags":["people"],"provenance":"orig"},
+{"id":"k_onna","unit_id":"n4_u01","instructional_level":"N4","char":"女","meanings_en":["woman","female"],"on_readings":["じょ"],"kun_readings":["おんな"],"stroke_count":3,"example_word_ids":["v_onna","v_onnanohito"],"confusable_with":["k_otoko"],"tags":["people"],"provenance":"orig"},
+{"id":"k_otoko","unit_id":"n4_u01","instructional_level":"N4","char":"男","meanings_en":["man","male"],"on_readings":["だん","なん"],"kun_readings":["おとこ"],"stroke_count":7,"example_word_ids":["v_otoko","v_otokonohito"],"confusable_with":["k_onna"],"tags":["people"],"provenance":"orig"},
+{"id":"k_te","unit_id":"n4_u01","instructional_level":"N4","char":"手","meanings_en":["hand"],"on_readings":["しゅ"],"kun_readings":["て"],"stroke_count":4,"example_word_ids":["v_te"],"tags":["body"],"provenance":"orig"}
+]

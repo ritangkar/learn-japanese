@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Writes content/coverage.md (committed) from the validator's coverage computation. Counts items at auto_checked or higher only.
-import { writeFileSync } from 'node:fs';
+import { writeFileSync, readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { validate } from './validate-content.mjs';
 import { ROOT } from './lib/load-content.mjs';
@@ -20,3 +20,16 @@ const hr = Object.values(cov).reduce((a, c) => a + c.status_distribution.human_r
 lines.push('', `human_reviewed share: ${hr} of ${total} items (${total ? ((100 * hr) / total).toFixed(1) : 0} %).`, '', `Units: ${raw.curriculum.units.filter((u) => u.content_status === 'to_be_authored').length} of ${raw.curriculum.units.length} are still \`to_be_authored\` and are not releasable.`);
 writeFileSync(join(ROOT, 'content/coverage.md'), `${lines.join('\n')}\n`);
 console.log(lines.join('\n'));
+
+// Keep the README's mock counters and coverage summary in sync with the shipped content (AC25).
+const readmePath = join(ROOT, 'README.md');
+if (existsSync(readmePath)) {
+  let readme = readFileSync(readmePath, 'utf8');
+  const mockRows = ['| Level | Mocks released | Long-term goal |', '|---|---|---|', ...Object.entries(cov).map(([L, c]) => `| ${L} | ${c.mocks_released} of 20 released | 20 |`)].join('\n');
+  const covRows = Object.entries(cov).map(([L, c]) => (c.units_released
+    ? `* ${L}: ${c.units_released} of ${c.units_total} planned units released; ${c.vocab} words, ${c.kanji} kanji, ${c.grammar} grammar points, ${c.dialogues} dialogues, ${c.passages} reading passages, ${c.questions_authored} hand-written and ${c.questions_templated} templated questions.`
+    : `* ${L}: no units released yet (the unit plan exists but the units are marked \`to_be_authored\` and are not releasable).`)).join('\n');
+  const swap = (name, body) => { const re = new RegExp(`(<!-- ${name}:begin -->)[\\s\\S]*?(<!-- ${name}:end -->)`); if (re.test(readme)) readme = readme.replace(re, `$1\n${body}\n$2`); };
+  swap('mocks', mockRows); swap('coverage', covRows);
+  writeFileSync(readmePath, readme);
+}

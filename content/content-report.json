@@ -219,27 +219,27 @@
     "reading_passages": 25,
     "intended_coverage_of_reference": "high (core quality level)"
    },
-   "mocks_released": 0,
+   "mocks_released": 1,
    "mocks_target_long_term": 20,
    "status_distribution": {
     "draft": 0,
-    "auto_checked": 4214,
+    "auto_checked": 4324,
     "human_reviewed": 0
    }
   },
   "N4": {
    "units_total": 8,
-   "units_released": 0,
-   "vocab": 0,
-   "kanji": 0,
-   "grammar": 0,
-   "dialogues": 0,
-   "passages": 0,
+   "units_released": 3,
+   "vocab": 79,
+   "kanji": 24,
+   "grammar": 11,
+   "dialogues": 12,
+   "passages": 7,
    "kana": 0,
-   "sentences": 0,
-   "listening": 0,
-   "questions_authored": 0,
-   "questions_templated": 0,
+   "sentences": 147,
+   "listening": 6,
+   "questions_authored": 314,
+   "questions_templated": 261,
    "targets": {
     "vocab": 350,
     "kanji": 60,
@@ -252,7 +252,7 @@
    "mocks_target_long_term": 20,
    "status_distribution": {
     "draft": 0,
-    "auto_checked": 0,
+    "auto_checked": 891,
     "human_reviewed": 0
    }
   },
