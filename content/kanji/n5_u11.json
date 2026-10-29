@@ -1,0 +1,13 @@
+[
+{"id":"k_en","unit_id":"n5_u11","instructional_level":"N5","char":"円","meanings_en":["yen","circle"],"on_readings":["えん"],"kun_readings":["まる"],"stroke_count":4,"example_word_ids":["v_en"],"tags":["money"],"provenance":"orig"},
+{"id":"k_man","unit_id":"n5_u11","instructional_level":"N5","char":"万","meanings_en":["ten thousand"],"on_readings":["まん","ばん"],"kun_readings":[],"stroke_count":3,"example_word_ids":["v_man"],"tags":["money"],"provenance":"orig"},
+{"id":"k_ji","unit_id":"n5_u11","instructional_level":"N5","char":"時","meanings_en":["time","o'clock"],"on_readings":["じ"],"kun_readings":["とき"],"stroke_count":10,"example_word_ids":["v_sanji","v_rokuji"],"tags":["time"],"provenance":"orig"},
+{"id":"k_fun","unit_id":"n5_u11","instructional_level":"N5","char":"分","meanings_en":["minute","part"],"on_readings":["ふん","ぷん","ぶん"],"kun_readings":["わ"],"reading_notes":"ふん after 2, 5, 7, 9; ぷん after 1, 3, 4, 6, 8, 10.","stroke_count":4,"example_word_ids":["v_gofun","v_juppun"],"tags":["time"],"provenance":"orig"},
+{"id":"k_han","unit_id":"n5_u11","instructional_level":"N5","char":"半","meanings_en":["half"],"on_readings":["はん"],"kun_readings":["なか"],"stroke_count":5,"example_word_ids":["v_han"],"tags":["time"],"provenance":"orig"},
+{"id":"k_noon","unit_id":"n5_u11","instructional_level":"N5","char":"午","meanings_en":["noon"],"on_readings":["ご"],"kun_readings":[],"stroke_count":4,"example_word_ids":["v_gozen","v_gogo"],"tags":["time"],"provenance":"orig"},
+{"id":"k_mae","unit_id":"n5_u11","instructional_level":"N5","char":"前","meanings_en":["before","front"],"on_readings":["ぜん"],"kun_readings":["まえ"],"stroke_count":9,"example_word_ids":["v_mae","v_gozen"],"confusable_with":["k_ato"],"tags":["time"],"provenance":"orig"},
+{"id":"k_ato","unit_id":"n5_u11","instructional_level":"N5","char":"後","meanings_en":["after","behind"],"on_readings":["ご"],"kun_readings":["あと","うし"],"stroke_count":9,"example_word_ids":["v_ushiro","v_ato","v_gogo"],"confusable_with":["k_mae"],"tags":["time"],"provenance":"orig"},
+{"id":"k_kan","unit_id":"n5_u11","instructional_level":"N5","char":"間","meanings_en":["interval","between"],"on_readings":["かん"],"kun_readings":["あいだ","ま"],"stroke_count":12,"example_word_ids":["v_jikan"],"tags":["time"],"provenance":"orig"},
+{"id":"k_shuu","unit_id":"n5_u11","instructional_level":"N5","char":"週","meanings_en":["week"],"on_readings":["しゅう"],"kun_readings":[],"stroke_count":11,"example_word_ids":["v_senshuu","v_konshuu","v_raishuu"],"tags":["time"],"provenance":"orig"},
+{"id":"k_mai","unit_id":"n5_u11","instructional_level":"N5","char":"毎","meanings_en":["every"],"on_readings":["まい"],"kun_readings":[],"stroke_count":6,"example_word_ids":["v_mainichi","v_maiasa","v_maiban"],"tags":["time"],"provenance":"orig"}
+]

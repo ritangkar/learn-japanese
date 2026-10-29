@@ -267,8 +267,19 @@
    ],
    "kanji_introduced_target": 11,
    "scenario_theme": "hakone_trip",
-   "content_status": "to_be_authored",
-   "lessons": []
+   "content_status": "auto_checked",
+   "lessons": [
+    "n5_u11_l1",
+    "n5_u11_l2",
+    "n5_u11_l3",
+    "n5_u11_l4",
+    "n5_u11_l5",
+    "n5_u11_l6",
+    "n5_u11_l7",
+    "n5_u11_l8",
+    "n5_u11_l9",
+    "n5_u11_l10"
+   ]
   },
   {
    "id": "n5_u12",

@@ -1,0 +1,5 @@
+[
+{"id":"n5u11_r1","unit_id":"n5_u11","instructional_level":"N5","title":"Lakeside café menu","paragraphs":["コーヒー  ひゃくごじゅう えん","ケーキ  ろっぴゃく えん","おにぎり  ひゃく えん","おちゃ  ひゃく えん"],"translation_en":"Coffee 150 yen / Cake 600 yen / Rice ball 100 yen / Tea 100 yen","word_count_chars":40,"question_ids":["q_n5u11_rq01","q_n5u11_rq02","q_n5u11_rq03","q_n5u11_rq04"],"genre":"menu","provenance":"orig"},
+{"id":"n5u11_r2","unit_id":"n5_u11","instructional_level":"N5","title":"Hot spring rules","paragraphs":["おんせん の きまり","くつ を ぬいで ください","ゆっくり おふろ に はいって ください","しずか に して ください"],"translation_en":"Hot spring rules / Please take off your shoes. / Please enjoy the bath slowly. / Please be quiet.","word_count_chars":44,"question_ids":["q_n5u11_rq05","q_n5u11_rq06","q_n5u11_rq07"],"genre":"signs","provenance":"orig"},
+{"id":"n5u11_r3","unit_id":"n5_u11","instructional_level":"N5","title":"Opening hours","paragraphs":["午前 九時 から","午後 五時 まで","毎日"],"ruby":{"午前":"ごぜん","九時":"くじ","午後":"ごご","五時":"ごじ","毎日":"まいにち"},"translation_en":"From 9 a.m. / until 5 p.m. / every day","word_count_chars":14,"question_ids":["q_n5u11_rq08","q_n5u11_rq09","q_n5u11_rq10"],"genre":"signs","provenance":"orig"}
+]

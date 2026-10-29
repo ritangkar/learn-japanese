@@ -1,0 +1,6 @@
+[
+{"id":"n5u11_d1","unit_id":"n5_u11","instructional_level":"N5","title":"At the lakeside café","setting":"hakone","turns":[{"speaker":"B","sentence_id":"s_n5u05_s01"},{"speaker":"A","sentence_id":"s_n5u11_t13"},{"speaker":"A","sentence_id":"s_n5u11_t14"},{"speaker":"B","sentence_id":"s_n5u11_t19"}],"comprehension_question_ids":["q_n5u11_dg01","q_n5u11_dg02"],"register":"polite","provenance":"orig"},
+{"id":"n5u11_d2","unit_id":"n5_u11","instructional_level":"N5","title":"What do you want?","setting":"hakone","turns":[{"speaker":"A","sentence_id":"s_n5u11_t03"},{"speaker":"B","sentence_id":"s_n5u11_t17"}],"comprehension_question_ids":["q_n5u11_dg03"],"register":"polite","provenance":"orig"},
+{"id":"n5u11_d3","unit_id":"n5_u11","instructional_level":"N5","title":"At the ryokan entrance","setting":"hakone","turns":[{"speaker":"A","sentence_id":"s_n5u11_t10"},{"speaker":"B","sentence_id":"s_n5u11_t06"}],"comprehension_question_ids":["q_n5u11_dg04","q_n5u11_dg05"],"register":"polite","provenance":"orig"},
+{"id":"n5u11_d4","unit_id":"n5_u11","instructional_level":"N5","title":"A photo, please","setting":"hakone","turns":[{"speaker":"A","sentence_id":"s_n5u06_k22"},{"speaker":"A","sentence_id":"s_n5u11_k21"},{"speaker":"B","sentence_id":"s_n5u11_t05"}],"comprehension_question_ids":["q_n5u11_dg06"],"register":"polite","provenance":"orig"}
+]
