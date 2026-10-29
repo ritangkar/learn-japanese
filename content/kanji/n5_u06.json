@@ -1,0 +1,10 @@
+[
+{"id":"k_hito","unit_id":"n5_u06","instructional_level":"N5","char":"人","meanings_en":["person"],"on_readings":["じん","にん"],"kun_readings":["ひと"],"reading_notes":"ひと alone; じん after a country (にほんじん).","stroke_count":2,"example_word_ids":["v_hito","v_nihonjin"],"confusable_with":["k_dai"],"tags":["people"],"provenance":"orig"},
+{"id":"k_dai","unit_id":"n5_u06","instructional_level":"N5","char":"大","meanings_en":["big"],"on_readings":["だい"],"kun_readings":["おお"],"stroke_count":3,"example_word_ids":["v_ookii"],"confusable_with":["k_shou","k_hito"],"tags":["size"],"provenance":"orig"},
+{"id":"k_shou","unit_id":"n5_u06","instructional_level":"N5","char":"小","meanings_en":["small"],"on_readings":["しょう"],"kun_readings":["ちい","こ"],"stroke_count":3,"example_word_ids":["v_chiisai"],"confusable_with":["k_dai"],"tags":["size"],"provenance":"orig"},
+{"id":"k_yama","unit_id":"n5_u06","instructional_level":"N5","char":"山","meanings_en":["mountain"],"on_readings":["さん"],"kun_readings":["やま"],"stroke_count":3,"example_word_ids":["v_yama"],"confusable_with":["k_kawa"],"tags":["nature"],"provenance":"orig"},
+{"id":"k_kawa","unit_id":"n5_u06","instructional_level":"N5","char":"川","meanings_en":["river"],"on_readings":["せん"],"kun_readings":["かわ"],"stroke_count":3,"example_word_ids":["v_kawa"],"confusable_with":["k_yama"],"tags":["nature"],"provenance":"orig"},
+{"id":"k_ue","unit_id":"n5_u06","instructional_level":"N5","char":"上","meanings_en":["above","up"],"on_readings":["じょう"],"kun_readings":["うえ","あ"],"stroke_count":3,"example_word_ids":["v_ue"],"confusable_with":["k_shita"],"tags":["position"],"provenance":"orig"},
+{"id":"k_shita","unit_id":"n5_u06","instructional_level":"N5","char":"下","meanings_en":["below","down"],"on_readings":["か","げ"],"kun_readings":["した","さ"],"stroke_count":3,"example_word_ids":["v_shita"],"confusable_with":["k_ue"],"tags":["position"],"provenance":"orig"},
+{"id":"k_naka","unit_id":"n5_u06","instructional_level":"N5","char":"中","meanings_en":["middle","inside"],"on_readings":["ちゅう"],"kun_readings":["なか"],"stroke_count":4,"example_word_ids":["v_naka"],"tags":["position"],"provenance":"orig"}
+]

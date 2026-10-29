@@ -132,8 +132,17 @@
    ],
    "kanji_introduced_target": 8,
    "scenario_theme": "tokyo_tower_visit",
-   "content_status": "to_be_authored",
-   "lessons": []
+   "content_status": "auto_checked",
+   "lessons": [
+    "n5_u06_l1",
+    "n5_u06_l2",
+    "n5_u06_l3",
+    "n5_u06_l4",
+    "n5_u06_l5",
+    "n5_u06_l6",
+    "n5_u06_l7",
+    "n5_u06_l8"
+   ]
   },
   {
    "id": "n5_u07",
