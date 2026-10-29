@@ -109,7 +109,7 @@ test('AC31: touch targets are at least 44x44 CSS px in lesson, review and exam s
 test('AC30: reduced motion (in-app setting) removes non-essential animation; the available pin pulses otherwise', async ({ browser }) => {
   const ctx = await browser.newContext({ baseURL: process.env.BASE_URL || `http://localhost:${process.env.PORT || 4173}/${process.env.REPO_NAME || 'learn-japanese'}/`, reducedMotion: 'no-preference' });
   const page = await ctx.newPage();
-  await page.goto('./'); await waitReady(page); await skipTour(page); await page.waitForSelector('.pin-pulse');
+  await page.goto('./'); await waitReady(page); await skipTour(page); await page.goto('./#/explore'); await page.waitForSelector('.pin-pulse');
   const anim = () => page.evaluate(() => getComputedStyle(document.querySelector('.pin-pulse')).animationName);
   expect(await anim()).toBe('pulse');
   await page.evaluate(() => window.__tabi.store.update('settings', (s) => ({ ...s, reducedMotion: 'on' })));
@@ -119,7 +119,7 @@ test('AC30: reduced motion (in-app setting) removes non-essential animation; the
   expect(await anim()).toBe('pulse');
   await ctx.close();
   const ctx2 = await browser.newContext({ baseURL: `http://localhost:${process.env.PORT || 4173}/${process.env.REPO_NAME || 'learn-japanese'}/`, reducedMotion: 'reduce' });
-  const p2 = await ctx2.newPage(); await p2.goto('./'); await waitReady(p2); await skipTour(p2); await p2.waitForSelector('.pin-pulse');
+  const p2 = await ctx2.newPage(); await p2.goto('./'); await waitReady(p2); await skipTour(p2); await p2.goto('./#/explore'); await p2.waitForSelector('.pin-pulse');
   expect(await p2.evaluate(() => getComputedStyle(document.querySelector('.pin-pulse')).animationName)).toBe('none');
   await ctx2.close();
 });

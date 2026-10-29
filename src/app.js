@@ -64,7 +64,7 @@ export function startApp({ store, root }) {
   const outlet = h('main', { id: 'main', class: 'main', tabindex: '-1' });
   const live = h('div', { id: 'live', class: 'sr-only', 'aria-live': 'polite', role: 'status' });
   const titleText = h('span', null, 'Tabi Nihongo');
-  const title = h('h1', { class: 'app-title' }, icon('torii', { size: 24, cls: 'brand-mark' }), titleText);
+  const title = h('div', { class: 'app-title' }, icon('torii', { size: 24, cls: 'brand-mark' }), titleText);
   const tabbar = h('nav', { class: 'tabbar', 'aria-label': 'Main' });
   const backSlot = h('span', { id: 'header-back' });
   const headerBrand = h('span', { class: 'brand-slot' });
@@ -180,6 +180,8 @@ export function startApp({ store, root }) {
       clear(outlet);
       if (el) outlet.append(el);
       renderBack(loc.path, hideChrome);
+      // one h1 per screen: the header title only acts as the h1 when the screen has none of its own
+      if (outlet.querySelector('h1')) { title.removeAttribute('role'); title.removeAttribute('aria-level'); } else { title.setAttribute('role', 'heading'); title.setAttribute('aria-level', '1'); }
       document.title = `${loc.route.title || 'Tabi Nihongo'} · Tabi Nihongo`;
       outlet.focus({ preventScroll: true });
       window.scrollTo(0, 0);

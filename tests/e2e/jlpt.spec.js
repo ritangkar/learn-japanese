@@ -81,7 +81,9 @@ test.describe('JLPT area (AC10, AC11, AC23, AC25, AC32-AC34)', () => {
     await page.locator('#exam-resume').click();
     await expect(page.locator('.qgrid .qg').first()).toHaveAttribute('data-state', 'answered');
     await page.reload(); await waitReady(page);
-    await page.getByRole('button', { name: 'Discard this attempt' }).click();
+    await page.locator('#discard-attempt').click();
+    await expect(page.locator('dialog[open]')).toContainText('cannot be undone');
+    await page.locator('#confirm-ok').click();
     await expect(page).toHaveURL(/#\/jlpt$/);
     expect(await page.evaluate(() => window.__tabi.store.state.examlive)).toBeNull();
   });

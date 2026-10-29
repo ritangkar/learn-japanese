@@ -77,8 +77,8 @@ export async function homeScreen({ ctx }) {
     host.append(h('section', { class: 'card goal-card', 'aria-label': 'Study rhythm' },
       ring({ value: ringData.effectiveDays, max: ringData.goal, label: `${ringData.effectiveDays}/${ringData.goal}`, sub: 'days' }),
       h('div', { class: 'txt' }, h('strong', null, ringData.met ? 'Weekly goal reached' : 'This week'), h('span', { class: 'small muted' }, `${ringData.effectiveDays} of ${ringData.goal} study days${ringData.graceApplied ? ' (grace day applied)' : ''}${fl.minutes ? ` · ${Math.round(fl.minutes)} min today` : ''}`), weekDots(st.journal, t, ringData.goal))));
-    if (gam === 'full') host.append(h('div', { class: 'stat-row' },
-      h('div', { class: 'card stat flame' }, icon('flame', { fill: true }), h('b', null, String(stk.days)), h('span', { class: 'lbl' }, stk.days === 1 ? 'day streak' : 'day streak')),
+    if (gam === 'full') host.append(h('div', { class: `stat-row${stk.days > 0 ? '' : ' two'}` },
+      stk.days > 0 ? h('div', { class: 'card stat flame' }, icon('flame', { fill: true }), h('b', null, String(stk.days)), h('span', { class: 'lbl' }, 'day streak')) : null,
       h('div', { class: 'card stat gold' }, icon('star', { fill: true }), h('b', null, String(st.journal.xp.total)), h('span', { class: 'lbl' }, 'XP')),
       h('div', { class: 'card stat' }, icon('book'), h('b', null, String(lessonsDone)), h('span', { class: 'lbl' }, lessonsDone === 1 ? 'lesson done' : 'lessons done'))));
   }

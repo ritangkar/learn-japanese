@@ -52,7 +52,7 @@ export function ruby(segs) {
 }
 
 // Null-safe append/prepend: optional children (null/undefined/false) are skipped instead of rendering the text "null".
-for (const name of ['append', 'prepend']) {
+for (const name of ['append', 'prepend', 'replaceChildren']) {
   const orig = Element.prototype[name];
   Element.prototype[name] = function safe(...nodes) { return orig.apply(this, nodes.filter((n) => n !== null && n !== undefined && n !== false)); };
 }

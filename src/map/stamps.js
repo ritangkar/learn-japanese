@@ -53,7 +53,7 @@ export function stampSvg(dest, { day = null, tier = null, motifs = [], level = n
   g.append(s('text', { x: 60, y: frame === 'oval' ? 30 : 29, 'font-size': 7.6, 'font-weight': 700, 'letter-spacing': 1.2, 'font-family': 'var(--font-body)' }, dest.name_en.toUpperCase().slice(0, 18)));
   if (ghost) g.append(s('text', { x: 60, y: 70, 'font-size': 30, 'font-weight': 700, opacity: 0.55 }, '?'));
   else {
-    const glyph = s('g', { transform: 'translate(60 50) scale(.78)', fill: 'none' }, ...(GLYPH[MOTIF_FOR(dest.id, motifs)] || GLYPH.skyline)(ink));
+    const glyph = s('g', { transform: 'translate(60 47) scale(.66)', fill: 'none' }, ...(GLYPH[MOTIF_FOR(dest.id, motifs)] || GLYPH.skyline)(ink));
     g.append(glyph, s('text', { x: 60, y: 82, 'font-size': fs, 'font-weight': 700 }, nameJa));
     g.append(day !== null ? s('text', { x: 60, y: 97, 'font-size': 7.4, 'font-family': 'var(--font-body)', 'font-weight': 700, 'letter-spacing': 0.6 }, dayToDate(day).replace(/-/g, '.')) : null);
     if (tier) g.append(s('text', { x: 60, y: 107, 'font-size': 8, 'font-weight': 700, 'font-family': 'var(--font-body)' }, tier));

@@ -304,3 +304,4 @@ dialog[open] { animation: pop-in 240ms cubic-bezier(.2, .9, .3, 1.2); }
 .nav-row .btn { flex: 1; }
 .brand-mark { color: var(--vermilion); flex: none; }
 [hidden] { display: none !important; }
+.stat-row.two { grid-template-columns: repeat(2, 1fr); }
