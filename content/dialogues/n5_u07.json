@@ -1,0 +1,6 @@
+[
+{"id":"n5u07_d1","unit_id":"n5_u07","instructional_level":"N5","title":"Where is the bank?","setting":"residential_street","turns":[{"speaker":"A","sentence_id":"s_n5u07_k16"},{"speaker":"B","sentence_id":"s_n5u07_k08"},{"speaker":"A","sentence_id":"s_n5u02_g07"}],"comprehension_question_ids":["q_n5u07_dg01","q_n5u07_dg02"],"register":"polite","provenance":"orig"},
+{"id":"n5u07_d2","unit_id":"n5_u07","instructional_level":"N5","title":"A cat here?","setting":"residential_street","turns":[{"speaker":"A","sentence_id":"s_n5u07_k17"},{"speaker":"B","sentence_id":"s_n5u07_k18"}],"comprehension_question_ids":["q_n5u07_dg03"],"register":"polite","provenance":"orig"},
+{"id":"n5u07_d3","unit_id":"n5_u07","instructional_level":"N5","title":"The bakery","setting":"residential_street","turns":[{"speaker":"A","sentence_id":"s_n5u07_k28"},{"speaker":"B","sentence_id":"s_n5u07_k23"}],"comprehension_question_ids":["q_n5u07_dg04","q_n5u07_dg05"],"register":"polite","provenance":"orig"},
+{"id":"n5u07_d4","unit_id":"n5_u07","instructional_level":"N5","title":"Near my house","setting":"residential_street","turns":[{"speaker":"A","sentence_id":"s_n5u07_k26"},{"speaker":"B","sentence_id":"s_n5u07_k13"}],"comprehension_question_ids":["q_n5u07_dg06"],"register":"polite","provenance":"orig"}
+]

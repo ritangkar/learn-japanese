@@ -1,0 +1,11 @@
+[
+{"id":"k_kuchi","unit_id":"n5_u07","instructional_level":"N5","char":"口","meanings_en":["mouth","opening","entrance"],"on_readings":["こう"],"kun_readings":["くち","ぐち"],"reading_notes":"ぐち in compounds such as いりぐち / でぐち.","stroke_count":3,"example_word_ids":["v_kuchi","v_deguchi","v_iriguchi"],"tags":["places"],"provenance":"orig"},
+{"id":"k_de","unit_id":"n5_u07","instructional_level":"N5","char":"出","meanings_en":["go out","exit"],"on_readings":["しゅつ"],"kun_readings":["で","だ"],"stroke_count":5,"example_word_ids":["v_deguchi"],"confusable_with":["k_iri"],"tags":["places"],"provenance":"orig"},
+{"id":"k_iri","unit_id":"n5_u07","instructional_level":"N5","char":"入","meanings_en":["enter","put in"],"on_readings":["にゅう"],"kun_readings":["い","はい"],"stroke_count":2,"example_word_ids":["v_iriguchi"],"confusable_with":["k_de","k_hito"],"tags":["places"],"provenance":"orig"},
+{"id":"k_eki","unit_id":"n5_u07","instructional_level":"N5","char":"駅","meanings_en":["station"],"on_readings":["えき"],"kun_readings":[],"stroke_count":14,"example_word_ids":["v_eki"],"tags":["places"],"provenance":"orig"},
+{"id":"k_mise","unit_id":"n5_u07","instructional_level":"N5","char":"店","meanings_en":["shop"],"on_readings":["てん"],"kun_readings":["みせ"],"stroke_count":8,"example_word_ids":["v_mise","v_tenin"],"tags":["places"],"provenance":"orig"},
+{"id":"k_machi","unit_id":"n5_u07","instructional_level":"N5","char":"町","meanings_en":["town"],"on_readings":["ちょう"],"kun_readings":["まち"],"stroke_count":7,"example_word_ids":["v_machi"],"tags":["places"],"provenance":"orig"},
+{"id":"k_ie","unit_id":"n5_u07","instructional_level":"N5","char":"家","meanings_en":["house","home"],"on_readings":["か"],"kun_readings":["いえ","うち"],"stroke_count":10,"example_word_ids":["v_ie"],"tags":["places"],"provenance":"orig"},
+{"id":"k_gaku","unit_id":"n5_u07","instructional_level":"N5","char":"学","meanings_en":["study","learning"],"on_readings":["がく"],"kun_readings":["まな"],"stroke_count":8,"example_word_ids":["v_gakusei","v_daigakusei"],"confusable_with":["k_kou"],"tags":["school"],"provenance":"orig"},
+{"id":"k_kou","unit_id":"n5_u07","instructional_level":"N5","char":"校","meanings_en":["school"],"on_readings":["こう"],"kun_readings":[],"stroke_count":10,"example_word_ids":["v_gakkou"],"confusable_with":["k_gaku"],"tags":["school"],"provenance":"orig"}
+]

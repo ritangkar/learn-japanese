@@ -1,0 +1,4 @@
+[
+{"id":"n5u07_ls1","audio_mode":"tts","synthetic_audio_flag":true,"speaker_voice_hint":[],"unit_id":"n5_u07","instructional_level":"N5","item_type":"Word recognition (lesson practice)","title":"Where? Location words","script_turns":[{"speaker":"A","text_ja":"まえ"},{"speaker":"A","text_ja":"うしろ"},{"speaker":"A","text_ja":"みぎ"},{"speaker":"A","text_ja":"ひだり"}],"question_ids":["q_n5u07_gl01","q_n5u07_gl02","q_n5u07_gl03","q_n5u07_gl04"],"provenance":"orig"},
+{"id":"n5u07_ls2","audio_mode":"tts","synthetic_audio_flag":true,"speaker_voice_hint":[],"unit_id":"n5_u07","instructional_level":"N5","item_type":"Verbal expressions (lesson practice)","title":"Is there ...?","script_turns":[{"speaker":"A","text_ja":"ほん が あります"},{"speaker":"A","text_ja":"ねこ が います"},{"speaker":"A","text_ja":"いいえ いません"},{"speaker":"A","text_ja":"ぎんこう は どこ です か"}],"question_ids":["q_n5u07_gl05","q_n5u07_gl06","q_n5u07_gl07","q_n5u07_gl08"],"provenance":"orig"}
+]

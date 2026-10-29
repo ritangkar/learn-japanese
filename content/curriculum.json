@@ -158,8 +158,17 @@
    ],
    "kanji_introduced_target": 9,
    "scenario_theme": "residential_street",
-   "content_status": "to_be_authored",
-   "lessons": []
+   "content_status": "auto_checked",
+   "lessons": [
+    "n5_u07_l1",
+    "n5_u07_l2",
+    "n5_u07_l3",
+    "n5_u07_l4",
+    "n5_u07_l5",
+    "n5_u07_l6",
+    "n5_u07_l7",
+    "n5_u07_l8"
+   ]
   },
   {
    "id": "n5_u08",
