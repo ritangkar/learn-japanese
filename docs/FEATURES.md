@@ -22,3 +22,6 @@
 * Optional audio packs, KanjiVG stroke data, and external dictionary/corpus data (Tatoeba/JMdict/Tanos): not used.
 * Secondary (non-primary) destination quests, other than those authored (see `content/quests.json`).
 * Real-device checks (AC35): Android Chrome install and iPhone Home Screen instructions are shown in the app, but no device test was run.
+
+## Redesign features (see docs/redesign/)
+Five-tab navigation with a deterministic header back button; Home dashboard; location-aware backdrops; Explore map with stop sheet and magnifier zoom; station-style stamps, stamp-awarding moment and stamp book; unfinished-exam attempt card; install card (native prompt on Chromium, manual steps on iPhone/iPad Safari, hidden when installed, re-openable from Me). Not implemented: hand-drawn region polygons on the map, native-speaker audio, N3-N1 content.

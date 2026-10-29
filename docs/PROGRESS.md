@@ -75,3 +75,10 @@ SVG map (original simplified outlines), pins by shape, Okinawa inset, Tokyo sub-
 * `n4_u01` (te-form in depth), `n4_u02` (permission, prohibition, obligation; Kamakura quest), `n4_u03` (plain form and casual speech; Nikko quest). N4 units 4+ are not authored.
 * Tooling fixes found on the way: validator A10 compares full question text; promote ignores X09 circularity; coverage report syncs README blocks.
 * Validators at this point: 27 pass, 0 fail, 1 not run (A07 dictionary check; no dictionary is bundled).
+
+## Redesign (Japan-immersion UI) — done
+* Research and audit: `docs/redesign/01-AUDIT.md`, `02-RESEARCH.md` (search-summary level; most page fetches were blocked by the sandbox, stated there).
+* Design system: tokens, local OFL fonts (Latin subsets), 45-icon set, components; five-tab shell with deterministic back and leave-confirmation.
+* Location-aware backdrops (27 original scenes), Explore map (big pins, magnifier zoom/reset, Map/List, stop sheet), Home dashboard, Learn, lessons, completion screen, stamp book + awarding moment, JLPT hub/level/attempt card, install experience (Chromium prompt, iOS steps), new app icon and manifest shortcuts.
+* Tests: install/redesign unit tests, redesign e2e (journeys 1, 4-6, 8-10), synthetic profiles, whole-app sanity spec; suite 268 passed / 2 skipped / 0 failed across three viewports.
+* Defects D-026 to D-032 found and fixed on the way (hidden tab bar intercepting taps, CSP-blocked inline styles, "null" text, duplicate h1, late install event, axe label/contrast, stale tests).
