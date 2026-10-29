@@ -1,0 +1,8 @@
+[
+{"id":"k_shichi","unit_id":"n5_u05","instructional_level":"N5","char":"七","meanings_en":["seven"],"on_readings":["しち"],"kun_readings":["なな"],"reading_notes":"しち and なな are both used; なな is clearer on the phone.","stroke_count":2,"example_word_ids":["v_num7"],"confusable_with":["k_kyuu"],"tags":["numbers"],"provenance":"orig"},
+{"id":"k_hachi","unit_id":"n5_u05","instructional_level":"N5","char":"八","meanings_en":["eight"],"on_readings":["はち"],"kun_readings":["や"],"stroke_count":2,"example_word_ids":["v_num8"],"confusable_with":["k_roku"],"tags":["numbers"],"provenance":"orig"},
+{"id":"k_kyuu","unit_id":"n5_u05","instructional_level":"N5","char":"九","meanings_en":["nine"],"on_readings":["きゅう","く"],"kun_readings":["ここの"],"stroke_count":2,"example_word_ids":["v_num9"],"confusable_with":["k_shichi"],"tags":["numbers"],"provenance":"orig"},
+{"id":"k_juu","unit_id":"n5_u05","instructional_level":"N5","char":"十","meanings_en":["ten"],"on_readings":["じゅう"],"kun_readings":["とお"],"stroke_count":2,"example_word_ids":["v_num10"],"tags":["numbers"],"provenance":"orig"},
+{"id":"k_hyaku","unit_id":"n5_u05","instructional_level":"N5","char":"百","meanings_en":["hundred"],"on_readings":["ひゃく"],"kun_readings":[],"stroke_count":6,"example_word_ids":["v_num100"],"tags":["numbers"],"provenance":"orig"},
+{"id":"k_sen","unit_id":"n5_u05","instructional_level":"N5","char":"千","meanings_en":["thousand"],"on_readings":["せん"],"kun_readings":["ち"],"stroke_count":3,"example_word_ids":["v_num1000"],"confusable_with":["k_juu"],"tags":["numbers"],"provenance":"orig"}
+]

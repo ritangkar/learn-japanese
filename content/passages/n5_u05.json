@@ -1,0 +1,4 @@
+[
+{"id":"n5u05_r1","unit_id":"n5_u05","instructional_level":"N5","title":"Convenience store price board","paragraphs":["おにぎり  ひゃく えん","コーヒー  ひゃくごじゅう えん","ジュース  さんびゃく えん","ケーキ  ろっぴゃく えん"],"translation_en":"Rice ball 100 yen / Coffee 150 yen / Juice 300 yen / Cake 600 yen","word_count_chars":43,"question_ids":["q_n5u05_rq01","q_n5u05_rq02","q_n5u05_rq03"],"genre":"signs","provenance":"orig"},
+{"id":"n5u05_r2","unit_id":"n5_u05","instructional_level":"N5","title":"Shop notes","paragraphs":["レジ は あそこ です","ふくろ は ここ です","この ケーキ は おいしい です"],"translation_en":"The register is over there. / Bags are here. / This cake is delicious.","word_count_chars":28,"question_ids":["q_n5u05_rq04","q_n5u05_rq05"],"genre":"signs","provenance":"orig"}
+]

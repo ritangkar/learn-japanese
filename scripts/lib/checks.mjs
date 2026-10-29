@@ -404,7 +404,7 @@ export function runAll(raw, ctx = {}) {
       const key = `${k.script}:${k.char}`;
       if (!kanaUnit.has(key) || ordOf(k.unit_id) < ordOf(kanaUnit.get(key))) kanaUnit.set(key, k.unit_id);
     }
-    const small = { ゃ: 1, ゅ: 1, ょ: 1, ぁ: 1, ぃ: 1, ぅ: 1, ぇ: 1, ぉ: 1 };
+    const small = { ゃ: 1, ゅ: 1, ょ: 1, ぁ: 1, ぃ: 1, ぅ: 1, ぇ: 1, ぉ: 1, ャ: 1, ュ: 1, ョ: 1, ァ: 1, ィ: 1, ゥ: 1, ェ: 1, ォ: 1 };
     for (const { kind, id, it } of items) {
       if (!it.unit_id || !idx.units.has(it.unit_id)) continue;
       const ord = ordOf(it.unit_id);

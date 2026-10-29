@@ -105,8 +105,18 @@
    ],
    "kanji_introduced_target": 6,
    "scenario_theme": "konbini_shopping",
-   "content_status": "to_be_authored",
-   "lessons": []
+   "content_status": "auto_checked",
+   "lessons": [
+    "n5_u05_l1",
+    "n5_u05_l2",
+    "n5_u05_l3",
+    "n5_u05_l4",
+    "n5_u05_l5",
+    "n5_u05_l6",
+    "n5_u05_l7",
+    "n5_u05_l8",
+    "n5_u05_l9"
+   ]
   },
   {
    "id": "n5_u06",

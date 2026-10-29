@@ -79,4 +79,26 @@ test.describe('Explore Japan map (AC13, AC12, J04)', () => {
     if (await page.locator('#quest-q_tokyo_station_1').count()) { await page.locator('#quest-q_tokyo_station_1').click(); await solveSession(page); }
     expect(await stamps()).toBe(1);
   });
+
+  test('journey C3: the Konbini quest (QT_SHOP) needs n5_u04 to unlock and n5_u05 to complete; one stamp, never duplicated', async ({ page }) => {
+    const complete = (ids) => page.evaluate(async (units) => {
+      const st = window.__tabi.store; const content = await window.__tabi.ctx.getContent();
+      const lessons = {}; const us = {};
+      for (const id of units) { us[id] = { completedAt: 1 }; for (const l of content.unitById.get(id).lessons) lessons[l] = { doneAt: 1, score: 1, count: 1 }; }
+      st.update('progress', (p) => ({ ...p, lessons: { ...p.lessons, ...lessons }, units: { ...p.units, ...us } }));
+    }, ids);
+    await page.evaluate(async () => { await window.__tabi.ctx.getContent(); });
+    await complete(['n5_u01', 'n5_u02', 'n5_u03']);
+    await page.goto('./#/dest/konbini');
+    await expect(page.locator('#quest-q_konbini_1')).toHaveCount(0);
+    await complete(['n5_u04', 'n5_u05']);
+    await page.goto('./#/'); await page.goto('./#/dest/konbini'); await page.locator('#quest-q_konbini_1').click();
+    const { solveSession } = await import('./helpers.js'); await solveSession(page);
+    await page.goto('./#/'); await page.goto('./#/dest/konbini'); await expect(page.locator('main')).toContainText(/completed|revisit/i);
+    const stamps = async () => page.evaluate(() => Object.keys(window.__tabi.store.state.journal.stamps || {}).filter((k) => k.includes('konbini')).length);
+    expect(await stamps()).toBe(1);
+    await page.goto('./#/dest/konbini');
+    if (await page.locator('#quest-q_konbini_1').count()) { await page.locator('#quest-q_konbini_1').click(); await solveSession(page); }
+    expect(await stamps()).toBe(1);
+  });
 });
