@@ -39,10 +39,13 @@ test('AC29: keyboard only: a whole lesson practice can be completed without a po
   await page.getByRole('button', { name: 'Next', exact: true }).focus(); await page.keyboard.press('Enter');
   await page.getByRole('button', { name: 'Next', exact: true }).focus(); await page.keyboard.press('Enter');
   await page.getByRole('button', { name: 'Start practice' }).focus(); await page.keyboard.press('Enter');
-  let answered = 0;
-  for (let i = 0; i < 40 && !(await page.locator('.summary').count()); i++) {
+  let answered = 0; let lastId = null;
+  for (let i = 0; i < 200 && !(await page.locator('.summary').count()); i++) {
     const ex = page.locator('.exercise'); if (!(await ex.count())) { await page.waitForTimeout(50); continue; }
-    const info = await page.evaluate(() => { const q = document.querySelector('.exercise').q; return { type: q.type, answer: q.answer, choices: q.choices ? q.choices.map((c) => c.id) : null }; });
+    const info = await page.evaluate(() => { const q = document.querySelector('.exercise').q; return { id: q.id, type: q.type, answer: q.answer, choices: q.choices ? q.choices.map((c) => c.id) : null }; });
+    // the previous (answered) exercise can still be in the DOM for a moment after Continue; wait for the next question
+    if (info.id === lastId && !(await page.locator('.summary').count())) { await page.waitForTimeout(50); continue; }
+    lastId = info.id;
     if (info.choices) {
       // number keys select an answer; Enter checks it
       const order = await page.locator('.exercise .choice').evaluateAll((els) => els.map((e) => e.dataset.choice));
